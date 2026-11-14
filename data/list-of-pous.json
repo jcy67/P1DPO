@@ -1,0 +1,249 @@
+[
+  {
+    "id": 1,
+    "name": "Goober",
+    "asleep": false,
+    "household": {
+      "householdName": "Addams",
+      "members": [
+        {
+          "name": "Morticia"
+        },
+        {
+          "name": "Gomez"
+        },
+        {
+          "name": "Wednesday"
+        }
+      ]
+    },
+    "status": {
+      "food": 88,
+      "health": 74,
+      "fun": 95,
+      "energy": 80
+    }
+  },
+  {
+    "id": 2,
+    "name": "Pookie",
+    "asleep": false,
+    "household": {
+      "householdName": "Kardashian",
+      "members": [
+        {
+          "name": "Kim"
+        },
+        {
+          "name": "Kourtney"
+        },
+        {
+          "name": "Khloe"
+        }
+      ]
+    },
+    "status": {
+      "food": 72,
+      "health": 46,
+      "fun": 80,
+      "energy": 65
+    }
+  },
+  {
+    "id": 3,
+    "name": "Noodle",
+    "asleep": false,
+    "household": {
+      "householdName": "Belcher",
+      "members": [
+        {
+          "name": "Bob"
+        },
+        {
+          "name": "Linda"
+        },
+        {
+          "name": "Tina"
+        },
+        {
+          "name": "Louise"
+        }
+      ]
+    },
+    "status": {
+      "food": 78,
+      "health": 50,
+      "fun": 85,
+      "energy": 44
+    }
+  },
+  {
+    "id": 4,
+    "name": "Gnocchi",
+    "asleep": false,
+    "household": {
+      "householdName": "Grande",
+      "members": [
+        {
+          "name": "Ariana"
+        },
+        {
+          "name": "Frankie"
+        }
+      ]
+    },
+    "status": {
+      "food": 90,
+      "health": 71,
+      "fun": 95,
+      "energy": 85
+    }
+  },
+  {
+    "id": 5,
+    "name": "Pickle",
+    "asleep": false,
+    "household": {
+      "householdName": "Weasley",
+      "members": [
+        {
+          "name": "Molly"
+        },
+        {
+          "name": "Arthur"
+        },
+        {
+          "name": "Ron"
+        },
+        {
+          "name": "Ginny"
+        }
+      ]
+    },
+    "status": {
+      "food": 70,
+      "health": 48,
+      "fun": 82,
+      "energy": 66
+    }
+  },
+  {
+    "id": 6,
+    "name": "Goober",
+    "asleep": false,
+    "household": {
+      "householdName": "Styles",
+      "members": [
+        {
+          "name": "Harry"
+        },
+        {
+          "name": "Gemma"
+        }
+      ]
+    },
+    "status": {
+      "food": 76,
+      "health": 56,
+      "fun": 86,
+      "energy": 71
+    }
+  },
+  {
+    "id": 7,
+    "name": "Skibidi",
+    "asleep": false,
+    "household": {
+      "householdName": "Jenner",
+      "members": [
+        {
+          "name": "Kendall"
+        },
+        {
+          "name": "Kylie"
+        }
+      ]
+    },
+    "status": {
+      "food": 87,
+      "health": 70,
+      "fun": 93,
+      "energy": 79
+    }
+  },
+  {
+    "id": 8,
+    "name": "Beans",
+    "asleep": false,
+    "household": {
+      "householdName": "Simpson",
+      "members": [
+        {
+          "name": "Homer"
+        },
+        {
+          "name": "Marge"
+        },
+        {
+          "name": "Bart"
+        },
+        {
+          "name": "Lisa"
+        }
+      ]
+    },
+    "status": {
+      "food": 71,
+      "health": 50,
+      "fun": 95,
+      "energy": 64
+    }
+  },
+  {
+    "id": 9,
+    "name": "Tofu",
+    "asleep": true,
+    "household": {
+      "householdName": "Eilish",
+      "members": [
+        {
+          "name": "Billie"
+        },
+        {
+          "name": "Finneas"
+        }
+      ]
+    },
+    "status": {
+      "food": 72,
+      "health": 61,
+      "fun": 41,
+      "energy": 96
+    }
+  },
+  {
+    "id": 10,
+    "name": "Pookie",
+    "asleep": false,
+    "household": {
+      "householdName": "Malfoy",
+      "members": [
+        {
+          "name": "Lucius"
+        },
+        {
+          "name": "Narcissa"
+        },
+        {
+          "name": "Draco"
+        }
+      ]
+    },
+    "status": {
+      "food": 89,
+      "health": 73,
+      "fun": 94,
+      "energy": 81
+    }
+  }
+]
