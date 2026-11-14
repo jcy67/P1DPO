@@ -2,6 +2,7 @@ package Business.Entities;
 
 public class Athlete {
 
+
     private final String id;
     private final String profile;
     private final String name;
@@ -14,5 +15,12 @@ public class Athlete {
     private double precision;
 
 
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
 }
