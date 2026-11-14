@@ -1,0 +1,1430 @@
+[
+  {
+    "code": "DLG-AFG",
+    "name": "Islamic Republic of Afghanistan",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ALB",
+    "name": "Republic of Albania",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-ALG",
+    "name": "People's Democratic Republic of Algeria",
+    "goldMedals": 2,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-AND",
+    "name": "Principality of Andorra",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ANG",
+    "name": "Republic of Angola",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ANT",
+    "name": "Antigua and Barbuda",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ARG",
+    "name": "Argentine Republic",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-ARM",
+    "name": "Republic of Armenia",
+    "goldMedals": 0,
+    "silverMedals": 3,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-ARU",
+    "name": "Aruba",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ASA",
+    "name": "American Samoa",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-AUS",
+    "name": "Commonwealth of Australia",
+    "goldMedals": 18,
+    "silverMedals": 19,
+    "bronzeMedals": 16
+  },
+  {
+    "code": "DLG-AUT",
+    "name": "Republic of Austria",
+    "goldMedals": 2,
+    "silverMedals": 0,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-AZE",
+    "name": "Republic of Azerbaijan",
+    "goldMedals": 2,
+    "silverMedals": 2,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-BAH",
+    "name": "Commonwealth of The Bahamas",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BAN",
+    "name": "People's Republic of Bangladesh",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BAR",
+    "name": "Barbados",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BDI",
+    "name": "Republic of Burundi",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BEL",
+    "name": "Kingdom of Belgium",
+    "goldMedals": 3,
+    "silverMedals": 1,
+    "bronzeMedals": 6
+  },
+  {
+    "code": "DLG-BEN",
+    "name": "Republic of Benin",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BER",
+    "name": "Bermuda",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BHU",
+    "name": "Kingdom of Bhutan",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BIH",
+    "name": "Bosnia and Herzegovina",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BIZ",
+    "name": "Belize",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BOL",
+    "name": "Plurinational State of Bolivia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BOT",
+    "name": "Republic of Botswana",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BRA",
+    "name": "Federative Republic of Brazil",
+    "goldMedals": 3,
+    "silverMedals": 7,
+    "bronzeMedals": 10
+  },
+  {
+    "code": "DLG-BRN",
+    "name": "Kingdom of Bahrain",
+    "goldMedals": 2,
+    "silverMedals": 1,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-BRU",
+    "name": "Brunei Darussalam",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-BUL",
+    "name": "Republic of Bulgaria",
+    "goldMedals": 3,
+    "silverMedals": 1,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-BUR",
+    "name": "Burkina Faso",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CAF",
+    "name": "Central African Republic",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CAM",
+    "name": "Kingdom of Cambodia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CAN",
+    "name": "Canada",
+    "goldMedals": 9,
+    "silverMedals": 7,
+    "bronzeMedals": 11
+  },
+  {
+    "code": "DLG-CAY",
+    "name": "Cayman Islands",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CGO",
+    "name": "Republic of the Congo",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CHA",
+    "name": "Republic of Chad",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CHI",
+    "name": "Republic of Chile",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CHN",
+    "name": "People's Republic of China",
+    "goldMedals": 40,
+    "silverMedals": 27,
+    "bronzeMedals": 24
+  },
+  {
+    "code": "DLG-CIV",
+    "name": "Republic of Côte d'Ivoire",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-CMR",
+    "name": "Republic of Cameroon",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-COD",
+    "name": "Democratic Republic of the Congo",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-COK",
+    "name": "Cook Islands",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-COL",
+    "name": "Republic of Colombia",
+    "goldMedals": 0,
+    "silverMedals": 3,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-COM",
+    "name": "Union of the Comoros",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CPV",
+    "name": "Republic of Cabo Verde",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-CRC",
+    "name": "Republic of Costa Rica",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CRO",
+    "name": "Republic of Croatia",
+    "goldMedals": 2,
+    "silverMedals": 2,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-CUB",
+    "name": "Republic of Cuba",
+    "goldMedals": 2,
+    "silverMedals": 1,
+    "bronzeMedals": 6
+  },
+  {
+    "code": "DLG-CYP",
+    "name": "Republic of Cyprus",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-CZE",
+    "name": "Czech Republic",
+    "goldMedals": 3,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-DEN",
+    "name": "Kingdom of Denmark",
+    "goldMedals": 2,
+    "silverMedals": 2,
+    "bronzeMedals": 5
+  },
+  {
+    "code": "DLG-DJI",
+    "name": "Republic of Djibouti",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-DMA",
+    "name": "Commonwealth of Dominica",
+    "goldMedals": 1,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-DOM",
+    "name": "Dominican Republic",
+    "goldMedals": 1,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-ECU",
+    "name": "Republic of Ecuador",
+    "goldMedals": 1,
+    "silverMedals": 2,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-EGY",
+    "name": "Arab Republic of Egypt",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-ERI",
+    "name": "State of Eritrea",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ESA",
+    "name": "Republic of El Salvador",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ESP",
+    "name": "Kingdom of Spain",
+    "goldMedals": 5,
+    "silverMedals": 4,
+    "bronzeMedals": 9
+  },
+  {
+    "code": "DLG-EST",
+    "name": "Republic of Estonia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ETH",
+    "name": "Federal Democratic Republic of Ethiopia",
+    "goldMedals": 1,
+    "silverMedals": 3,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-FIJ",
+    "name": "Republic of Fiji",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-FIN",
+    "name": "Republic of Finland",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-FRA",
+    "name": "French Republic",
+    "goldMedals": 16,
+    "silverMedals": 26,
+    "bronzeMedals": 22
+  },
+  {
+    "code": "DLG-FSM",
+    "name": "Federated States of Micronesia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GAB",
+    "name": "Gabonese Republic",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GAM",
+    "name": "Republic of The Gambia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GBR",
+    "name": "United Kingdom of Great Britain and Northern Ireland",
+    "goldMedals": 14,
+    "silverMedals": 22,
+    "bronzeMedals": 29
+  },
+  {
+    "code": "DLG-GBS",
+    "name": "Republic of Guinea-Bissau",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GEO",
+    "name": "Georgia",
+    "goldMedals": 3,
+    "silverMedals": 3,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-GEQ",
+    "name": "Republic of Equatorial Guinea",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GER",
+    "name": "Federal Republic of Germany",
+    "goldMedals": 12,
+    "silverMedals": 13,
+    "bronzeMedals": 8
+  },
+  {
+    "code": "DLG-GHA",
+    "name": "Republic of Ghana",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GRE",
+    "name": "Hellenic Republic",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 6
+  },
+  {
+    "code": "DLG-GRN",
+    "name": "Grenada",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-GUA",
+    "name": "Republic of Guatemala",
+    "goldMedals": 1,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-GUI",
+    "name": "Republic of Guinea",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GUM",
+    "name": "Guam",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-GUY",
+    "name": "Co-operative Republic of Guyana",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-HAI",
+    "name": "Republic of Haiti",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-HKG",
+    "name": "Hong Kong Special Administrative Region of the People's Republic of China",
+    "goldMedals": 2,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-HON",
+    "name": "Republic of Honduras",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-HUN",
+    "name": "Hungary",
+    "goldMedals": 6,
+    "silverMedals": 7,
+    "bronzeMedals": 6
+  },
+  {
+    "code": "DLG-INA",
+    "name": "Republic of Indonesia",
+    "goldMedals": 2,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-IND",
+    "name": "Republic of India",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 5
+  },
+  {
+    "code": "DLG-IRI",
+    "name": "Islamic Republic of Iran",
+    "goldMedals": 3,
+    "silverMedals": 6,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-IRL",
+    "name": "Ireland",
+    "goldMedals": 4,
+    "silverMedals": 0,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-IRQ",
+    "name": "Republic of Iraq",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ISL",
+    "name": "Republic of Iceland",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ISR",
+    "name": "State of Israel",
+    "goldMedals": 1,
+    "silverMedals": 5,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-ISV",
+    "name": "United States Virgin Islands",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ITA",
+    "name": "Italian Republic",
+    "goldMedals": 12,
+    "silverMedals": 13,
+    "bronzeMedals": 15
+  },
+  {
+    "code": "DLG-IVB",
+    "name": "British Virgin Islands",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-JAM",
+    "name": "Jamaica",
+    "goldMedals": 1,
+    "silverMedals": 3,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-JOR",
+    "name": "Hashemite Kingdom of Jordan",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-JPN",
+    "name": "Japan",
+    "goldMedals": 20,
+    "silverMedals": 12,
+    "bronzeMedals": 13
+  },
+  {
+    "code": "DLG-KAZ",
+    "name": "Republic of Kazakhstan",
+    "goldMedals": 1,
+    "silverMedals": 3,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-KEN",
+    "name": "Republic of Kenya",
+    "goldMedals": 4,
+    "silverMedals": 2,
+    "bronzeMedals": 5
+  },
+  {
+    "code": "DLG-KGZ",
+    "name": "Kyrgyz Republic",
+    "goldMedals": 0,
+    "silverMedals": 2,
+    "bronzeMedals": 4
+  },
+  {
+    "code": "DLG-KIR",
+    "name": "Republic of Kiribati",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-KOR",
+    "name": "Republic of Korea",
+    "goldMedals": 13,
+    "silverMedals": 9,
+    "bronzeMedals": 10
+  },
+  {
+    "code": "DLG-KOS",
+    "name": "Republic of Kosovo",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-KSA",
+    "name": "Kingdom of Saudi Arabia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-KUW",
+    "name": "State of Kuwait",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LAO",
+    "name": "Lao People's Democratic Republic",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LAT",
+    "name": "Republic of Latvia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LBA",
+    "name": "State of Libya",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LBN",
+    "name": "Lebanese Republic",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LBR",
+    "name": "Republic of Liberia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LCA",
+    "name": "Saint Lucia",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LES",
+    "name": "Kingdom of Lesotho",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LIE",
+    "name": "Principality of Liechtenstein",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-LTU",
+    "name": "Republic of Lithuania",
+    "goldMedals": 0,
+    "silverMedals": 2,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-LUX",
+    "name": "Grand Duchy of Luxembourg",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MAD",
+    "name": "Republic of Madagascar",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MAR",
+    "name": "Kingdom of Morocco",
+    "goldMedals": 1,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-MAS",
+    "name": "Malaysia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-MAW",
+    "name": "Republic of Malawi",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MDA",
+    "name": "Republic of Moldova",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-MDV",
+    "name": "Republic of Maldives",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MEX",
+    "name": "United Mexican States",
+    "goldMedals": 0,
+    "silverMedals": 3,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-MGL",
+    "name": "Mongolia",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MHL",
+    "name": "Republic of the Marshall Islands",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MKD",
+    "name": "Republic of North Macedonia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MLI",
+    "name": "Republic of Mali",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MLT",
+    "name": "Republic of Malta",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MNE",
+    "name": "Montenegro",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MON",
+    "name": "Principality of Monaco",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MOZ",
+    "name": "Republic of Mozambique",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MRI",
+    "name": "Republic of Mauritius",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MTN",
+    "name": "Islamic Republic of Mauritania",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-MYA",
+    "name": "Republic of the Union of Myanmar",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-NAM",
+    "name": "Republic of Namibia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-NCA",
+    "name": "Republic of Nicaragua",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-NED",
+    "name": "Kingdom of the Netherlands",
+    "goldMedals": 15,
+    "silverMedals": 7,
+    "bronzeMedals": 12
+  },
+  {
+    "code": "DLG-NEP",
+    "name": "Federal Democratic Republic of Nepal",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-NGR",
+    "name": "Federal Republic of Nigeria",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-NIG",
+    "name": "Republic of the Niger",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-NOR",
+    "name": "Kingdom of Norway",
+    "goldMedals": 4,
+    "silverMedals": 1,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-NRU",
+    "name": "Republic of Nauru",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-NZL",
+    "name": "New Zealand",
+    "goldMedals": 10,
+    "silverMedals": 7,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-OMA",
+    "name": "Sultanate of Oman",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-PAK",
+    "name": "Islamic Republic of Pakistan",
+    "goldMedals": 1,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-PAN",
+    "name": "Republic of Panama",
+    "goldMedals": 0,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-PAR",
+    "name": "Republic of Paraguay",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-PER",
+    "name": "Republic of Peru",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-PHI",
+    "name": "Republic of the Philippines",
+    "goldMedals": 2,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-PLE",
+    "name": "State of Palestine",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-PLW",
+    "name": "Republic of Palau",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-PNG",
+    "name": "Independent State of Papua New Guinea",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-POL",
+    "name": "Republic of Poland",
+    "goldMedals": 1,
+    "silverMedals": 4,
+    "bronzeMedals": 5
+  },
+  {
+    "code": "DLG-POR",
+    "name": "Portuguese Republic",
+    "goldMedals": 1,
+    "silverMedals": 2,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-PRK",
+    "name": "Democratic People's Republic of Korea",
+    "goldMedals": 0,
+    "silverMedals": 2,
+    "bronzeMedals": 4
+  },
+  {
+    "code": "DLG-PUR",
+    "name": "Commonwealth of Puerto Rico",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-QAT",
+    "name": "State of Qatar",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-ROU",
+    "name": "Romania",
+    "goldMedals": 3,
+    "silverMedals": 4,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-RSA",
+    "name": "Republic of South Africa",
+    "goldMedals": 1,
+    "silverMedals": 3,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-RWA",
+    "name": "Republic of Rwanda",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SAM",
+    "name": "Independent State of Samoa",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SEN",
+    "name": "Republic of Senegal",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SEY",
+    "name": "Republic of Seychelles",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SGP",
+    "name": "Republic of Singapore",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-SKN",
+    "name": "Federation of Saint Christopher and Nevis",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SLE",
+    "name": "Republic of Sierra Leone",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SLO",
+    "name": "Republic of Slovenia",
+    "goldMedals": 2,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SMR",
+    "name": "Republic of San Marino",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SOL",
+    "name": "Solomon Islands",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SOM",
+    "name": "Federal Republic of Somalia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SRB",
+    "name": "Republic of Serbia",
+    "goldMedals": 3,
+    "silverMedals": 1,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-SRI",
+    "name": "Democratic Socialist Republic of Sri Lanka",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SSD",
+    "name": "Republic of South Sudan",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-STP",
+    "name": "Democratic Republic of São Tomé and Príncipe",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SUD",
+    "name": "Republic of the Sudan",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SUI",
+    "name": "Swiss Confederation",
+    "goldMedals": 1,
+    "silverMedals": 2,
+    "bronzeMedals": 5
+  },
+  {
+    "code": "DLG-SUR",
+    "name": "Republic of Suriname",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SVK",
+    "name": "Slovak Republic",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-SWE",
+    "name": "Kingdom of Sweden",
+    "goldMedals": 4,
+    "silverMedals": 4,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-SWZ",
+    "name": "Kingdom of Eswatini",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-SYR",
+    "name": "Syrian Arab Republic",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-TAN",
+    "name": "United Republic of Tanzania",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-TGA",
+    "name": "Kingdom of Tonga",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-THA",
+    "name": "Kingdom of Thailand",
+    "goldMedals": 1,
+    "silverMedals": 3,
+    "bronzeMedals": 2
+  },
+  {
+    "code": "DLG-TJK",
+    "name": "Republic of Tajikistan",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-TKM",
+    "name": "Turkmenistan",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-TLS",
+    "name": "Democratic Republic of Timor-Leste",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-TOG",
+    "name": "Togolese Republic",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-TPE",
+    "name": "Chinese Taipei",
+    "goldMedals": 2,
+    "silverMedals": 0,
+    "bronzeMedals": 5
+  },
+  {
+    "code": "DLG-TTO",
+    "name": "Republic of Trinidad and Tobago",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-TUN",
+    "name": "Republic of Tunisia",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-TUR",
+    "name": "Republic of Türkiye",
+    "goldMedals": 0,
+    "silverMedals": 3,
+    "bronzeMedals": 5
+  },
+  {
+    "code": "DLG-TUV",
+    "name": "Tuvalu",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-UAE",
+    "name": "United Arab Emirates",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-UGA",
+    "name": "Republic of Uganda",
+    "goldMedals": 1,
+    "silverMedals": 1,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-UKR",
+    "name": "Ukraine",
+    "goldMedals": 3,
+    "silverMedals": 5,
+    "bronzeMedals": 4
+  },
+  {
+    "code": "DLG-URU",
+    "name": "Oriental Republic of Uruguay",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-USA",
+    "name": "United States of America",
+    "goldMedals": 40,
+    "silverMedals": 44,
+    "bronzeMedals": 42
+  },
+  {
+    "code": "DLG-UZB",
+    "name": "Republic of Uzbekistan",
+    "goldMedals": 8,
+    "silverMedals": 2,
+    "bronzeMedals": 3
+  },
+  {
+    "code": "DLG-VAN",
+    "name": "Republic of Vanuatu",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-VEN",
+    "name": "Bolivarian Republic of Venezuela",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-VIE",
+    "name": "Socialist Republic of Viet Nam",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-VIN",
+    "name": "Saint Vincent and the Grenadines",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-YEM",
+    "name": "Republic of Yemen",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  },
+  {
+    "code": "DLG-ZAM",
+    "name": "Republic of Zambia",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 1
+  },
+  {
+    "code": "DLG-ZIM",
+    "name": "Republic of Zimbabwe",
+    "goldMedals": 0,
+    "silverMedals": 0,
+    "bronzeMedals": 0
+  }
+]

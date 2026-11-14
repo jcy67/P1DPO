@@ -1,0 +1,1291 @@
+[
+  {
+    "id": "CMP-100",
+    "format": "TIMED",
+    "name": "Men's 100 Metres",
+    "dateTime": "2028-07-15 10:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.2,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.1
+    },
+    "athleteIds": [
+      "ATH-004",
+      "ATH-011",
+      "ATH-018",
+      "ATH-027"
+    ],
+    "results": {
+      "gold": "ATH-004",
+      "silver": "ATH-011",
+      "bronze": "ATH-018"
+    }
+  },
+  {
+    "id": "CMP-101",
+    "format": "MEASURED",
+    "name": "Weightlifting Final",
+    "dateTime": "2028-07-15 14:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.65,
+      "technique": 0.1,
+      "precision": 0.1
+    },
+    "athleteIds": [
+      "ATH-007",
+      "ATH-015",
+      "ATH-024"
+    ],
+    "results": {
+      "gold": "ATH-007",
+      "silver": "ATH-015",
+      "bronze": "ATH-024"
+    }
+  },
+  {
+    "id": "CMP-102",
+    "format": "SCORED",
+    "name": "Artistic Gymnastics Final",
+    "dateTime": "2028-07-15 18:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.15,
+      "technique": 0.4,
+      "precision": 0.25
+    },
+    "athleteIds": [
+      "ATH-006",
+      "ATH-013",
+      "ATH-028",
+      "ATH-036"
+    ],
+    "results": {
+      "gold": "ATH-006",
+      "silver": "ATH-013",
+      "bronze": "ATH-028"
+    }
+  },
+  {
+    "id": "CMP-103",
+    "format": "TIMED",
+    "name": "Cycling Road Race",
+    "dateTime": "2028-07-16 10:30",
+    "weights": {
+      "speed": 0.25,
+      "endurance": 0.5,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-009",
+      "ATH-019",
+      "ATH-032"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-104",
+    "format": "SCORED",
+    "name": "Archery Individual Final",
+    "dateTime": "2028-07-16 14:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.1,
+      "technique": 0.35,
+      "precision": 0.4
+    },
+    "athleteIds": [
+      "ATH-002",
+      "ATH-016",
+      "ATH-029",
+      "ATH-041"
+    ],
+    "results": {
+      "gold": "ATH-002",
+      "silver": "ATH-016",
+      "bronze": "ATH-029"
+    }
+  },
+  {
+    "id": "CMP-105",
+    "format": "TIMED",
+    "name": "Women's 200 Metres",
+    "dateTime": "2028-07-16 18:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-008",
+      "ATH-108",
+      "ATH-204",
+      "ATH-172",
+      "ATH-191",
+      "ATH-202"
+    ],
+    "results": {
+      "gold": "ATH-008",
+      "silver": "ATH-108",
+      "bronze": "ATH-204"
+    }
+  },
+  {
+    "id": "CMP-106",
+    "format": "TIMED",
+    "name": "Women's 100 Metres",
+    "dateTime": "2028-07-17 10:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-131",
+      "ATH-165",
+      "ATH-038",
+      "ATH-127",
+      "ATH-054",
+      "ATH-100",
+      "ATH-160",
+      "ATH-168",
+      "ATH-109",
+      "ATH-073"
+    ],
+    "results": {
+      "gold": "ATH-131",
+      "silver": "ATH-165",
+      "bronze": "ATH-038"
+    }
+  },
+  {
+    "id": "CMP-107",
+    "format": "TIMED",
+    "name": "Men's 200 Metres",
+    "dateTime": "2028-07-17 14:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-164",
+      "ATH-072",
+      "ATH-014",
+      "ATH-081"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-108",
+    "format": "TIMED",
+    "name": "Men's 400 Metres",
+    "dateTime": "2028-07-17 18:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-164",
+      "ATH-109",
+      "ATH-010",
+      "ATH-123",
+      "ATH-073",
+      "ATH-036",
+      "ATH-013",
+      "ATH-058",
+      "ATH-186",
+      "ATH-121"
+    ],
+    "results": {
+      "gold": "ATH-164",
+      "silver": "ATH-109",
+      "bronze": "ATH-010"
+    }
+  },
+  {
+    "id": "CMP-109",
+    "format": "TIMED",
+    "name": "Women's 400 Metres",
+    "dateTime": "2028-07-18 10:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-179",
+      "ATH-208",
+      "ATH-206",
+      "ATH-110",
+      "ATH-022",
+      "ATH-068",
+      "ATH-100",
+      "ATH-109"
+    ],
+    "results": {
+      "gold": "ATH-179",
+      "silver": "ATH-208",
+      "bronze": "ATH-206"
+    }
+  },
+  {
+    "id": "CMP-110",
+    "format": "TIMED",
+    "name": "Men's 800 Metres",
+    "dateTime": "2028-07-18 14:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-024",
+      "ATH-044",
+      "ATH-035",
+      "ATH-073",
+      "ATH-140",
+      "ATH-146",
+      "ATH-166",
+      "ATH-098",
+      "ATH-129",
+      "ATH-013"
+    ],
+    "results": {
+      "gold": "ATH-024",
+      "silver": "ATH-044",
+      "bronze": "ATH-035"
+    }
+  },
+  {
+    "id": "CMP-111",
+    "format": "TIMED",
+    "name": "Women's 800 Metres",
+    "dateTime": "2028-07-18 18:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-149",
+      "ATH-137",
+      "ATH-212",
+      "ATH-122",
+      "ATH-187",
+      "ATH-090"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-112",
+    "format": "TIMED",
+    "name": "Men's 1500 Metres",
+    "dateTime": "2028-07-19 10:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-050",
+      "ATH-187",
+      "ATH-160",
+      "ATH-127",
+      "ATH-152",
+      "ATH-128",
+      "ATH-005",
+      "ATH-109",
+      "ATH-124",
+      "ATH-075"
+    ],
+    "results": {
+      "gold": "ATH-050",
+      "silver": "ATH-187",
+      "bronze": "ATH-160"
+    }
+  },
+  {
+    "id": "CMP-113",
+    "format": "TIMED",
+    "name": "Women's 1500 Metres",
+    "dateTime": "2028-07-19 14:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-183",
+      "ATH-011",
+      "ATH-192",
+      "ATH-096",
+      "ATH-084",
+      "ATH-054"
+    ],
+    "results": {
+      "gold": "ATH-183",
+      "silver": "ATH-011",
+      "bronze": "ATH-192"
+    }
+  },
+  {
+    "id": "CMP-114",
+    "format": "TIMED",
+    "name": "Men's 5000 Metres",
+    "dateTime": "2028-07-19 18:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-202",
+      "ATH-086",
+      "ATH-162",
+      "ATH-116",
+      "ATH-146",
+      "ATH-213"
+    ],
+    "results": {
+      "gold": "ATH-202",
+      "silver": "ATH-086",
+      "bronze": "ATH-162"
+    }
+  },
+  {
+    "id": "CMP-115",
+    "format": "TIMED",
+    "name": "Women's 5000 Metres",
+    "dateTime": "2028-07-20 10:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-084",
+      "ATH-078",
+      "ATH-055",
+      "ATH-092",
+      "ATH-088",
+      "ATH-137",
+      "ATH-097",
+      "ATH-172",
+      "ATH-004"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-116",
+    "format": "TIMED",
+    "name": "Men's Marathon",
+    "dateTime": "2028-07-20 14:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-183",
+      "ATH-163",
+      "ATH-008",
+      "ATH-180",
+      "ATH-010",
+      "ATH-104",
+      "ATH-117",
+      "ATH-120",
+      "ATH-079"
+    ],
+    "results": {
+      "gold": "ATH-183",
+      "silver": "ATH-163",
+      "bronze": "ATH-008"
+    }
+  },
+  {
+    "id": "CMP-117",
+    "format": "TIMED",
+    "name": "Women's Marathon",
+    "dateTime": "2028-07-20 18:30",
+    "weights": {
+      "speed": 0.25,
+      "endurance": 0.5,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-170",
+      "ATH-072",
+      "ATH-166",
+      "ATH-087",
+      "ATH-135",
+      "ATH-108"
+    ],
+    "results": {
+      "gold": "ATH-170",
+      "silver": "ATH-072",
+      "bronze": "ATH-166"
+    }
+  },
+  {
+    "id": "CMP-118",
+    "format": "TIMED",
+    "name": "Men's 110 Metres Hurdles",
+    "dateTime": "2028-07-21 10:30",
+    "weights": {
+      "speed": 0.25,
+      "endurance": 0.5,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-125",
+      "ATH-103",
+      "ATH-012",
+      "ATH-156",
+      "ATH-206",
+      "ATH-007",
+      "ATH-106",
+      "ATH-197"
+    ],
+    "results": {
+      "gold": "ATH-125",
+      "silver": "ATH-103",
+      "bronze": "ATH-012"
+    }
+  },
+  {
+    "id": "CMP-119",
+    "format": "TIMED",
+    "name": "Women's 100 Metres Hurdles",
+    "dateTime": "2028-07-21 14:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-009",
+      "ATH-199",
+      "ATH-133",
+      "ATH-127",
+      "ATH-034",
+      "ATH-189"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-120",
+    "format": "MEASURED",
+    "name": "Men's Long Jump Final",
+    "dateTime": "2028-07-21 18:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.5,
+      "technique": 0.15,
+      "precision": 0.15
+    },
+    "athleteIds": [
+      "ATH-010",
+      "ATH-053",
+      "ATH-094",
+      "ATH-186",
+      "ATH-175",
+      "ATH-129"
+    ],
+    "results": {
+      "gold": "ATH-010",
+      "silver": "ATH-053",
+      "bronze": "ATH-094"
+    }
+  },
+  {
+    "id": "CMP-121",
+    "format": "MEASURED",
+    "name": "Women's Long Jump Final",
+    "dateTime": "2028-07-22 10:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.5,
+      "technique": 0.15,
+      "precision": 0.15
+    },
+    "athleteIds": [
+      "ATH-168",
+      "ATH-092",
+      "ATH-188",
+      "ATH-110"
+    ],
+    "results": {
+      "gold": "ATH-168",
+      "silver": "ATH-092",
+      "bronze": "ATH-188"
+    }
+  },
+  {
+    "id": "CMP-122",
+    "format": "MEASURED",
+    "name": "Men's High Jump Final",
+    "dateTime": "2028-07-22 14:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.65,
+      "technique": 0.1,
+      "precision": 0.1
+    },
+    "athleteIds": [
+      "ATH-072",
+      "ATH-117",
+      "ATH-052",
+      "ATH-118",
+      "ATH-021"
+    ],
+    "results": {
+      "gold": "ATH-072",
+      "silver": "ATH-117",
+      "bronze": "ATH-052"
+    }
+  },
+  {
+    "id": "CMP-123",
+    "format": "MEASURED",
+    "name": "Women's High Jump Final",
+    "dateTime": "2028-07-22 18:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.5,
+      "technique": 0.15,
+      "precision": 0.15
+    },
+    "athleteIds": [
+      "ATH-204",
+      "ATH-166",
+      "ATH-200",
+      "ATH-049",
+      "ATH-021",
+      "ATH-070",
+      "ATH-031",
+      "ATH-025",
+      "ATH-187"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-124",
+    "format": "MEASURED",
+    "name": "Men's Pole Vault Final",
+    "dateTime": "2028-07-23 10:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.5,
+      "technique": 0.15,
+      "precision": 0.15
+    },
+    "athleteIds": [
+      "ATH-027",
+      "ATH-026",
+      "ATH-076",
+      "ATH-175"
+    ],
+    "results": {
+      "gold": "ATH-027",
+      "silver": "ATH-026",
+      "bronze": "ATH-076"
+    }
+  },
+  {
+    "id": "CMP-125",
+    "format": "MEASURED",
+    "name": "Women's Pole Vault Final",
+    "dateTime": "2028-07-23 14:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.5,
+      "technique": 0.15,
+      "precision": 0.15
+    },
+    "athleteIds": [
+      "ATH-124",
+      "ATH-117",
+      "ATH-148",
+      "ATH-212",
+      "ATH-018",
+      "ATH-198",
+      "ATH-195",
+      "ATH-157"
+    ],
+    "results": {
+      "gold": "ATH-124",
+      "silver": "ATH-117",
+      "bronze": "ATH-148"
+    }
+  },
+  {
+    "id": "CMP-126",
+    "format": "MEASURED",
+    "name": "Men's Shot Put Final",
+    "dateTime": "2028-07-23 18:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.65,
+      "technique": 0.1,
+      "precision": 0.1
+    },
+    "athleteIds": [
+      "ATH-026",
+      "ATH-090",
+      "ATH-044",
+      "ATH-062",
+      "ATH-034",
+      "ATH-119",
+      "ATH-085",
+      "ATH-115",
+      "ATH-030",
+      "ATH-001"
+    ],
+    "results": {
+      "gold": "ATH-026",
+      "silver": "ATH-090",
+      "bronze": "ATH-044"
+    }
+  },
+  {
+    "id": "CMP-127",
+    "format": "MEASURED",
+    "name": "Women's Javelin Throw Final",
+    "dateTime": "2028-07-24 10:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.65,
+      "technique": 0.1,
+      "precision": 0.1
+    },
+    "athleteIds": [
+      "ATH-149",
+      "ATH-170",
+      "ATH-050",
+      "ATH-123",
+      "ATH-070",
+      "ATH-157",
+      "ATH-205",
+      "ATH-057",
+      "ATH-024"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-128",
+    "format": "TIMED",
+    "name": "Men's 50 Metres Freestyle",
+    "dateTime": "2028-07-24 14:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-199",
+      "ATH-016",
+      "ATH-026",
+      "ATH-040",
+      "ATH-005",
+      "ATH-041",
+      "ATH-175",
+      "ATH-019",
+      "ATH-079"
+    ],
+    "results": {
+      "gold": "ATH-199",
+      "silver": "ATH-016",
+      "bronze": "ATH-026"
+    }
+  },
+  {
+    "id": "CMP-129",
+    "format": "TIMED",
+    "name": "Women's 50 Metres Freestyle",
+    "dateTime": "2028-07-24 18:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-045",
+      "ATH-078",
+      "ATH-005",
+      "ATH-009",
+      "ATH-001",
+      "ATH-021",
+      "ATH-168"
+    ],
+    "results": {
+      "gold": "ATH-045",
+      "silver": "ATH-078",
+      "bronze": "ATH-005"
+    }
+  },
+  {
+    "id": "CMP-130",
+    "format": "TIMED",
+    "name": "Men's 100 Metres Freestyle",
+    "dateTime": "2028-07-25 10:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-125",
+      "ATH-192",
+      "ATH-084",
+      "ATH-189",
+      "ATH-088",
+      "ATH-018"
+    ],
+    "results": {
+      "gold": "ATH-125",
+      "silver": "ATH-192",
+      "bronze": "ATH-084"
+    }
+  },
+  {
+    "id": "CMP-131",
+    "format": "TIMED",
+    "name": "Women's 100 Metres Freestyle",
+    "dateTime": "2028-07-25 14:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-088",
+      "ATH-190",
+      "ATH-004",
+      "ATH-044",
+      "ATH-151",
+      "ATH-085",
+      "ATH-199",
+      "ATH-196",
+      "ATH-202"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-132",
+    "format": "TIMED",
+    "name": "Men's 200 Metres Butterfly",
+    "dateTime": "2028-07-25 18:30",
+    "weights": {
+      "speed": 0.25,
+      "endurance": 0.5,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-181",
+      "ATH-073",
+      "ATH-072",
+      "ATH-214",
+      "ATH-041"
+    ],
+    "results": {
+      "gold": "ATH-181",
+      "silver": "ATH-073",
+      "bronze": "ATH-072"
+    }
+  },
+  {
+    "id": "CMP-133",
+    "format": "TIMED",
+    "name": "Women's 200 Metres Butterfly",
+    "dateTime": "2028-07-26 10:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-018",
+      "ATH-076",
+      "ATH-019",
+      "ATH-210",
+      "ATH-188",
+      "ATH-095",
+      "ATH-166"
+    ],
+    "results": {
+      "gold": "ATH-018",
+      "silver": "ATH-076",
+      "bronze": "ATH-019"
+    }
+  },
+  {
+    "id": "CMP-134",
+    "format": "TIMED",
+    "name": "Men's 100 Metres Backstroke",
+    "dateTime": "2028-07-26 14:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-156",
+      "ATH-122",
+      "ATH-151",
+      "ATH-062",
+      "ATH-020",
+      "ATH-052",
+      "ATH-144",
+      "ATH-188",
+      "ATH-099"
+    ],
+    "results": {
+      "gold": "ATH-156",
+      "silver": "ATH-122",
+      "bronze": "ATH-151"
+    }
+  },
+  {
+    "id": "CMP-135",
+    "format": "TIMED",
+    "name": "Women's 100 Metres Backstroke",
+    "dateTime": "2028-07-26 18:30",
+    "weights": {
+      "speed": 0.25,
+      "endurance": 0.5,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-013",
+      "ATH-125",
+      "ATH-105",
+      "ATH-196",
+      "ATH-016",
+      "ATH-126",
+      "ATH-117",
+      "ATH-004"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-136",
+    "format": "TIMED",
+    "name": "Men's Individual Time Trial",
+    "dateTime": "2028-07-27 10:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-178",
+      "ATH-080",
+      "ATH-104",
+      "ATH-066"
+    ],
+    "results": {
+      "gold": "ATH-178",
+      "silver": "ATH-080",
+      "bronze": "ATH-104"
+    }
+  },
+  {
+    "id": "CMP-137",
+    "format": "TIMED",
+    "name": "Women's Individual Time Trial",
+    "dateTime": "2028-07-27 14:30",
+    "weights": {
+      "speed": 0.35,
+      "endurance": 0.4,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-195",
+      "ATH-114",
+      "ATH-202",
+      "ATH-009",
+      "ATH-135",
+      "ATH-151"
+    ],
+    "results": {
+      "gold": "ATH-195",
+      "silver": "ATH-114",
+      "bronze": "ATH-202"
+    }
+  },
+  {
+    "id": "CMP-138",
+    "format": "TIMED",
+    "name": "Canoe Slalom Final",
+    "dateTime": "2028-07-27 18:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-046",
+      "ATH-010",
+      "ATH-186",
+      "ATH-004",
+      "ATH-091",
+      "ATH-098"
+    ],
+    "results": {
+      "gold": "ATH-046",
+      "silver": "ATH-010",
+      "bronze": "ATH-186"
+    }
+  },
+  {
+    "id": "CMP-139",
+    "format": "TIMED",
+    "name": "Rowing Single Sculls Final",
+    "dateTime": "2028-07-28 10:30",
+    "weights": {
+      "speed": 0.25,
+      "endurance": 0.5,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-045",
+      "ATH-043",
+      "ATH-006",
+      "ATH-073",
+      "ATH-125",
+      "ATH-054",
+      "ATH-129",
+      "ATH-067",
+      "ATH-090",
+      "ATH-092"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-140",
+    "format": "TIMED",
+    "name": "Triathlon Individual Final",
+    "dateTime": "2028-07-28 14:30",
+    "weights": {
+      "speed": 0.25,
+      "endurance": 0.5,
+      "strength": 0.1,
+      "technique": 0.1,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-150",
+      "ATH-033",
+      "ATH-010",
+      "ATH-200",
+      "ATH-096",
+      "ATH-192",
+      "ATH-044"
+    ],
+    "results": {
+      "gold": "ATH-150",
+      "silver": "ATH-033",
+      "bronze": "ATH-010"
+    }
+  },
+  {
+    "id": "CMP-141",
+    "format": "SCORED",
+    "name": "Skateboarding Street Final",
+    "dateTime": "2028-07-28 18:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.1,
+      "technique": 0.35,
+      "precision": 0.4
+    },
+    "athleteIds": [
+      "ATH-142",
+      "ATH-166",
+      "ATH-164",
+      "ATH-048"
+    ],
+    "results": {
+      "gold": "ATH-142",
+      "silver": "ATH-166",
+      "bronze": "ATH-164"
+    }
+  },
+  {
+    "id": "CMP-142",
+    "format": "SCORED",
+    "name": "Diving 10 Metre Platform Final",
+    "dateTime": "2028-07-29 10:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.15,
+      "technique": 0.4,
+      "precision": 0.25
+    },
+    "athleteIds": [
+      "ATH-017",
+      "ATH-003",
+      "ATH-145",
+      "ATH-178",
+      "ATH-029",
+      "ATH-212",
+      "ATH-097",
+      "ATH-129",
+      "ATH-059",
+      "ATH-002"
+    ],
+    "results": {
+      "gold": "ATH-017",
+      "silver": "ATH-003",
+      "bronze": "ATH-145"
+    }
+  },
+  {
+    "id": "CMP-143",
+    "format": "SCORED",
+    "name": "Trampoline Gymnastics Final",
+    "dateTime": "2028-07-29 14:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.15,
+      "technique": 0.4,
+      "precision": 0.25
+    },
+    "athleteIds": [
+      "ATH-214",
+      "ATH-170",
+      "ATH-150",
+      "ATH-009",
+      "ATH-059",
+      "ATH-018",
+      "ATH-151",
+      "ATH-052",
+      "ATH-192",
+      "ATH-136"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-144",
+    "format": "SCORED",
+    "name": "Surfing Shortboard Final",
+    "dateTime": "2028-07-29 18:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.1,
+      "technique": 0.35,
+      "precision": 0.4
+    },
+    "athleteIds": [
+      "ATH-015",
+      "ATH-176",
+      "ATH-094",
+      "ATH-204",
+      "ATH-066"
+    ],
+    "results": {
+      "gold": "ATH-015",
+      "silver": "ATH-176",
+      "bronze": "ATH-094"
+    }
+  },
+  {
+    "id": "CMP-145",
+    "format": "SCORED",
+    "name": "Sport Climbing Boulder Final",
+    "dateTime": "2028-07-30 10:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.1,
+      "technique": 0.35,
+      "precision": 0.4
+    },
+    "athleteIds": [
+      "ATH-060",
+      "ATH-141",
+      "ATH-064",
+      "ATH-117"
+    ],
+    "results": {
+      "gold": "ATH-060",
+      "silver": "ATH-141",
+      "bronze": "ATH-064"
+    }
+  },
+  {
+    "id": "CMP-146",
+    "format": "SCORED",
+    "name": "Taekwondo Skills Challenge",
+    "dateTime": "2028-07-30 14:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.1,
+      "technique": 0.35,
+      "precision": 0.4
+    },
+    "athleteIds": [
+      "ATH-093",
+      "ATH-165",
+      "ATH-045",
+      "ATH-038"
+    ],
+    "results": {
+      "gold": "ATH-093",
+      "silver": "ATH-165",
+      "bronze": "ATH-045"
+    }
+  },
+  {
+    "id": "CMP-147",
+    "format": "MEASURED",
+    "name": "Discus Throw Final",
+    "dateTime": "2028-07-30 18:30",
+    "weights": {
+      "speed": 0.05,
+      "endurance": 0.1,
+      "strength": 0.65,
+      "technique": 0.1,
+      "precision": 0.1
+    },
+    "athleteIds": [
+      "ATH-066",
+      "ATH-163",
+      "ATH-155",
+      "ATH-005",
+      "ATH-087",
+      "ATH-022",
+      "ATH-104"
+    ],
+    "results": null
+  },
+  {
+    "id": "CMP-148",
+    "format": "MEASURED",
+    "name": "Hammer Throw Final",
+    "dateTime": "2028-07-31 10:30",
+    "weights": {
+      "speed": 0.1,
+      "endurance": 0.1,
+      "strength": 0.5,
+      "technique": 0.15,
+      "precision": 0.15
+    },
+    "athleteIds": [
+      "ATH-195",
+      "ATH-076",
+      "ATH-028",
+      "ATH-191",
+      "ATH-113",
+      "ATH-206",
+      "ATH-183"
+    ],
+    "results": {
+      "gold": "ATH-195",
+      "silver": "ATH-076",
+      "bronze": "ATH-028"
+    }
+  },
+  {
+    "id": "CMP-149",
+    "format": "TIMED",
+    "name": "Pacific 200 Urban Sprint",
+    "dateTime": "2028-07-31 14:30",
+    "weights": {
+      "speed": 0.5,
+      "endurance": 0.25,
+      "strength": 0.05,
+      "technique": 0.15,
+      "precision": 0.05
+    },
+    "athleteIds": [
+      "ATH-084",
+      "ATH-144",
+      "ATH-209",
+      "ATH-014",
+      "ATH-078",
+      "ATH-032"
+    ],
+    "results": {
+      "gold": "ATH-084",
+      "silver": "ATH-144",
+      "bronze": "ATH-209"
+    }
+  }
+]
