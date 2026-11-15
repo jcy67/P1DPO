@@ -1,5 +1,5 @@
 import Business.Entities.Athlete;
-import Business.Entities.Delegation;
+import Business.Entities.Competition;
 import Business.OlympicsManager;
 import Persistence.CompetitionDAO;
 import Persistence.DelegationDAO;
@@ -17,8 +17,16 @@ public class Main {
         UIManager ui = new UIManager();
         DelegationDAO delegationDAO = new DelegationDAO();
         AthleteDAO athleteDAO = new AthleteDAO();
-        ArrayList<Athlete> athletes = athleteDAO.readAthletes();
+        CompetitionDAO competitionDAO = new CompetitionDAO();
+        OlympicsManager olympicsManager = new OlympicsManager(delegationDAO,athleteDAO,competitionDAO);
 
+        Controller controller = new Controller(olympicsManager, ui);
+
+
+
+
+
+        ArrayList<Athlete> athletes = athleteDAO.readAthletes();
         // Formato de fecha
         final String DATE_FORMAT = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
@@ -36,11 +44,30 @@ public class Main {
                     athlete.getPrecision());
         }
 
-        CompetitionDAO competitionDAO = new CompetitionDAO();
+        ArrayList<Competition> competitions = competitionDAO.readCompetitions();
+        final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
+        SimpleDateFormat sdtf = new SimpleDateFormat(DATETIME_FORMAT);
 
-        OlympicsManager olympicsManager = new OlympicsManager(delegationDAO,athleteDAO,competitionDAO);
+        for (Competition competition : competitions) {
+            System.out.println("ID: " + competition.getId() + " | " +
+                    competition.getFormat() + " | " +
+                    "Name: " + competition.getName() + " | " +
+                    sdtf.format(competition.getDateTime()) + " | " +
+                    competition.getSpeed() + " | " +
+                    competition.getEndurance() +  " | " +
+                    competition.getStrength() +  " | " +
+                    competition.getTechnique() +  " | " +
+                    competition.getPrecision() +  " | " +
+                    competition.getAthleteIds());
 
-        Controller controller = new Controller(olympicsManager, ui);
+            if (competition.getResults() != null){
+                System.out.println(competition.getGold() +   " | " +
+                        competition.getSilver() +   " | " +
+                        competition.getBronze());
+            }
+
+        }
+
         controller.run();
     }
 
