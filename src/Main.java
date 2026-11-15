@@ -1,5 +1,6 @@
 import Business.Entities.Athlete;
 import Business.Entities.Competition;
+import Business.Entities.Delegation;
 import Business.OlympicsManager;
 import Persistence.CompetitionDAO;
 import Persistence.DelegationDAO;
@@ -23,7 +24,14 @@ public class Main {
         Controller controller = new Controller(olympicsManager, ui);
 
 
-
+        ArrayList<Delegation> delegations = delegationDAO.readDelegations();
+        for (Delegation delegation : delegations) {
+            System.out.println("Code: " + delegation.getCode() + " | " +
+                    "Name: " + delegation.getName() + " | " +
+                    delegation.getGoldMedals() + " | " +
+                    delegation.getSilverMedals() +  " | " +
+                    delegation.getBronzeMedals());
+        }
 
 
         ArrayList<Athlete> athletes = athleteDAO.readAthletes();
@@ -45,6 +53,7 @@ public class Main {
         }
 
         ArrayList<Competition> competitions = competitionDAO.readCompetitions();
+        // Formato datetime
         final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
         SimpleDateFormat sdtf = new SimpleDateFormat(DATETIME_FORMAT);
 
@@ -59,7 +68,7 @@ public class Main {
                     competition.getTechnique() +  " | " +
                     competition.getPrecision() +  " | " +
                     competition.getAthleteIds());
-
+            // si son null que no los muestre
             if (competition.getResults() != null){
                 System.out.println(competition.getGold() +   " | " +
                         competition.getSilver() +   " | " +
