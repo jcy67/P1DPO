@@ -14,5 +14,11 @@ public class Controller {
 
     public void run(){
 
+        uiManager.showDelegations(olympicsManager.getDelegationDAO());
+
+        uiManager.showAthletes(olympicsManager.getAthleteDAO());
+
+        uiManager.showCompetitions(olympicsManager.getCompetitionDAO());
+
     }
 }

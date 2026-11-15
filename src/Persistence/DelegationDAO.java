@@ -22,7 +22,6 @@ public class DelegationDAO {
             String jsonContent = Files.readString(Paths.get(DELEGATIONS_PATH));
             Delegation[] parsedItems = gson.fromJson(jsonContent, Delegation[].class);
             delegations.addAll(Arrays.asList(parsedItems));
-            System.out.println("Successfully read delegations!!!");
         } catch (IOException e) {
             return null;
         }
