@@ -6,20 +6,34 @@ import Persistence.DelegationDAO;
 import Persistence.AthleteDAO;
 import Presentation.Controller;
 import Presentation.UIManager;
+import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
+
         UIManager ui = new UIManager();
-
         DelegationDAO delegationDAO = new DelegationDAO();
-
         AthleteDAO athleteDAO = new AthleteDAO();
         ArrayList<Athlete> athletes = athleteDAO.readAthletes();
+
+        // Formato de fecha
+        final String DATE_FORMAT = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
         for (Athlete athlete : athletes) {
-            System.out.println("ID: " + athlete.getId() + " | Nombre: " + athlete.getName());
+            System.out.println("ID: " + athlete.getId() + " | " +
+                    "Nombre: " + athlete.getName() + " | " +
+                    sdf.format(athlete.getBirthDate()) + " | " +
+                    athlete.getDelegationCode() + " | " +
+                    athlete.getProfile() +  " | " +
+                    athlete.getSpeed() + " | " +
+                    athlete.getEndurance() +  " | " +
+                    athlete.getStrength() +  " | " +
+                    athlete.getTechnique() +  " | " +
+                    athlete.getPrecision());
         }
 
         CompetitionDAO competitionDAO = new CompetitionDAO();

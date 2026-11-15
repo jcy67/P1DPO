@@ -2,6 +2,8 @@ package Persistence;
 
 import Business.Entities.Athlete;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,9 +13,11 @@ import java.util.Arrays;
 
 public class AthleteDAO {
 
+
     private static final String ATHLETES_PATH = "data/athletes.json";
     private final Gson gson;
-    public AthleteDAO() {this.gson = new Gson();}
+
+    public AthleteDAO() { this.gson = new Gson();}
 
     public ArrayList<Athlete> readAthletes() {
         ArrayList<Athlete> athletes = new ArrayList<>();
