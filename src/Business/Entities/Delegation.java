@@ -26,4 +26,28 @@ public class Delegation {
     public int getBronzeMedals() {
         return bronzeMedals;
     }
+
+    public void setGoldMedals(int goldMedals) {
+        this.goldMedals = goldMedals;
+    }
+
+    public void setSilverMedals(int silverMedals) {
+        this.silverMedals = silverMedals;
+    }
+
+    public void setBronzeMedals(int bronzeMedals) {
+        this.bronzeMedals = bronzeMedals;
+    }
+
+    // Método toString para imprimir fácilmente
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public void resetMedals() {
+        setGoldMedals(0);
+        setSilverMedals(0);
+        setBronzeMedals(0);
+    }
 }
