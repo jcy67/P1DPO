@@ -23,6 +23,7 @@ public class Main {
 
         Controller controller = new Controller(olympicsManager, ui);
         controller.run();
+        //prueba
     }
 
 }
