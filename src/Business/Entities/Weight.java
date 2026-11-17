@@ -16,6 +16,7 @@ public class Weight {
     private double technique;
     private double precision;
 
+    public Weight() {}
     /**
      * Creates a status with the given meters. the meters are ajusted with clamp()
      *
