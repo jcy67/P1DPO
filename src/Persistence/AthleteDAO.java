@@ -17,17 +17,25 @@ public class AthleteDAO {
     private static final String ATHLETES_PATH = "data/athletes.json";
     private final Gson gson;
 
-    public AthleteDAO() { this.gson = new Gson();}
+    public AthleteDAO() { this.gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();}
 
-    public ArrayList<Athlete> readAthletes() {
+    public ArrayList<Athlete> readAthletes() throws IOException{
         ArrayList<Athlete> athletes = new ArrayList<>();
-        try {
-            String jsonContent = Files.readString(Paths.get(ATHLETES_PATH));
-            Athlete[] parsedItems = gson.fromJson(jsonContent, Athlete[].class);
-            athletes.addAll(Arrays.asList(parsedItems));
-        } catch (IOException e) {
-            return null;
+
+        // Si no existe el archivo, devuelve una lista vacía
+        if (Files.notExists(Paths.get(ATHLETES_PATH))) {
+            return athletes;
         }
+
+        String jsonContent = Files.readString(Paths.get(ATHLETES_PATH));
+        Athlete[] parsedItems = gson.fromJson(jsonContent, Athlete[].class);
+
+        if (parsedItems == null){
+            throw new IOException();
+        }
+
+        athletes.addAll(Arrays.asList(parsedItems));
+
         return athletes;
     }
 }

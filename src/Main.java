@@ -1,15 +1,10 @@
-import Business.Entities.Athlete;
-import Business.Entities.Competition;
-import Business.Entities.Delegation;
 import Business.OlympicsManager;
 import Persistence.CompetitionDAO;
 import Persistence.DelegationDAO;
 import Persistence.AthleteDAO;
 import Presentation.Controller;
 import Presentation.UIManager;
-import java.text.SimpleDateFormat;
 
-import java.util.ArrayList;
 
 public class Main {
 

@@ -19,6 +19,9 @@ public class Athlete {
     private int technique;
     private int precision;
 
+    // Transient es para que el Gson lo ignore al crear el objeto
+    private transient Delegation delegation;
+
 
     public String getId() {
         return id;
@@ -58,6 +61,14 @@ public class Athlete {
 
     public int getPrecision() {
         return precision;
+    }
+
+    public Delegation getDelegation() {
+        return delegation;
+    }
+
+    public void setDelegation(Delegation delegation) {
+        this.delegation = delegation;
     }
 
     /**
