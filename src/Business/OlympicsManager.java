@@ -44,6 +44,10 @@ public class OlympicsManager {
         return competitionDAO.readCSV(filename);
     }
 
+    public ArrayList<Competition> getCompetitions() {
+        return competitions;
+    }
+
     // Por cada linea del csv se guarda los errores al importar en cada linea
     public ArrayList<ArrayList<ErrorType>> importCompetitions(ArrayList<String> infoLines) throws IOException {
 
@@ -227,37 +231,56 @@ public class OlympicsManager {
 
     }
 
-    private void simulateCompetitions() throws IOException {
+    public ArrayList<ArrayList<Double>> simulateCompetition(Competition competition) throws IOException {
 
-        loadRelations();
+        ArrayList<Athlete> ranking = new ArrayList<>();
+        ArrayList<ArrayList<Double>> results = new ArrayList<>();
 
-        for (Competition competition : competitions) {
-
-            ArrayList<Athlete> ranking = new ArrayList<>();
-            ArrayList<Double> times = new ArrayList<>();
-            ArrayList<Double> lucks = new ArrayList<>();
-
-            for (Athlete athlete : competition.getAthletes()){
-
-                double luck = Math.random();
-                double time = calculateTime(athlete,competition,luck);
-
-                // Buscamos la posicion de cada uno
-                int finalPosition = 0;
-                while (finalPosition < times.size() && times.get(finalPosition) <= time) {
-                    finalPosition++;
-                }
-                ranking.add(finalPosition,athlete);
-                times.add(finalPosition, time);
-                lucks.add(finalPosition, luck);
-            }
-
-            competition.setResults(ranking.get(0), ranking.get(1), ranking.get(2));
-
+        // Comprobar participantes
+        if (competition.getAthletes() == null ||
+                competition.getAthletes().size() < 3 ||
+                competition.getAthletes().size() != competition.getAthleteIds().size()) {
+            throw new IOException("Invalid participants in competition " + competition.getId());
         }
 
-        competitionDAO.saveCompetitions(competitions);
+        for (Athlete athlete : competition.getAthletes()) {
 
+            if (athlete.getDelegation() == null) {
+                throw new IOException("Delegation not found for athlete " + athlete.getId());
+            }
+
+            double luck = Math.random();
+            double time = calculateTime(athlete, competition, luck);
+
+            // Buscar la posición según el tiempo
+            int position = 0;
+
+            while (position < results.size() &&
+                    results.get(position).get(1) <= time) {
+                position++;
+            }
+
+            // Guardar suerte y tiempo
+            ArrayList<Double> athleteResults = new ArrayList<>();
+            athleteResults.add(luck);
+            athleteResults.add(time);
+
+            // Insertar en la posición correspondiente
+            ranking.add(position, athlete);
+            results.add(position, athleteResults);
+        }
+
+        // Actualizar la clasificación de atletas
+        competition.setAthletes(ranking);
+
+        // Asignar las medallas
+        competition.setResults(
+                ranking.get(0),
+                ranking.get(1),
+                ranking.get(2)
+        );
+
+        return results;
     }
 
     private double calculateTime(Athlete athlete, Competition competition, double luck){
@@ -310,6 +333,26 @@ public class OlympicsManager {
 
             competition.setAthletes(participants);
         }
+    }
+
+    public ArrayList<Competition> prepareSimulation() throws IOException {
+        loadRelations();
+        return competitions;
+    }
+    public void saveSimulationResults() throws IOException {
+        competitionDAO.saveCompetitions(competitions);
+    }
+
+    public ArrayList<String> getSimulationAthleteNames(Competition competition) {
+
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Athlete athlete : competition.getAthletes()) {
+            names.add(athlete.getName() + " - "
+                    + athlete.getDelegation().getName());
+        }
+
+        return names;
     }
 
 }

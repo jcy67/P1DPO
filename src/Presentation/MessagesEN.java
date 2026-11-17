@@ -49,8 +49,8 @@ public class MessagesEN {
     public static final String PROMPT_POU_QUERY = "Pou's name (or \"name, household\"): ";
     public static final String PROMPT_PICK_POU = "Which Pou? (id number or name): ";
     public static final String PROMPT_CHOOSE_AMONG_POUS = "We have %d Pous called %s. Which one do you mean?";
-
-    public static final String HEADER_COMPETITION_LOADED = "Competition loaded successfully.\n";
+    public static final String PROMPT_NEXT_SIMULATION = "<Press ENTER to simulate the next competition>";
+    public static final String PROMPT_FINISH_SIMULATION = "<Press ENTER to finish the simulation>";
 
     public static final String HEADER_ADMITTED = "Pou admitted:";
     public static final String HEADER_COLLECTED = "Pou collected:";
@@ -64,7 +64,9 @@ public class MessagesEN {
     public static final String MESSAGE_OPENING = "Welcome to the Pou Daycare front desk!";
     public static final String MESSAGE_OPENING_FILE = "Opening file...";
     public static final String MESSAGE_VALIDATING_COMPETITIONS = "Validating file...";
-
+    public static final String HEADER_COMPETITION_LOADED = "Competition loaded successfully.\n";
+    public static final String SIMULATION_START = "\nSimulate Olympic Games\n" + "----------------------\n" + "Starting Olympic Games simulation...";
+    public static final String SIMULATION_COMPLETED = "\nOlympic Games simulation completed";
 
     public static final String MESSAGE_NO_POUS_IN_DAYCARE = "There are no Pous in the daycare right now.";
     public static final String MESSAGE_NO_RECORDS = "There are no records to show.";
@@ -89,6 +91,8 @@ public class MessagesEN {
     public static final String ERROR_NOT_ENOUGH_ATHLETES = "A competition must have at least 3 different athletes.";
     public static final String ERROR_FILE = "Error reading or writing the file.";
     public static final String ERROR_JSON = "Invalid JSON format.";
+    public static final String ERROR_NO_COMPETITIONS = "Error: There are no competitions to simulate.";
+
 
     public static final String LABEL_NONE_OF_THEM = "None of them";
     public static final String PRESENCE_IN_DAYCARE = "in the daycare";

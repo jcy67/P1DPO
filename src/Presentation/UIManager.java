@@ -218,4 +218,53 @@ public class UIManager {
     public void showMessage(String message) {
         System.out.println(message);
     }
+
+
+    public void showSimulationResults(
+            Competition competition,
+            ArrayList<String> athleteNames,
+            ArrayList<ArrayList<Double>> results,
+            int number,
+            int total) {
+
+        System.out.println("\nCompetition " + number + " of " + total);
+        System.out.println("------------------");
+
+        System.out.println("\n-| " + competition.getId()
+                + " | " + competition.getName() + " |-");
+
+        System.out.println("\nFormat: " + competition.getFormat());
+        System.out.println("Simulation format: TIMED");
+
+        System.out.println("\nSimulating competition...");
+
+        System.out.println("\nResults");
+        System.out.println("-------");
+
+        for (int i = 0; i < results.size(); i++) {
+
+            double luck = results.get(i).get(0);
+            double time = results.get(i).get(1);
+
+            System.out.println("\n    " + (i + 1) + ") " + athleteNames.get(i));
+
+            System.out.printf(java.util.Locale.US,
+                    "       Luck: %.2f%n", luck);
+
+            System.out.printf(java.util.Locale.US,
+                    "       Time: %.2f seconds%n", time);
+        }
+
+        System.out.println("\nMedal results");
+        System.out.println("-------------");
+
+        System.out.println("\n    Gold:   " + athleteNames.get(0));
+        System.out.println("    Silver: " + athleteNames.get(1));
+        System.out.println("    Bronze: " + athleteNames.get(2));
+    }
+
+    public void waitForEnter(String message) {
+        System.out.println("\n" + message);
+        s.nextLine();
+    }
 }
