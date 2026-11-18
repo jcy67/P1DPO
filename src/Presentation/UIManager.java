@@ -1,16 +1,6 @@
 package Presentation;
-
-import Business.Entities.Athlete;
-import Business.Entities.Competition;
-import Business.Entities.Delegation;
-////
-import Persistence.CompetitionDAO;
-import Persistence.DelegationDAO;
-////
 import Business.ErrorType;
 
-
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -23,110 +13,156 @@ public class UIManager {
         this.s = new Scanner(System.in);
     }
 
-    public static Integer askForIntOrEnter(String prompt, int min, int max) {
-        boolean valid = false;
-        Integer finalResult = null;
+    public Integer askForIntOrEnter(String prompt, int min, int max) {
 
-        while (!valid) {
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
+        System.out.print(prompt);
 
-            if (input.isEmpty()) {
-                finalResult = null;
-                valid = true;
-            } else {
-                try {
-                    int value = Integer.parseInt(input);
-                    if (value >= min && value <= max) {
-                        finalResult = value;
-                        valid = true;
-                    } else {
-                        System.out.println(String.format(MessagesEN.ERROR_OUT_OF_RANGE, min, max));
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println(MessagesEN.ERROR_NOT_A_NUMBER);
-                }
-            }
+        String input = s.nextLine().trim();
+
+        if (input.isEmpty()) {
+            return null;
         }
+
+        int finalResult = Integer.parseInt(input);
+
+        if (finalResult < min || finalResult > max) {
+            throw new IllegalArgumentException(
+                    String.format(MessagesEN.ERROR_OUT_OF_RANGE, min, max)
+            );
+        }
+
         return finalResult;
     }
 
-    public int printDelegations(ArrayList<Delegation> delegations, int max) {
+    public ArrayList<String> printDelegations(
+            ArrayList<ArrayList<String>> delegations) {
 
-        System.out.println(MessagesEN.DELEGATIONS_QUANTITY);
-        int size = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION, 1, delegations.size());
+        if (delegations.isEmpty()) {
+            showError(ErrorType.NO_DELEGATIONS);
+            return null;
+        }
+
+        System.out.println(MessagesEN.PROMPT_DELEGATIONS_QUANTITY);
+
+        int size = askForInt(
+                MessagesEN.PROMPT_CHOOSE_OPTION,
+                1,
+                delegations.size()
+        );
+
         System.out.println();
 
         int start = 0;
-        Integer choice = null;
 
-        while (choice == null) {
+        while (true) {
+
             int end = Math.min(start + size, delegations.size());
 
             for (int i = start; i < end; i++) {
-                Delegation d = delegations.get(i);
-                System.out.println("    " + (i + 1) + ") " + d.getCode() + " " + d.getName());
+
+                ArrayList<String> delegation = delegations.get(i);
+
+                System.out.println(
+                        "    " + (i + 1) + ") " +
+                                delegation.get(0) + " " +
+                                delegation.get(1)
+                );
             }
 
             System.out.println();
-            choice = askForIntOrEnter(MessagesEN.PROMPT_CHOOSE_OR_ENTER, 0, delegations.size());
+
+            Integer choice = askForIntOrEnter(
+                    MessagesEN.PROMPT_CHOOSE_OR_ENTER,
+                    1,
+                    delegations.size()
+            );
+
             System.out.println();
 
-            if (choice == null) {
-                start = end;
+            if (choice != null) {
+                return delegations.get(choice - 1);
             }
+
+            // ENTER: pasar a la página siguiente
+            // Si era la última, volver a la primera
+            start = end == delegations.size() ? 0 : end;
         }
-        choice--;
-        return choice;
     }
 
-    public void printDelegationStats (ArrayList<Athlete> athletes, Delegation delegation) {
-        System.out.printf("-| %s | %s |-\n", delegation.getCode(), delegation.getName());
-        System.out.println("\t" + MessagesEN.DELEGATIONS_GOLD_MEDALS + delegation.getGoldMedals());
-        System.out.println("\t" + MessagesEN.DELEGATIONS_SILVER_MEDALS + delegation.getSilverMedals());
-        System.out.println("\t" + MessagesEN.DELEGATIONS_BRONZE_MEDALS + delegation.getBronzeMedals());
+    public void printDelegationStats(
+            ArrayList<String> delegation,
+            ArrayList<String> athleteNames) {
 
-        int numathletes = 0;
-        for (Athlete a : athletes) {
-            if (a.getDelegationCode().equals(delegation.getCode())) {
-                numathletes++;
-            }
-        }
+        System.out.printf(
+                "-| %s | %s |-%n",
+                delegation.get(0),
+                delegation.get(1)
+        );
 
-        System.out.printf("\n\t%d athletes\n", numathletes);
+        System.out.println("\t" +
+                MessagesEN.MESSAGE_DELEGATIONS_GOLD_MEDALS +
+                delegation.get(2));
+
+        System.out.println("\t" +
+                MessagesEN.MESSAGE_DELEGATIONS_SILVER_MEDALS +
+                delegation.get(3));
+
+        System.out.println("\t" +
+                MessagesEN.MESSAGE_DELEGATIONS_BRONZE_MEDALS +
+                delegation.get(4));
+
+        System.out.println("\n\t" + athleteNames.size() + " athletes");
         System.out.println("\t" + MessagesEN.SEPARATOR);
 
-        for (Athlete a : athletes) {
-            if (a.getDelegationCode().equals(delegation.getCode())) {
-                System.out.println("\t" + a.getName());
-            }
+        for (String name : athleteNames) {
+            System.out.println("\t" + name);
         }
+
         System.out.println();
     }
 
-    public void printMedalTable(ArrayList<Delegation> delegations) {
+
+    public void printMedalTable(
+            ArrayList<ArrayList<String>> delegations) {
 
         String body = "| %-10s | %-75s | %4s | %6s | %6s |%n";
 
         System.out.println(MessagesEN.TABLE_BORDER);
-        System.out.printf(body, "Code", "Delegation", "Gold", "Silver", "Bronze");
+
+        System.out.printf(
+                body,
+                "Code", "Delegation", "Gold", "Silver", "Bronze"
+        );
+
         System.out.println(MessagesEN.TABLE_BORDER);
 
-        for (Delegation d : delegations) {
-            System.out.printf(body, d.getCode(), d.getName(), d.getGoldMedals(), d.getSilverMedals(), d.getBronzeMedals());
+        for (ArrayList<String> delegation : delegations) {
+
+            System.out.printf(
+                    body,
+                    delegation.get(0),
+                    delegation.get(1),
+                    delegation.get(2),
+                    delegation.get(3),
+                    delegation.get(4)
+            );
         }
+
         System.out.println(MessagesEN.TABLE_BORDER);
     }
 
-    public static MAIN_MENU_OPTIONS printMenu() {
-        System.out.println(MessagesEN.MAIN_MENU_HEADER);
+
+    public MAIN_MENU_OPTIONS printMenu() {
+
+        System.out.println("\n"+ MessagesEN.HEADER_MAIN_MENU);
         System.out.println();
-        System.out.println(MessagesEN.MAIN_MENU_DELEGATIONS);
-        System.out.println(MessagesEN.MAIN_MENU_ATHLETES);
-        System.out.println(MessagesEN.MAIN_MENU_COMPETITIONS);
-        System.out.println(MessagesEN.MAIN_MENU_SIMULATE);
+
+        System.out.println(MessagesEN.LABEL_MAIN_MENU_DELEGATIONS);
+        System.out.println(MessagesEN.LABEL_MAIN_MENU_ATHLETES);
+        System.out.println(MessagesEN.LABEL_MAIN_MENU_COMPETITIONS);
+        System.out.println(MessagesEN.LABEL_MAIN_MENU_SIMULATE);
         System.out.println();
-        System.out.println(MessagesEN.MAIN_MENU_EXIT);
+        System.out.println(MessagesEN.LABEL_MAIN_MENU_EXIT);
 
         int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION,0, 4);
 
@@ -139,21 +175,147 @@ public class UIManager {
         };
     }
 
-    public static DELEGATIONS_MENU_OPTIONS printDelegationsMenu() {
-        System.out.println(MessagesEN.DELEGATIONS_MENU_HEADER);
+    public DELEGATIONS_MENU_OPTIONS printDelegationsMenu() {
+
+        System.out.println("\n" + MessagesEN.HEADER_DELEGATIONS_MENU);
         System.out.println();
-        System.out.println(MessagesEN.DELEGATIONS_MENU_LIST);
-        System.out.println(MessagesEN.DELEGATIONS_MENU_MEDALS);
+
+        System.out.println(MessagesEN.LABEL_DELEGATIONS_MENU_LIST);
+        System.out.println(MessagesEN.LABEL_DELEGATIONS_MENU_MEDALS);
         System.out.println();
-        System.out.println(MessagesEN.DELEGATIONS_MENU_BACK);
+        System.out.println(MessagesEN.LABEL_DELEGATIONS_MENU_BACK);
 
         int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION,0, 2);
 
         return switch (choice){
             case 1 -> DELEGATIONS_MENU_OPTIONS.LIST_DELEGATIONS;
             case 2 -> DELEGATIONS_MENU_OPTIONS.SHOW_MEDALS;
-            default -> DELEGATIONS_MENU_OPTIONS.BACK;
+            default -> DELEGATIONS_MENU_OPTIONS.BACK_FROM_DELEGATION;
         };
+    }
+
+    public ATHLETE_MENU_OPTIONS printAthletesMenu() {
+
+        System.out.println("\n" + MessagesEN.HEADER_ATHLETES_MENU);
+        System.out.println();
+
+        System.out.println(MessagesEN.LABEL_ATHLETES_MENU_REGISTER);
+        System.out.println(MessagesEN.LABEL_ATHLETES_MENU_LIST);
+        System.out.println(MessagesEN.LABEL_ATHLETES_MENU_DELETE);
+        System.out.println(MessagesEN.LABEL_ATHLETES_MENU_BACK);
+
+        System.out.println();
+
+        int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION, 0, 3);
+
+        return switch (choice) {
+            case 1 -> ATHLETE_MENU_OPTIONS.REGISTER_ATHLETE;
+            case 2 -> ATHLETE_MENU_OPTIONS.LIST_SEARCH_ATHLETES;
+            case 3 -> ATHLETE_MENU_OPTIONS.DELETE_ATHLETE;
+            default -> ATHLETE_MENU_OPTIONS.BACK_FROM_ATHLETE;
+        };
+    }
+
+    public COMPETITION_MENU_OPTIONS printCompetitionsMenu() {
+
+        System.out.println("\n" + MessagesEN.HEADER_COMPETITIONS_MENU);
+        System.out.println();
+
+        System.out.println(MessagesEN.LABEL_COMPETITIONS_MENU_LOAD);
+        System.out.println(MessagesEN.LABEL_COMPETITIONS_MENU_LIST);
+        System.out.println(MessagesEN.LABEL_COMPETITIONS_MENU_DELETE);
+        System.out.println(MessagesEN.LABEL_COMPETITIONS_MENU_BACK);
+
+        System.out.println();
+
+        int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION, 0, 3);
+
+        return switch (choice) {
+            case 1 -> COMPETITION_MENU_OPTIONS.LOAD_COMPETITION;
+            case 2 -> COMPETITION_MENU_OPTIONS.LIST_COMPETITION;
+            case 3 -> COMPETITION_MENU_OPTIONS.DELETE_COMPETITION;
+            default -> COMPETITION_MENU_OPTIONS.BACK_FROM_COMPETITION;
+        };
+    }
+
+    public void showSimulationResults(
+            ArrayList<String> competitionInfo,
+            ArrayList<String> athleteNames,
+            ArrayList<ArrayList<Double>> results,
+            int number,
+            int total) {
+
+        System.out.println("\nCompetition " + number + " of " + total);
+        System.out.println("------------------");
+
+        System.out.println("\n-| " + competitionInfo.get(0)
+                + " | " + competitionInfo.get(1) + " |-");
+
+        System.out.println("\nFormat: " + competitionInfo.get(2));
+
+        System.out.println("\nSimulating competition...");
+
+        System.out.println("\nResults");
+        System.out.println("-------");
+
+        for (int i = 0; i < results.size(); i++) {
+
+            double luck = results.get(i).get(0);
+            double time = results.get(i).get(1);
+
+            System.out.println("\n    " + (i + 1) + ") " + athleteNames.get(i));
+
+            System.out.printf(java.util.Locale.US,
+                    "       Luck: %.2f%n", luck);
+
+            System.out.printf(java.util.Locale.US,
+                    "       Time: %.2f seconds%n", time);
+        }
+
+        System.out.println("\nMedal results");
+        System.out.println("-------------");
+
+        System.out.println("\n    Gold:   " + athleteNames.get(0));
+        System.out.println("    Silver: " + athleteNames.get(1));
+        System.out.println("    Bronze: " + athleteNames.get(2));
+    }
+
+
+    // Escoge el tipo de error que se quiere mostrar por pantalla
+    public void showError(ErrorType error) {
+
+        String message = switch (error) {
+            case INVALID_FIELDS -> MessagesEN.ERROR_INVALID_FIELDS;
+            case EMPTY_ID -> MessagesEN.ERROR_EMPTY_ID;
+            case INVALID_ID -> MessagesEN.ERROR_INVALID_ID;
+            case DUPLICATE_ID -> MessagesEN.ERROR_DUPLICATE_ID;
+            case INVALID_FORMAT -> MessagesEN.ERROR_INVALID_FORMAT;
+            case EMPTY_NAME -> MessagesEN.ERROR_EMPTY_NAME;
+            case INVALID_DATE -> MessagesEN.ERROR_INVALID_DATE;
+            case INVALID_WEIGHT -> MessagesEN.ERROR_INVALID_WEIGHT;
+            case INVALID_WEIGHT_SUM -> MessagesEN.ERROR_INVALID_WEIGHT_SUM;
+            case INVALID_ATHLETE -> MessagesEN.ERROR_INVALID_ATHLETE;
+            case DUPLICATE_ATHLETE -> MessagesEN.ERROR_DUPLICATE_ATHLETE;
+            case NOT_ENOUGH_ATHLETES -> MessagesEN.ERROR_NOT_ENOUGH_ATHLETES;
+            case FILE_ERROR -> MessagesEN.ERROR_FILE;
+            case JSON_ERROR -> MessagesEN.ERROR_JSON;
+            case NOT_A_NUMBER -> MessagesEN.ERROR_NOT_A_NUMBER;
+            case OUT_OF_RANGE -> MessagesEN.ERROR_OUT_OF_RANGE; // No usar desde aquií por los %d, usar showMessage
+            case NO_DELEGATIONS -> MessagesEN.ERROR_NO_DELEGATIONS;
+            case INVALID_SIMULATION_DATA -> MessagesEN.ERROR_INVALID_SIMULATION_DATA;
+        };
+
+        System.out.println(message);
+    }
+
+    // Muestra cualquier mensaje predefinido
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void waitForEnter(String message) {
+        System.out.println("\n" + message);
+        s.nextLine();
     }
 
     /**
@@ -165,107 +327,18 @@ public class UIManager {
      * @param max  maximum accepted value (inclusive)
      * @return the integer entered, between the max and the min
      */
-    public static int askForInt(String prompt, int min, int max) {
-        while (true) {
-            System.out.printf(prompt);
-            String input = scanner.nextLine().trim();
-            try {
-                int value = Integer.parseInt(input);
-                if (value < min || value > max) {
-                    System.out.println(String.format(MessagesEN.ERROR_OUT_OF_RANGE, min, max));
-                    continue;
-                }
-                return value;
-            } catch (NumberFormatException notANumber) {
-                System.out.println(MessagesEN.ERROR_NOT_A_NUMBER);
-            }
+    public int askForInt(String prompt, int min, int max) {
+
+        System.out.print(prompt);
+
+        int value = Integer.parseInt(s.nextLine().trim());
+
+        if (value < min || value > max) {
+            throw new IllegalArgumentException(
+                    String.format(MessagesEN.ERROR_OUT_OF_RANGE, min, max)
+            );
         }
-    }
-
-
-
-
-    public void showDelegations(ArrayList<Delegation> delegations){
-
-        for (Delegation delegation : delegations) {
-            System.out.println("Code: " + delegation.getCode() + " | " +
-                    "Name: " + delegation.getName() + " | " +
-                    delegation.getGoldMedals() + " | " +
-                    delegation.getSilverMedals() +  " | " +
-                    delegation.getBronzeMedals());
-        }
-    }
-
-
-    // Formato de fecha
-    private final String DATE_FORMAT = "yyyy-MM-dd";
-    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-
-    public void showAthletes(ArrayList<Athlete> athletes){
-
-        for (Athlete athlete : athletes) {
-            System.out.println("ID: " + athlete.getId() + " | " +
-                    "Nombre: " + athlete.getName() + " | " +
-                    sdf.format(athlete.getBirthDate()) + " | " +
-                    athlete.getDelegationCode() + " | " +
-                    athlete.getProfile() +  " | " +
-                    athlete.getSpeed() + " | " +
-                    athlete.getEndurance() +  " | " +
-                    athlete.getStrength() +  " | " +
-                    athlete.getTechnique() +  " | " +
-                    athlete.getPrecision());
-        }
-
-    }
-
-
-
-    // Formato datetime
-    private final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
-    SimpleDateFormat sdtf = new SimpleDateFormat(DATETIME_FORMAT);
-
-    public void showCompetitions(ArrayList<Competition> competitions){
-
-        for (Competition competition : competitions) {
-            System.out.println("ID: " + competition.getId() + " | " +
-                    competition.getFormat() + " | " +
-                    "Name: " + competition.getName() + " | " +
-                    sdtf.format(competition.getDateTime()) + " | " +
-                    competition.getSpeed() + " | " +
-                    competition.getEndurance() +  " | " +
-                    competition.getStrength() +  " | " +
-                    competition.getTechnique() +  " | " +
-                    competition.getPrecision() +  " | " +
-                    competition.getAthleteIds());
-
-            // si son null que no los muestre
-            if (competition.getResults() != null){
-                System.out.println(competition.getGold() +   " | " +
-                        competition.getSilver() +   " | " +
-                        competition.getBronze());
-            }
-
-        }
-
-    }
-
-
-    public String askForCSV(String message) {
-
-        String in;
-
-        do {
-            System.out.print(message);
-            in = s.nextLine().trim();
-
-            // Mira a ver si es un array de caracteres vacio o si el string esta unicamente formado por numeros
-            if (in.isEmpty()) {
-                System.out.println(MessagesEN.MESSAGE_INVALID_INPUT);
-            }
-
-        } while (in.isEmpty());
-
-        return in;
+        return value;
     }
 
     public String askForString(String message) {
@@ -280,7 +353,7 @@ public class UIManager {
 
             // Mira a ver si es un array de caracteres vacio o si el string esta unicamente formado por numeros
             if (in.isEmpty() || isNumber(in)){
-                System.out.println(MessagesEN.MESSAGE_INVALID_INPUT);
+                System.out.println(MessagesEN.ERROR_INVALID_INPUT);
                 System.out.println();
             }
 
@@ -293,6 +366,24 @@ public class UIManager {
 
     private static boolean isNumber (String text){
         return text.matches("-?[0-9]+(\\.[0-9]+)?");
+    }
+
+    public String askForCSV(String message) {
+
+        String in;
+
+        do {
+            System.out.print(message);
+            in = s.nextLine().trim();
+
+            // Mira a ver si es un array de caracteres vacio o si el string esta unicamente formado por numeros
+            if (in.isEmpty()) {
+                System.out.println(MessagesEN.ERROR_INVALID_INPUT);
+            }
+
+        } while (in.isEmpty());
+
+        return in;
     }
 
     // Muestra las competiciones importadas y sus errores
@@ -309,7 +400,7 @@ public class UIManager {
             System.out.println();
 
             // Comprobar que existan los campos antes de mostrarlos
-            if (parts.length >= 9) {
+            if (parts.length >= 10) {
 
                 System.out.println("Identifier: " + parts[0]);
                 System.out.println("Name: " + parts[2]);
@@ -348,7 +439,7 @@ public class UIManager {
                 System.out.println(MessagesEN.HEADER_COMPETITION_LOADED);
 
             } else {
-                System.out.println(MessagesEN.MESSAGE_IMPORT_FAILED);
+                System.out.println(MessagesEN.ERROR_IMPORT_FAILED);
 
                 for (ErrorType error : errors) {
                     showError(error);
@@ -360,81 +451,69 @@ public class UIManager {
     }
 
 
-    // Escoge el tipo de error que se quiere mostrar por pantalla
-    public void showError(ErrorType error) {
 
-        String message = switch (error) {
-            case INVALID_FIELDS -> MessagesEN.ERROR_INVALID_FIELDS;
-            case EMPTY_ID -> MessagesEN.ERROR_EMPTY_ID;
-            case INVALID_ID -> MessagesEN.ERROR_INVALID_ID;
-            case DUPLICATE_ID -> MessagesEN.ERROR_DUPLICATE_ID;
-            case INVALID_FORMAT -> MessagesEN.ERROR_INVALID_FORMAT;
-            case EMPTY_NAME -> MessagesEN.ERROR_EMPTY_NAME;
-            case INVALID_DATE -> MessagesEN.ERROR_INVALID_DATE;
-            case INVALID_WEIGHT -> MessagesEN.ERROR_INVALID_WEIGHT;
-            case INVALID_WEIGHT_SUM -> MessagesEN.ERROR_INVALID_WEIGHT_SUM;
-            case INVALID_ATHLETE -> MessagesEN.ERROR_INVALID_ATHLETE;
-            case DUPLICATE_ATHLETE -> MessagesEN.ERROR_DUPLICATE_ATHLETE;
-            case NOT_ENOUGH_ATHLETES -> MessagesEN.ERROR_NOT_ENOUGH_ATHLETES;
-            case FILE_ERROR -> MessagesEN.ERROR_FILE;
-            case JSON_ERROR -> MessagesEN.ERROR_JSON;
-        };
+//    public void showDelegations(ArrayList<Delegation> delegations){
+//
+//        for (Delegation delegation : delegations) {
+//            System.out.println("Code: " + delegation.getCode() + " | " +
+//                    "Name: " + delegation.getName() + " | " +
+//                    delegation.getGoldMedals() + " | " +
+//                    delegation.getSilverMedals() +  " | " +
+//                    delegation.getBronzeMedals());
+//        }
+//    }
 
-        System.out.println(message);
-    }
-
-    // Muestra cualquier mensaje predefinido
-    public void showMessage(String message) {
-        System.out.println(message);
-    }
-
-
-    public void showSimulationResults(
-            Competition competition,
-            ArrayList<String> athleteNames,
-            ArrayList<ArrayList<Double>> results,
-            int number,
-            int total) {
-
-        System.out.println("\nCompetition " + number + " of " + total);
-        System.out.println("------------------");
-
-        System.out.println("\n-| " + competition.getId()
-                + " | " + competition.getName() + " |-");
-
-        System.out.println("\nFormat: " + competition.getFormat());
-        System.out.println("Simulation format: TIMED");
-
-        System.out.println("\nSimulating competition...");
-
-        System.out.println("\nResults");
-        System.out.println("-------");
-
-        for (int i = 0; i < results.size(); i++) {
-
-            double luck = results.get(i).get(0);
-            double time = results.get(i).get(1);
-
-            System.out.println("\n    " + (i + 1) + ") " + athleteNames.get(i));
-
-            System.out.printf(java.util.Locale.US,
-                    "       Luck: %.2f%n", luck);
-
-            System.out.printf(java.util.Locale.US,
-                    "       Time: %.2f seconds%n", time);
-        }
-
-        System.out.println("\nMedal results");
-        System.out.println("-------------");
-
-        System.out.println("\n    Gold:   " + athleteNames.get(0));
-        System.out.println("    Silver: " + athleteNames.get(1));
-        System.out.println("    Bronze: " + athleteNames.get(2));
-    }
-
-    public void waitForEnter(String message) {
-        System.out.println("\n" + message);
-        s.nextLine();
-    }
+//
+//    // Formato de fecha
+//    private final String DATE_FORMAT = "yyyy-MM-dd";
+//    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+//
+//    public void showAthletes(ArrayList<Athlete> athletes){
+//
+//        for (Athlete athlete : athletes) {
+//            System.out.println("ID: " + athlete.getId() + " | " +
+//                    "Nombre: " + athlete.getName() + " | " +
+//                    sdf.format(athlete.getBirthDate()) + " | " +
+//                    athlete.getDelegationCode() + " | " +
+//                    athlete.getProfile() +  " | " +
+//                    athlete.getSpeed() + " | " +
+//                    athlete.getEndurance() +  " | " +
+//                    athlete.getStrength() +  " | " +
+//                    athlete.getTechnique() +  " | " +
+//                    athlete.getPrecision());
+//        }
+//
+//    }
+//
+//
+//
+//    // Formato datetime
+//    private final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
+//    SimpleDateFormat sdtf = new SimpleDateFormat(DATETIME_FORMAT);
+//
+//    public void showCompetitions(ArrayList<Competition> competitions){
+//
+//        for (Competition competition : competitions) {
+//            System.out.println("ID: " + competition.getId() + " | " +
+//                    competition.getFormat() + " | " +
+//                    "Name: " + competition.getName() + " | " +
+//                    sdtf.format(competition.getDateTime()) + " | " +
+//                    competition.getSpeed() + " | " +
+//                    competition.getEndurance() +  " | " +
+//                    competition.getStrength() +  " | " +
+//                    competition.getTechnique() +  " | " +
+//                    competition.getPrecision() +  " | " +
+//                    competition.getAthleteIds());
+//
+//            // si son null que no los muestre
+//            if (competition.getResults() != null){
+//                System.out.println(competition.getGold() +   " | " +
+//                        competition.getSilver() +   " | " +
+//                        competition.getBronze());
+//            }
+//
+//        }
+//
+//    }
 }
 

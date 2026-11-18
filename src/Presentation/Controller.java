@@ -1,14 +1,8 @@
 package Presentation;
 
-//////
-import Business.Entities.Athlete;
-import Business.Entities.Delegation;
 import Business.OlympicsManager;
-import Persistence.DelegationDAO;
-////
-
 import Business.ErrorType;
-import Business.OlympicsManager;
+
 import com.google.gson.JsonParseException;
 import java.io.IOException;
 
@@ -24,58 +18,162 @@ public class Controller {
         this.olympicsManager = om;
     }
 
-    public void manageDelegations() {
-        DELEGATIONS_MENU_OPTIONS options = uiManager.printDelegationsMenu();
-        switch (options) {
-            case LIST_DELEGATIONS -> listDelegations();
-            case SHOW_MEDALS -> showMedals();
-        }
-    }
-
-    public void showMedals() {
-        ArrayList<Delegation> delegations = olympicsManager.sortDelegationsByMedals();
-        uiManager.printMedalTable(delegations);
-    }
-
-    public void listDelegations() {
-        ArrayList<Delegation> delegations = olympicsManager.sortDelegationsByName();
-        int delegation = uiManager.printDelegations(delegations, delegations.size());
-        ArrayList<Athlete> athletes = olympicsManager.getAthleteDAO();
-        uiManager.printDelegationStats(athletes, delegations.get(delegation));
-    }
-
-    public void run(){
-
-//        uiManager.showDelegations(olympicsManager.getDelegationDAO());
-//
-//        uiManager.showAthletes(olympicsManager.getAthleteDAO());
+    public void run() {
 
         boolean running = true;
-        while(running){
 
-        try {
-			MAIN_MENU_OPTIONS options = UIManager.printMenu();
+        while (running) {
 
-            switch (options){
-                case DELEGATIONS -> manageDelegations();
-                case EXIT -> running = false;
+            try {
+
+                MAIN_MENU_OPTIONS option = uiManager.printMenu();
+
+                switch (option) {
+
+                    case DELEGATIONS -> manageDelegations();
+
+                    case ATHLETES -> manageAthletes();
+
+                    case COMPETITIONS -> manageCompetitions();
+
+                    case SIMULATE -> simulateOlympicGames();
+
+                    case EXIT -> {
+                        uiManager.showMessage(MessagesEN.MESSAGE_GOODBYE);
+                        running = false;
+                    }
+                }
+
+            } catch (IOException e) {
+                uiManager.showError(ErrorType.FILE_ERROR);
+
+            } catch (JsonParseException e) {
+                uiManager.showError(ErrorType.JSON_ERROR);
+
+            } catch (NumberFormatException e) {
+                uiManager.showError(ErrorType.NOT_A_NUMBER);
+
+            } catch (IllegalArgumentException e) {
+                uiManager.showMessage(e.getMessage());
+
+            } catch (IllegalStateException e){
+                uiManager.showError(ErrorType.INVALID_SIMULATION_DATA);
+
             }
-            uiManager.showCompetitions(olympicsManager.getCompetitionDAO());
+        }
+    }
 
-            loadCompetitions();
-            uiManager.showCompetitions(olympicsManager.getCompetitionDAO());
+    private void manageDelegations() throws IOException {
 
-            simulateOlympicGames();
+        DELEGATIONS_MENU_OPTIONS option;
 
-        } catch (IOException e) {
-            uiManager.showError(ErrorType.FILE_ERROR);
+        do {
 
-            // Gson puede provocarla
-        } catch (JsonParseException e) {
-            uiManager.showError(ErrorType.JSON_ERROR);
+            option = uiManager.printDelegationsMenu();
 
+            switch (option) {
+
+                case LIST_DELEGATIONS -> {
+                    listDelegations();
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case SHOW_MEDALS -> {
+                    showMedals();
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case BACK_FROM_DELEGATION -> {
+                }
+            }
+
+        } while (option != DELEGATIONS_MENU_OPTIONS.BACK_FROM_DELEGATION);
+    }
+
+    private void listDelegations() throws IOException {
+
+        ArrayList<String> delegation = uiManager.printDelegations(
+                olympicsManager.getDelegationListByName()
+        );
+
+        if (delegation == null) {
+            return;
         }
 
+        uiManager.printDelegationStats(
+                delegation,
+                olympicsManager.getDelegationAthleteNames(delegation.get(0))
+        );
+    }
+
+    private void showMedals() throws IOException {
+
+        uiManager.printMedalTable(olympicsManager.getDelegationMedalTable());
+    }
+
+
+    private void manageAthletes() {
+
+        ATHLETE_MENU_OPTIONS option;
+
+        do {
+
+            option = uiManager.printAthletesMenu();
+
+            switch (option) {
+
+                case REGISTER_ATHLETE -> {
+                    uiManager.showMessage("Register athlete - Not implemented yet.");
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case LIST_SEARCH_ATHLETES -> {
+                    uiManager.showMessage("List/Search athletes - Not implemented yet.");
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case DELETE_ATHLETE -> {
+                    uiManager.showMessage("Delete athlete - Not implemented yet.");
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case BACK_FROM_ATHLETE -> {
+                }
+            }
+
+        } while (option != ATHLETE_MENU_OPTIONS.BACK_FROM_ATHLETE);
+    }
+
+    private void manageCompetitions() throws IOException {
+
+        COMPETITION_MENU_OPTIONS option;
+
+        do {
+
+            option = uiManager.printCompetitionsMenu();
+
+            switch (option) {
+
+                case LOAD_COMPETITION -> {
+                    loadCompetitions();
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case LIST_COMPETITION -> {
+                    uiManager.showMessage("Show competitions - Not implemented yet.");
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case DELETE_COMPETITION -> {
+                    uiManager.showMessage("Delete competition - Not implemented yet.");
+                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                }
+
+                case BACK_FROM_COMPETITION -> {
+                }
+            }
+
+        } while (option != COMPETITION_MENU_OPTIONS.BACK_FROM_COMPETITION);
     }
 
     private void loadCompetitions() throws IOException{
@@ -93,29 +191,30 @@ public class Controller {
 
     private void simulateOlympicGames() throws IOException {
 
-        olympicsManager.prepareSimulation();
+        olympicsManager.loadRelations();
 
-        int total = olympicsManager.getCompetitions().size();
+        ArrayList<String> competitionIds =
+                olympicsManager.getCompetitionIds();
+
+        int total = competitionIds.size();
 
         if (total == 0) {
             uiManager.showMessage(MessagesEN.ERROR_NO_COMPETITIONS);
             return;
         }
 
-        uiManager.showMessage(MessagesEN.SIMULATION_START);
+        uiManager.showMessage(MessagesEN.HEADER_SIMULATION_START);
 
         for (int i = 0; i < total; i++) {
 
+            String id = competitionIds.get(i);
+
             ArrayList<ArrayList<Double>> results =
-                    olympicsManager.simulateCompetition(
-                            olympicsManager.getCompetitions().get(i)
-                    );
+                    olympicsManager.simulateCompetition(id);
 
             uiManager.showSimulationResults(
-                    olympicsManager.getCompetitions().get(i),
-                    olympicsManager.getSimulationAthleteNames(
-                            olympicsManager.getCompetitions().get(i)
-                    ),
+                    olympicsManager.getSimulationCompetitionInfo(id),
+                    olympicsManager.getSimulationAthleteNames(id),
                     results,
                     i + 1,
                     total
@@ -129,7 +228,8 @@ public class Controller {
         }
 
         olympicsManager.saveSimulationResults();
+        olympicsManager.updateDelegationMedals();
 
-        uiManager.showMessage(MessagesEN.SIMULATION_COMPLETED);
+        uiManager.showMessage(MessagesEN.HEADER_SIMULATION_COMPLETED);
     }
 }

@@ -25,18 +25,13 @@ public class OlympicsManager {
     private final CompetitionDAO competitionDAO;
     private ArrayList<Competition> competitions;
 
-    public boolean verifyDelegations() {
-        ArrayList<Delegation> delegations = delegationDAO.readDelegations();
-        return delegations != null;
-    }
-
     public OlympicsManager(DelegationDAO d, AthleteDAO a, CompetitionDAO c) {
         this.delegationDAO = d;
         this.athleteDAO = a;
         this.competitionDAO = c;
     }
 
-    public ArrayList<Delegation> sortDelegationsByName() {
+    public ArrayList<Delegation> sortDelegationsByName() throws IOException{
         ArrayList<Delegation> delegations = delegationDAO.readDelegations();
 
         delegations.sort(Comparator.comparing(Delegation::getName));
@@ -44,7 +39,7 @@ public class OlympicsManager {
         return delegations;
     }
 
-    public ArrayList<Delegation> sortDelegationsByMedals() {
+    public ArrayList<Delegation> sortDelegationsByMedals() throws IOException{
         ArrayList<Delegation> delegations = delegationDAO.readDelegations();
 
         delegations.sort(Comparator.comparing(Delegation::getGoldMedals).reversed().thenComparing(Comparator.comparing(Delegation::getSilverMedals).reversed()).thenComparing(Comparator.comparing(Delegation::getBronzeMedals).reversed()).thenComparing(Delegation::getName));
@@ -52,7 +47,12 @@ public class OlympicsManager {
         return delegations;
     }
 
-    public ArrayList<Delegation> getDelegationDAO() {
+    public boolean verifyDelegations() throws IOException {
+        ArrayList<Delegation> delegations = delegationDAO.readDelegations();
+        return delegations != null && !delegations.isEmpty();
+    }
+
+    public ArrayList<Delegation> getDelegationDAO() throws IOException {
         return delegationDAO.readDelegations();
     }
 
@@ -70,6 +70,90 @@ public class OlympicsManager {
 
     public ArrayList<Competition> getCompetitions() {
         return competitions;
+    }
+
+    private ArrayList<ArrayList<String>> delegationRows(
+            ArrayList<Delegation> delegations) {
+
+        ArrayList<ArrayList<String>> rows = new ArrayList<>();
+
+        for (Delegation delegation : delegations) {
+
+            ArrayList<String> row = new ArrayList<>();
+
+            row.add(delegation.getCode());
+            row.add(delegation.getName());
+            row.add(String.valueOf(delegation.getGoldMedals()));
+            row.add(String.valueOf(delegation.getSilverMedals()));
+            row.add(String.valueOf(delegation.getBronzeMedals()));
+
+            rows.add(row);
+        }
+
+        return rows;
+    }
+
+    public ArrayList<ArrayList<String>> getDelegationListByName() throws IOException {
+        return delegationRows(sortDelegationsByName());
+    }
+
+    public ArrayList<ArrayList<String>> getDelegationMedalTable() throws IOException{
+        return delegationRows(sortDelegationsByMedals());
+    }
+
+    public ArrayList<String> getDelegationAthleteNames(String code)
+            throws IOException {
+
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Athlete athlete : athleteDAO.readAthletes()) {
+
+            if (athlete.getDelegationCode().equals(code)) {
+                names.add(athlete.getName());
+            }
+        }
+
+        return names;
+    }
+
+    public ArrayList<String> getCompetitionIds() {
+
+        ArrayList<String> ids = new ArrayList<>();
+
+        for (Competition competition : competitions) {
+            ids.add(competition.getId());
+        }
+
+        return ids;
+    }
+
+    private Competition findCompetition(String id) {
+
+        for (Competition competition : competitions) {
+
+            if (competition.getId().equals(id)) {
+                return competition;
+            }
+        }
+
+        throw new IllegalStateException();
+    }
+
+    public ArrayList<ArrayList<Double>> simulateCompetition(String id) {
+        return simulateCompetition(findCompetition(id));
+    }
+
+    public ArrayList<String> getSimulationCompetitionInfo(String id) {
+
+        Competition competition = findCompetition(id);
+
+        ArrayList<String> info = new ArrayList<>();
+
+        info.add(competition.getId());
+        info.add(competition.getName());
+        info.add(competition.getFormat().name());
+
+        return info;
     }
 
     // Por cada linea del csv se guarda los errores al importar en cada linea
@@ -255,7 +339,7 @@ public class OlympicsManager {
 
     }
 
-    public ArrayList<ArrayList<Double>> simulateCompetition(Competition competition) throws IOException {
+    public ArrayList<ArrayList<Double>> simulateCompetition(Competition competition)  {
 
         ArrayList<Athlete> ranking = new ArrayList<>();
         ArrayList<ArrayList<Double>> results = new ArrayList<>();
@@ -264,13 +348,13 @@ public class OlympicsManager {
         if (competition.getAthletes() == null ||
                 competition.getAthletes().size() < 3 ||
                 competition.getAthletes().size() != competition.getAthleteIds().size()) {
-            throw new IOException("Invalid participants in competition " + competition.getId());
+            throw new IllegalStateException();
         }
 
         for (Athlete athlete : competition.getAthletes()) {
 
             if (athlete.getDelegation() == null) {
-                throw new IOException("Delegation not found for athlete " + athlete.getId());
+                throw new IllegalStateException();
             }
 
             double luck = Math.random();
@@ -315,12 +399,12 @@ public class OlympicsManager {
                 athlete.getTechnique() * competition.getTechnique() +
                 athlete.getPrecision() * competition.getPrecision();
 
-       return 1.0 - luck/10.0 - weightedAttributes;
+        return 1.0 - (weightedAttributes / 100.0) - (luck / 10.0);
     }
 
 
     // Asocia cada competicion con sus atletas y estos con sus delegaciones
-    private void loadRelations() throws IOException {
+    public void loadRelations() throws IOException {
 
         competitions = competitionDAO.readCompetitions();
 
@@ -359,24 +443,72 @@ public class OlympicsManager {
         }
     }
 
-    public ArrayList<Competition> prepareSimulation() throws IOException {
-        loadRelations();
-        return competitions;
+    public void updateDelegationMedals() throws IOException {
+
+        ArrayList<Delegation> delegations = delegationDAO.readDelegations();
+        ArrayList<Athlete> athletes = athleteDAO.readAthletes();
+
+        // Reiniciar las medallas
+        for (Delegation delegation : delegations) {
+            delegation.resetMedals();
+        }
+
+        // Recorrer todas las competiciones
+        for (Competition competition : competitions) {
+
+            if (competition.getResults() == null) {
+                continue;
+            }
+
+            // Buscar a los atletas ganadores
+            for (Athlete athlete : athletes) {
+
+                // Buscar su delegación
+                for (Delegation delegation : delegations) {
+
+                    if (athlete.getDelegationCode().equals(delegation.getCode())) {
+
+                        if (athlete.getId().equals(competition.getGold())) {
+                            delegation.setGoldMedals(delegation.getGoldMedals() + 1);
+                        }
+
+                        if (athlete.getId().equals(competition.getSilver())) {
+                            delegation.setSilverMedals(delegation.getSilverMedals() + 1);
+                        }
+
+                        if (athlete.getId().equals(competition.getBronze())) {
+                            delegation.setBronzeMedals(delegation.getBronzeMedals() + 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Guardar las delegaciones actualizadas
+        delegationDAO.saveDelegations(delegations);
     }
+
     public void saveSimulationResults() throws IOException {
         competitionDAO.saveCompetitions(competitions);
     }
 
-    public ArrayList<String> getSimulationAthleteNames(Competition competition) {
+    public ArrayList<String> getSimulationAthleteNames(String id) {
+
+        Competition competition = findCompetition(id);
 
         ArrayList<String> names = new ArrayList<>();
 
         for (Athlete athlete : competition.getAthletes()) {
-            names.add(athlete.getName() + " - "
-                    + athlete.getDelegation().getName());
+
+            names.add(
+                    athlete.getName() + " - " +
+                            athlete.getDelegation().getName()
+            );
         }
 
         return names;
     }
+
+
 
 }

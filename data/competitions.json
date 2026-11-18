@@ -2,7 +2,7 @@
   {
     "id": "CMP-100",
     "format": "TIMED",
-    "name": "Men's 100 Metres",
+    "name": "Men\u0027s 100 Metres",
     "dateTime": "2028-07-15 10:30",
     "weights": {
       "speed": 0.5,
@@ -19,8 +19,8 @@
     ],
     "results": {
       "gold": "ATH-004",
-      "silver": "ATH-011",
-      "bronze": "ATH-018"
+      "silver": "ATH-018",
+      "bronze": "ATH-011"
     }
   },
   {
@@ -42,8 +42,8 @@
     ],
     "results": {
       "gold": "ATH-007",
-      "silver": "ATH-015",
-      "bronze": "ATH-024"
+      "silver": "ATH-024",
+      "bronze": "ATH-015"
     }
   },
   {
@@ -65,9 +65,9 @@
       "ATH-036"
     ],
     "results": {
-      "gold": "ATH-006",
-      "silver": "ATH-013",
-      "bronze": "ATH-028"
+      "gold": "ATH-028",
+      "silver": "ATH-036",
+      "bronze": "ATH-013"
     }
   },
   {
@@ -87,7 +87,11 @@
       "ATH-019",
       "ATH-032"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-019",
+      "silver": "ATH-032",
+      "bronze": "ATH-009"
+    }
   },
   {
     "id": "CMP-104",
@@ -108,15 +112,15 @@
       "ATH-041"
     ],
     "results": {
-      "gold": "ATH-002",
-      "silver": "ATH-016",
-      "bronze": "ATH-029"
+      "gold": "ATH-041",
+      "silver": "ATH-002",
+      "bronze": "ATH-016"
     }
   },
   {
     "id": "CMP-105",
     "format": "TIMED",
-    "name": "Women's 200 Metres",
+    "name": "Women\u0027s 200 Metres",
     "dateTime": "2028-07-16 18:30",
     "weights": {
       "speed": 0.35,
@@ -134,15 +138,15 @@
       "ATH-202"
     ],
     "results": {
-      "gold": "ATH-008",
-      "silver": "ATH-108",
-      "bronze": "ATH-204"
+      "gold": "ATH-191",
+      "silver": "ATH-202",
+      "bronze": "ATH-172"
     }
   },
   {
     "id": "CMP-106",
     "format": "TIMED",
-    "name": "Women's 100 Metres",
+    "name": "Women\u0027s 100 Metres",
     "dateTime": "2028-07-17 10:30",
     "weights": {
       "speed": 0.5,
@@ -164,15 +168,15 @@
       "ATH-073"
     ],
     "results": {
-      "gold": "ATH-131",
-      "silver": "ATH-165",
-      "bronze": "ATH-038"
+      "gold": "ATH-100",
+      "silver": "ATH-073",
+      "bronze": "ATH-127"
     }
   },
   {
     "id": "CMP-107",
     "format": "TIMED",
-    "name": "Men's 200 Metres",
+    "name": "Men\u0027s 200 Metres",
     "dateTime": "2028-07-17 14:30",
     "weights": {
       "speed": 0.5,
@@ -187,12 +191,16 @@
       "ATH-014",
       "ATH-081"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-164",
+      "silver": "ATH-081",
+      "bronze": "ATH-072"
+    }
   },
   {
     "id": "CMP-108",
     "format": "TIMED",
-    "name": "Men's 400 Metres",
+    "name": "Men\u0027s 400 Metres",
     "dateTime": "2028-07-17 18:30",
     "weights": {
       "speed": 0.5,
@@ -214,15 +222,15 @@
       "ATH-121"
     ],
     "results": {
-      "gold": "ATH-164",
-      "silver": "ATH-109",
-      "bronze": "ATH-010"
+      "gold": "ATH-073",
+      "silver": "ATH-013",
+      "bronze": "ATH-164"
     }
   },
   {
     "id": "CMP-109",
     "format": "TIMED",
-    "name": "Women's 400 Metres",
+    "name": "Women\u0027s 400 Metres",
     "dateTime": "2028-07-18 10:30",
     "weights": {
       "speed": 0.35,
@@ -242,15 +250,15 @@
       "ATH-109"
     ],
     "results": {
-      "gold": "ATH-179",
-      "silver": "ATH-208",
-      "bronze": "ATH-206"
+      "gold": "ATH-100",
+      "silver": "ATH-206",
+      "bronze": "ATH-208"
     }
   },
   {
     "id": "CMP-110",
     "format": "TIMED",
-    "name": "Men's 800 Metres",
+    "name": "Men\u0027s 800 Metres",
     "dateTime": "2028-07-18 14:30",
     "weights": {
       "speed": 0.35,
@@ -272,15 +280,15 @@
       "ATH-013"
     ],
     "results": {
-      "gold": "ATH-024",
-      "silver": "ATH-044",
-      "bronze": "ATH-035"
+      "gold": "ATH-073",
+      "silver": "ATH-024",
+      "bronze": "ATH-013"
     }
   },
   {
     "id": "CMP-111",
     "format": "TIMED",
-    "name": "Women's 800 Metres",
+    "name": "Women\u0027s 800 Metres",
     "dateTime": "2028-07-18 18:30",
     "weights": {
       "speed": 0.35,
@@ -297,12 +305,16 @@
       "ATH-187",
       "ATH-090"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-090",
+      "silver": "ATH-212",
+      "bronze": "ATH-149"
+    }
   },
   {
     "id": "CMP-112",
     "format": "TIMED",
-    "name": "Men's 1500 Metres",
+    "name": "Men\u0027s 1500 Metres",
     "dateTime": "2028-07-19 10:30",
     "weights": {
       "speed": 0.5,
@@ -324,15 +336,15 @@
       "ATH-075"
     ],
     "results": {
-      "gold": "ATH-050",
-      "silver": "ATH-187",
-      "bronze": "ATH-160"
+      "gold": "ATH-127",
+      "silver": "ATH-075",
+      "bronze": "ATH-187"
     }
   },
   {
     "id": "CMP-113",
     "format": "TIMED",
-    "name": "Women's 1500 Metres",
+    "name": "Women\u0027s 1500 Metres",
     "dateTime": "2028-07-19 14:30",
     "weights": {
       "speed": 0.35,
@@ -350,15 +362,15 @@
       "ATH-054"
     ],
     "results": {
-      "gold": "ATH-183",
-      "silver": "ATH-011",
-      "bronze": "ATH-192"
+      "gold": "ATH-054",
+      "silver": "ATH-084",
+      "bronze": "ATH-096"
     }
   },
   {
     "id": "CMP-114",
     "format": "TIMED",
-    "name": "Men's 5000 Metres",
+    "name": "Men\u0027s 5000 Metres",
     "dateTime": "2028-07-19 18:30",
     "weights": {
       "speed": 0.35,
@@ -376,15 +388,15 @@
       "ATH-213"
     ],
     "results": {
-      "gold": "ATH-202",
-      "silver": "ATH-086",
-      "bronze": "ATH-162"
+      "gold": "ATH-162",
+      "silver": "ATH-213",
+      "bronze": "ATH-202"
     }
   },
   {
     "id": "CMP-115",
     "format": "TIMED",
-    "name": "Women's 5000 Metres",
+    "name": "Women\u0027s 5000 Metres",
     "dateTime": "2028-07-20 10:30",
     "weights": {
       "speed": 0.5,
@@ -404,12 +416,16 @@
       "ATH-172",
       "ATH-004"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-055",
+      "silver": "ATH-088",
+      "bronze": "ATH-172"
+    }
   },
   {
     "id": "CMP-116",
     "format": "TIMED",
-    "name": "Men's Marathon",
+    "name": "Men\u0027s Marathon",
     "dateTime": "2028-07-20 14:30",
     "weights": {
       "speed": 0.35,
@@ -430,15 +446,15 @@
       "ATH-079"
     ],
     "results": {
-      "gold": "ATH-183",
-      "silver": "ATH-163",
-      "bronze": "ATH-008"
+      "gold": "ATH-079",
+      "silver": "ATH-183",
+      "bronze": "ATH-117"
     }
   },
   {
     "id": "CMP-117",
     "format": "TIMED",
-    "name": "Women's Marathon",
+    "name": "Women\u0027s Marathon",
     "dateTime": "2028-07-20 18:30",
     "weights": {
       "speed": 0.25,
@@ -457,14 +473,14 @@
     ],
     "results": {
       "gold": "ATH-170",
-      "silver": "ATH-072",
-      "bronze": "ATH-166"
+      "silver": "ATH-166",
+      "bronze": "ATH-135"
     }
   },
   {
     "id": "CMP-118",
     "format": "TIMED",
-    "name": "Men's 110 Metres Hurdles",
+    "name": "Men\u0027s 110 Metres Hurdles",
     "dateTime": "2028-07-21 10:30",
     "weights": {
       "speed": 0.25,
@@ -484,15 +500,15 @@
       "ATH-197"
     ],
     "results": {
-      "gold": "ATH-125",
-      "silver": "ATH-103",
-      "bronze": "ATH-012"
+      "gold": "ATH-197",
+      "silver": "ATH-012",
+      "bronze": "ATH-007"
     }
   },
   {
     "id": "CMP-119",
     "format": "TIMED",
-    "name": "Women's 100 Metres Hurdles",
+    "name": "Women\u0027s 100 Metres Hurdles",
     "dateTime": "2028-07-21 14:30",
     "weights": {
       "speed": 0.5,
@@ -509,12 +525,16 @@
       "ATH-034",
       "ATH-189"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-127",
+      "silver": "ATH-133",
+      "bronze": "ATH-009"
+    }
   },
   {
     "id": "CMP-120",
     "format": "MEASURED",
-    "name": "Men's Long Jump Final",
+    "name": "Men\u0027s Long Jump Final",
     "dateTime": "2028-07-21 18:30",
     "weights": {
       "speed": 0.1,
@@ -532,15 +552,15 @@
       "ATH-129"
     ],
     "results": {
-      "gold": "ATH-010",
-      "silver": "ATH-053",
+      "gold": "ATH-186",
+      "silver": "ATH-129",
       "bronze": "ATH-094"
     }
   },
   {
     "id": "CMP-121",
     "format": "MEASURED",
-    "name": "Women's Long Jump Final",
+    "name": "Women\u0027s Long Jump Final",
     "dateTime": "2028-07-22 10:30",
     "weights": {
       "speed": 0.1,
@@ -556,15 +576,15 @@
       "ATH-110"
     ],
     "results": {
-      "gold": "ATH-168",
-      "silver": "ATH-092",
-      "bronze": "ATH-188"
+      "gold": "ATH-188",
+      "silver": "ATH-168",
+      "bronze": "ATH-110"
     }
   },
   {
     "id": "CMP-122",
     "format": "MEASURED",
-    "name": "Men's High Jump Final",
+    "name": "Men\u0027s High Jump Final",
     "dateTime": "2028-07-22 14:30",
     "weights": {
       "speed": 0.05,
@@ -582,14 +602,14 @@
     ],
     "results": {
       "gold": "ATH-072",
-      "silver": "ATH-117",
-      "bronze": "ATH-052"
+      "silver": "ATH-118",
+      "bronze": "ATH-117"
     }
   },
   {
     "id": "CMP-123",
     "format": "MEASURED",
-    "name": "Women's High Jump Final",
+    "name": "Women\u0027s High Jump Final",
     "dateTime": "2028-07-22 18:30",
     "weights": {
       "speed": 0.1,
@@ -609,12 +629,16 @@
       "ATH-025",
       "ATH-187"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-166",
+      "silver": "ATH-025",
+      "bronze": "ATH-031"
+    }
   },
   {
     "id": "CMP-124",
     "format": "MEASURED",
-    "name": "Men's Pole Vault Final",
+    "name": "Men\u0027s Pole Vault Final",
     "dateTime": "2028-07-23 10:30",
     "weights": {
       "speed": 0.1,
@@ -630,15 +654,15 @@
       "ATH-175"
     ],
     "results": {
-      "gold": "ATH-027",
-      "silver": "ATH-026",
-      "bronze": "ATH-076"
+      "gold": "ATH-026",
+      "silver": "ATH-175",
+      "bronze": "ATH-027"
     }
   },
   {
     "id": "CMP-125",
     "format": "MEASURED",
-    "name": "Women's Pole Vault Final",
+    "name": "Women\u0027s Pole Vault Final",
     "dateTime": "2028-07-23 14:30",
     "weights": {
       "speed": 0.1,
@@ -658,15 +682,15 @@
       "ATH-157"
     ],
     "results": {
-      "gold": "ATH-124",
-      "silver": "ATH-117",
-      "bronze": "ATH-148"
+      "gold": "ATH-212",
+      "silver": "ATH-148",
+      "bronze": "ATH-124"
     }
   },
   {
     "id": "CMP-126",
     "format": "MEASURED",
-    "name": "Men's Shot Put Final",
+    "name": "Men\u0027s Shot Put Final",
     "dateTime": "2028-07-23 18:30",
     "weights": {
       "speed": 0.05,
@@ -689,14 +713,14 @@
     ],
     "results": {
       "gold": "ATH-026",
-      "silver": "ATH-090",
+      "silver": "ATH-062",
       "bronze": "ATH-044"
     }
   },
   {
     "id": "CMP-127",
     "format": "MEASURED",
-    "name": "Women's Javelin Throw Final",
+    "name": "Women\u0027s Javelin Throw Final",
     "dateTime": "2028-07-24 10:30",
     "weights": {
       "speed": 0.05,
@@ -716,12 +740,16 @@
       "ATH-057",
       "ATH-024"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-170",
+      "silver": "ATH-205",
+      "bronze": "ATH-123"
+    }
   },
   {
     "id": "CMP-128",
     "format": "TIMED",
-    "name": "Men's 50 Metres Freestyle",
+    "name": "Men\u0027s 50 Metres Freestyle",
     "dateTime": "2028-07-24 14:30",
     "weights": {
       "speed": 0.5,
@@ -742,15 +770,15 @@
       "ATH-079"
     ],
     "results": {
-      "gold": "ATH-199",
-      "silver": "ATH-016",
-      "bronze": "ATH-026"
+      "gold": "ATH-041",
+      "silver": "ATH-175",
+      "bronze": "ATH-079"
     }
   },
   {
     "id": "CMP-129",
     "format": "TIMED",
-    "name": "Women's 50 Metres Freestyle",
+    "name": "Women\u0027s 50 Metres Freestyle",
     "dateTime": "2028-07-24 18:30",
     "weights": {
       "speed": 0.5,
@@ -769,15 +797,15 @@
       "ATH-168"
     ],
     "results": {
-      "gold": "ATH-045",
-      "silver": "ATH-078",
-      "bronze": "ATH-005"
+      "gold": "ATH-168",
+      "silver": "ATH-005",
+      "bronze": "ATH-001"
     }
   },
   {
     "id": "CMP-130",
     "format": "TIMED",
-    "name": "Men's 100 Metres Freestyle",
+    "name": "Men\u0027s 100 Metres Freestyle",
     "dateTime": "2028-07-25 10:30",
     "weights": {
       "speed": 0.35,
@@ -795,15 +823,15 @@
       "ATH-018"
     ],
     "results": {
-      "gold": "ATH-125",
-      "silver": "ATH-192",
+      "gold": "ATH-088",
+      "silver": "ATH-125",
       "bronze": "ATH-084"
     }
   },
   {
     "id": "CMP-131",
     "format": "TIMED",
-    "name": "Women's 100 Metres Freestyle",
+    "name": "Women\u0027s 100 Metres Freestyle",
     "dateTime": "2028-07-25 14:30",
     "weights": {
       "speed": 0.5,
@@ -823,12 +851,16 @@
       "ATH-196",
       "ATH-202"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-151",
+      "silver": "ATH-085",
+      "bronze": "ATH-190"
+    }
   },
   {
     "id": "CMP-132",
     "format": "TIMED",
-    "name": "Men's 200 Metres Butterfly",
+    "name": "Men\u0027s 200 Metres Butterfly",
     "dateTime": "2028-07-25 18:30",
     "weights": {
       "speed": 0.25,
@@ -845,15 +877,15 @@
       "ATH-041"
     ],
     "results": {
-      "gold": "ATH-181",
+      "gold": "ATH-041",
       "silver": "ATH-073",
-      "bronze": "ATH-072"
+      "bronze": "ATH-214"
     }
   },
   {
     "id": "CMP-133",
     "format": "TIMED",
-    "name": "Women's 200 Metres Butterfly",
+    "name": "Women\u0027s 200 Metres Butterfly",
     "dateTime": "2028-07-26 10:30",
     "weights": {
       "speed": 0.5,
@@ -872,15 +904,15 @@
       "ATH-166"
     ],
     "results": {
-      "gold": "ATH-018",
-      "silver": "ATH-076",
-      "bronze": "ATH-019"
+      "gold": "ATH-019",
+      "silver": "ATH-166",
+      "bronze": "ATH-095"
     }
   },
   {
     "id": "CMP-134",
     "format": "TIMED",
-    "name": "Men's 100 Metres Backstroke",
+    "name": "Men\u0027s 100 Metres Backstroke",
     "dateTime": "2028-07-26 14:30",
     "weights": {
       "speed": 0.5,
@@ -901,15 +933,15 @@
       "ATH-099"
     ],
     "results": {
-      "gold": "ATH-156",
-      "silver": "ATH-122",
+      "gold": "ATH-099",
+      "silver": "ATH-052",
       "bronze": "ATH-151"
     }
   },
   {
     "id": "CMP-135",
     "format": "TIMED",
-    "name": "Women's 100 Metres Backstroke",
+    "name": "Women\u0027s 100 Metres Backstroke",
     "dateTime": "2028-07-26 18:30",
     "weights": {
       "speed": 0.25,
@@ -928,12 +960,16 @@
       "ATH-117",
       "ATH-004"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-016",
+      "silver": "ATH-013",
+      "bronze": "ATH-125"
+    }
   },
   {
     "id": "CMP-136",
     "format": "TIMED",
-    "name": "Men's Individual Time Trial",
+    "name": "Men\u0027s Individual Time Trial",
     "dateTime": "2028-07-27 10:30",
     "weights": {
       "speed": 0.35,
@@ -951,13 +987,13 @@
     "results": {
       "gold": "ATH-178",
       "silver": "ATH-080",
-      "bronze": "ATH-104"
+      "bronze": "ATH-066"
     }
   },
   {
     "id": "CMP-137",
     "format": "TIMED",
-    "name": "Women's Individual Time Trial",
+    "name": "Women\u0027s Individual Time Trial",
     "dateTime": "2028-07-27 14:30",
     "weights": {
       "speed": 0.35,
@@ -975,7 +1011,7 @@
       "ATH-151"
     ],
     "results": {
-      "gold": "ATH-195",
+      "gold": "ATH-151",
       "silver": "ATH-114",
       "bronze": "ATH-202"
     }
@@ -1001,9 +1037,9 @@
       "ATH-098"
     ],
     "results": {
-      "gold": "ATH-046",
-      "silver": "ATH-010",
-      "bronze": "ATH-186"
+      "gold": "ATH-186",
+      "silver": "ATH-091",
+      "bronze": "ATH-004"
     }
   },
   {
@@ -1030,7 +1066,11 @@
       "ATH-090",
       "ATH-092"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-090",
+      "silver": "ATH-073",
+      "bronze": "ATH-125"
+    }
   },
   {
     "id": "CMP-140",
@@ -1055,8 +1095,8 @@
     ],
     "results": {
       "gold": "ATH-150",
-      "silver": "ATH-033",
-      "bronze": "ATH-010"
+      "silver": "ATH-044",
+      "bronze": "ATH-096"
     }
   },
   {
@@ -1078,9 +1118,9 @@
       "ATH-048"
     ],
     "results": {
-      "gold": "ATH-142",
-      "silver": "ATH-166",
-      "bronze": "ATH-164"
+      "gold": "ATH-166",
+      "silver": "ATH-164",
+      "bronze": "ATH-142"
     }
   },
   {
@@ -1108,9 +1148,9 @@
       "ATH-002"
     ],
     "results": {
-      "gold": "ATH-017",
+      "gold": "ATH-212",
       "silver": "ATH-003",
-      "bronze": "ATH-145"
+      "bronze": "ATH-002"
     }
   },
   {
@@ -1137,7 +1177,11 @@
       "ATH-192",
       "ATH-136"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-151",
+      "silver": "ATH-052",
+      "bronze": "ATH-136"
+    }
   },
   {
     "id": "CMP-144",
@@ -1159,9 +1203,9 @@
       "ATH-066"
     ],
     "results": {
-      "gold": "ATH-015",
-      "silver": "ATH-176",
-      "bronze": "ATH-094"
+      "gold": "ATH-066",
+      "silver": "ATH-094",
+      "bronze": "ATH-176"
     }
   },
   {
@@ -1183,8 +1227,8 @@
       "ATH-117"
     ],
     "results": {
-      "gold": "ATH-060",
-      "silver": "ATH-141",
+      "gold": "ATH-117",
+      "silver": "ATH-060",
       "bronze": "ATH-064"
     }
   },
@@ -1207,9 +1251,9 @@
       "ATH-038"
     ],
     "results": {
-      "gold": "ATH-093",
-      "silver": "ATH-165",
-      "bronze": "ATH-045"
+      "gold": "ATH-165",
+      "silver": "ATH-045",
+      "bronze": "ATH-093"
     }
   },
   {
@@ -1233,7 +1277,11 @@
       "ATH-022",
       "ATH-104"
     ],
-    "results": null
+    "results": {
+      "gold": "ATH-155",
+      "silver": "ATH-163",
+      "bronze": "ATH-066"
+    }
   },
   {
     "id": "CMP-148",
@@ -1257,9 +1305,9 @@
       "ATH-183"
     ],
     "results": {
-      "gold": "ATH-195",
-      "silver": "ATH-076",
-      "bronze": "ATH-028"
+      "gold": "ATH-191",
+      "silver": "ATH-028",
+      "bronze": "ATH-183"
     }
   },
   {
@@ -1283,9 +1331,9 @@
       "ATH-032"
     ],
     "results": {
-      "gold": "ATH-084",
-      "silver": "ATH-144",
-      "bronze": "ATH-209"
+      "gold": "ATH-032",
+      "silver": "ATH-209",
+      "bronze": "ATH-078"
     }
   }
 ]

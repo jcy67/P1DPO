@@ -15,5 +15,9 @@ public enum ErrorType {
     NOT_ENOUGH_ATHLETES,
     FILE_ERROR,
     JSON_ERROR,
+    NOT_A_NUMBER,
+    OUT_OF_RANGE,
+    NO_DELEGATIONS,
+    INVALID_SIMULATION_DATA
 
 }

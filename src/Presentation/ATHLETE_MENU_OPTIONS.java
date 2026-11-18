@@ -1,0 +1,8 @@
+package Presentation;
+
+public enum ATHLETE_MENU_OPTIONS {
+    REGISTER_ATHLETE,
+    LIST_SEARCH_ATHLETES,
+    DELETE_ATHLETE,
+    BACK_FROM_ATHLETE;
+}
