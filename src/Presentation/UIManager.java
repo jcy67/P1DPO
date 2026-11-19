@@ -1,18 +1,37 @@
 package Presentation;
-import Business.ErrorType;
 
-import java.text.SimpleDateFormat;
+import Business.ERROR_TYPE;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Manages the user interface of the Olympic Games application.
+ * Displays menus, requests user input and presents information
+ * about delegations, athletes, competitions and simulations.
+ */
 public class UIManager {
 
     private final Scanner s;
 
-    public UIManager(){
+    /**
+     * Creates a UIManager and initializes the scanner for user input.
+     */
+    public UIManager() {
         this.s = new Scanner(System.in);
     }
 
+    /**
+     * Asks the user to enter an integer within the specified range
+     * or press ENTER without entering a value.
+     *
+     * @param prompt the message displayed before reading the input
+     * @param min the minimum accepted value (inclusive)
+     * @param max the maximum accepted value (inclusive)
+     * @return the entered integer, or null if ENTER is pressed
+     * @throws NumberFormatException if the input is not a valid integer
+     * @throws IllegalArgumentException if the value is outside the allowed range
+     */
     public Integer askForIntOrEnter(String prompt, int min, int max) {
 
         System.out.print(prompt);
@@ -34,6 +53,13 @@ public class UIManager {
         return finalResult;
     }
 
+    /**
+     * Asks the user to confirm an action by entering Y or N.
+     * Repeats the request until a valid answer is entered.
+     *
+     * @param prompt the confirmation message to display
+     * @return true if the user enters Y, false if the user enters N
+     */
     public boolean askForConfirmation(String prompt) {
 
         while (true) {
@@ -54,11 +80,19 @@ public class UIManager {
         }
     }
 
+    /**
+     * Displays a paginated list of delegations and allows
+     * the user to select one or return to the previous menu.
+     *
+     * @param delegations the delegation information to display
+     * @return the selected delegation, or null if the user goes back
+     *         or no delegations are available
+     */
     public ArrayList<String> printDelegations(
             ArrayList<ArrayList<String>> delegations) {
 
         if (delegations.isEmpty()) {
-            showError(ErrorType.NO_DELEGATIONS);
+            showError(ERROR_TYPE.NO_DELEGATIONS);
             return null;
         }
 
@@ -81,7 +115,16 @@ public class UIManager {
         return delegations.get(choice);
     }
 
-
+    /**
+     * Displays a paginated list of items and allows the user
+     * to select an item, move to the next page or return.
+     * Restarts from the first page after reaching the last page.
+     *
+     * @param items the items to display
+     * @param quantityPrompt the message asking for the page size
+     * @param selectionPrompt the message asking the user to select an item
+     * @return the index of the selected item, or null if the user goes back
+     */
     private Integer printPaginatedList(
             ArrayList<String> items,
             String quantityPrompt,
@@ -110,7 +153,7 @@ public class UIManager {
             System.out.println("\n    " + MessagesEN.LABEL_BACK);
             System.out.println();
 
-            // En la última página cambia el prompt
+            // Change the prompt on the last page.
             String prompt = selectionPrompt;
 
             if (end == items.size()) {
@@ -132,11 +175,21 @@ public class UIManager {
                 return choice - 1;
             }
 
-            // Paginación infinita
+            // Infinite pagination.
             start = end == items.size() ? 0 : end;
         }
     }
 
+    /**
+     * Displays a paginated list of available competitions.
+     * Allows the user to select a competition or return
+     * to the previous menu.
+     *
+     * @param competitions the competition information to display
+     * @param header the header displayed above the competition list
+     * @return the identifier of the selected competition,
+     *         or null if the user goes back or the list is empty
+     */
     public String printCompetitions(
             ArrayList<ArrayList<String>> competitions,
             String header) {
@@ -168,6 +221,15 @@ public class UIManager {
         return competitions.get(choice).get(0);
     }
 
+    /**
+     * Displays the detailed information of a competition.
+     * Shows its identifier, name, format, date, attribute weights,
+     * medal results and participating athletes.
+     *
+     * @param info the competition details, including its weights and results
+     * @param participants the names of the participating athletes
+     *                     and their delegations
+     */
     public void printCompetitionDetails(
             ArrayList<String> info,
             ArrayList<String> participants) {
@@ -225,6 +287,13 @@ public class UIManager {
         System.out.println();
     }
 
+    /**
+     * Displays the selected delegation's information.
+     * Shows its medal counts and the names of its athletes.
+     *
+     * @param delegation the delegation information
+     * @param athleteNames the names of athletes belonging to the delegation
+     */
     public void printDelegationStats(
             ArrayList<String> delegation,
             ArrayList<String> athleteNames) {
@@ -257,7 +326,12 @@ public class UIManager {
         System.out.println();
     }
 
-
+    /**
+     * Displays a table containing the delegations and their medal counts.
+     * Shows each delegation's code, name, gold, silver and bronze medals.
+     *
+     * @param delegations the delegation information to display
+     */
     public void printMedalTable(
             ArrayList<ArrayList<String>> delegations) {
 
@@ -287,10 +361,14 @@ public class UIManager {
         System.out.println(MessagesEN.TABLE_BORDER);
     }
 
+    /**
+     * Displays the main menu and asks the user to select an option.
+     *
+     * @return the selected main menu option
+     */
+    public MAIN_MENU_OPTION printMenu() {
 
-    public MAIN_MENU_OPTIONS printMenu() {
-
-        System.out.println("\n"+ MessagesEN.HEADER_MAIN_MENU);
+        System.out.println("\n" + MessagesEN.HEADER_MAIN_MENU);
         System.out.println();
 
         System.out.println(MessagesEN.LABEL_MAIN_MENU_DELEGATIONS);
@@ -300,18 +378,24 @@ public class UIManager {
         System.out.println();
         System.out.println(MessagesEN.LABEL_MAIN_MENU_EXIT);
 
-        int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION,0, 4);
+        int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION, 0, 4);
 
-        return switch (choice){
-            case 1 -> MAIN_MENU_OPTIONS.DELEGATIONS;
-            case 2 -> MAIN_MENU_OPTIONS.ATHLETES;
-            case 3 -> MAIN_MENU_OPTIONS.COMPETITIONS;
-            case 4 -> MAIN_MENU_OPTIONS.SIMULATE;
-            default -> MAIN_MENU_OPTIONS.EXIT;
+        return switch (choice) {
+            case 1 -> MAIN_MENU_OPTION.DELEGATIONS;
+            case 2 -> MAIN_MENU_OPTION.ATHLETES;
+            case 3 -> MAIN_MENU_OPTION.COMPETITIONS;
+            case 4 -> MAIN_MENU_OPTION.SIMULATE;
+            default -> MAIN_MENU_OPTION.EXIT;
         };
     }
 
-    public DELEGATIONS_MENU_OPTIONS printDelegationsMenu() {
+    /**
+     * Displays the delegations submenu and asks the user
+     * to select an option.
+     *
+     * @return the selected delegation menu option
+     */
+    public DELEGATIONS_MENU_OPTION printDelegationsMenu() {
 
         System.out.println("\n" + MessagesEN.HEADER_DELEGATIONS_MENU);
         System.out.println();
@@ -321,16 +405,21 @@ public class UIManager {
         System.out.println();
         System.out.println(MessagesEN.LABEL_DELEGATIONS_MENU_BACK);
 
-        int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION,0, 2);
+        int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION, 0, 2);
 
-        return switch (choice){
-            case 1 -> DELEGATIONS_MENU_OPTIONS.LIST_DELEGATIONS;
-            case 2 -> DELEGATIONS_MENU_OPTIONS.SHOW_MEDALS;
-            default -> DELEGATIONS_MENU_OPTIONS.BACK_FROM_DELEGATION;
+        return switch (choice) {
+            case 1 -> DELEGATIONS_MENU_OPTION.LIST_DELEGATIONS;
+            case 2 -> DELEGATIONS_MENU_OPTION.SHOW_MEDALS;
+            default -> DELEGATIONS_MENU_OPTION.BACK_FROM_DELEGATION;
         };
     }
 
-    public ATHLETE_MENU_OPTIONS printAthletesMenu() {
+    /**
+     * Displays the athletes submenu and asks the user to select an option.
+     *
+     * @return the selected athlete menu option
+     */
+    public ATHLETES_MENU_OPTION printAthletesMenu() {
 
         System.out.println("\n" + MessagesEN.HEADER_ATHLETES_MENU);
         System.out.println();
@@ -345,14 +434,19 @@ public class UIManager {
         int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION, 0, 3);
 
         return switch (choice) {
-            case 1 -> ATHLETE_MENU_OPTIONS.REGISTER_ATHLETE;
-            case 2 -> ATHLETE_MENU_OPTIONS.LIST_SEARCH_ATHLETES;
-            case 3 -> ATHLETE_MENU_OPTIONS.DELETE_ATHLETE;
-            default -> ATHLETE_MENU_OPTIONS.BACK_FROM_ATHLETE;
+            case 1 -> ATHLETES_MENU_OPTION.REGISTER_ATHLETE;
+            case 2 -> ATHLETES_MENU_OPTION.LIST_SEARCH_ATHLETES;
+            case 3 -> ATHLETES_MENU_OPTION.DELETE_ATHLETE;
+            default -> ATHLETES_MENU_OPTION.BACK_FROM_ATHLETE;
         };
     }
 
-    public COMPETITION_MENU_OPTIONS printCompetitionsMenu() {
+    /**
+     * Displays the competitions submenu and asks the user to select an option.
+     *
+     * @return the selected competition menu option
+     */
+    public COMPETITIONS_MENU_OPTION printCompetitionsMenu() {
 
         System.out.println("\n" + MessagesEN.HEADER_COMPETITIONS_MENU);
         System.out.println();
@@ -367,13 +461,24 @@ public class UIManager {
         int choice = askForInt(MessagesEN.PROMPT_CHOOSE_OPTION, 0, 3);
 
         return switch (choice) {
-            case 1 -> COMPETITION_MENU_OPTIONS.LOAD_COMPETITION;
-            case 2 -> COMPETITION_MENU_OPTIONS.LIST_COMPETITION;
-            case 3 -> COMPETITION_MENU_OPTIONS.DELETE_COMPETITION;
-            default -> COMPETITION_MENU_OPTIONS.BACK_FROM_COMPETITION;
+            case 1 -> COMPETITIONS_MENU_OPTION.LOAD_COMPETITION;
+            case 2 -> COMPETITIONS_MENU_OPTION.LIST_COMPETITION;
+            case 3 -> COMPETITIONS_MENU_OPTION.DELETE_COMPETITION;
+            default -> COMPETITIONS_MENU_OPTION.BACK_FROM_COMPETITION;
         };
     }
 
+    /**
+     * Displays the results of a simulated Olympic competition.
+     * Shows the competition information, athlete rankings, luck factors,
+     * completion times and medal winners.
+     *
+     * @param competitionInfo the competition identifier, name and format
+     * @param athleteNames the names of the athletes in ranking order
+     * @param results the luck factor and completion time of each athlete
+     * @param number the current competition number
+     * @param total the total number of competitions
+     */
     public void showSimulationResults(
             ArrayList<String> competitionInfo,
             ArrayList<String> athleteNames,
@@ -416,9 +521,12 @@ public class UIManager {
         System.out.println("    Bronze: " + athleteNames.get(2));
     }
 
-
-    // Escoge el tipo de error que se quiere mostrar por pantalla
-    public void showError(ErrorType error) {
+    /**
+     * Displays the error message corresponding to the given error type.
+     *
+     * @param error the type of error to display
+     */
+    public void showError(ERROR_TYPE error) {
 
         String message = switch (error) {
             case INVALID_FIELDS -> MessagesEN.ERROR_INVALID_FIELDS;
@@ -436,7 +544,7 @@ public class UIManager {
             case FILE_ERROR -> MessagesEN.ERROR_FILE;
             case JSON_ERROR -> MessagesEN.ERROR_JSON;
             case NOT_A_NUMBER -> MessagesEN.ERROR_NOT_A_NUMBER;
-            case OUT_OF_RANGE -> MessagesEN.ERROR_OUT_OF_RANGE; // No usar desde aquií por los %d, usar showMessage
+            case OUT_OF_RANGE -> MessagesEN.ERROR_OUT_OF_RANGE; // Use showMessage() instead because of the %d placeholders.
             case NO_DELEGATIONS -> MessagesEN.ERROR_NO_DELEGATIONS;
             case INVALID_SIMULATION_DATA -> MessagesEN.ERROR_INVALID_SIMULATION_DATA;
         };
@@ -444,24 +552,35 @@ public class UIManager {
         System.out.println(message);
     }
 
-    // Muestra cualquier mensaje predefinido
+    /**
+     * Displays a given message on the screen.
+     *
+     * @param message the message to display
+     */
     public void showMessage(String message) {
         System.out.println(message);
     }
 
+    /**
+     * Displays a message and waits for the user to press ENTER.
+     *
+     * @param message the message to display
+     */
     public void waitForEnter(String message) {
         System.out.println("\n" + message);
         s.nextLine();
     }
 
     /**
-     * Asks for an integer until the user enters one within the
-     * given range, printing an error message after each invalid attempt.
+     * Asks the user to enter an integer within the specified range.
+     * Throws an exception if the entered value is invalid.
      *
-     * @param prompt the text to show before the range
-     * @param min  minimum accepted value (inclusive)
-     * @param max  maximum accepted value (inclusive)
-     * @return the integer entered, between the max and the min
+     * @param prompt the message displayed before reading the input
+     * @param min the minimum accepted value (inclusive)
+     * @param max the maximum accepted value (inclusive)
+     * @return the integer entered by the user
+     * @throws NumberFormatException if the input is not a valid integer
+     * @throws IllegalArgumentException if the value is outside the allowed range
      */
     public int askForInt(String prompt, int min, int max) {
 
@@ -477,33 +596,52 @@ public class UIManager {
         return value;
     }
 
+    /**
+     * Asks the user to enter a non-empty string that is not entirely numeric.
+     * Repeats the request until a valid string is entered.
+     *
+     * @param message the message displayed before reading the input
+     * @return the valid string entered by the user
+     */
     public String askForString(String message) {
 
         String in;
 
-        do{
+        do {
             System.out.print(message);
 
-            // Lee la linea como string hasta la barra del enter y recorta espacios laterales
+            // Read the input line and remove leading and trailing spaces.
             in = s.nextLine().trim();
 
-            // Mira a ver si es un array de caracteres vacio o si el string esta unicamente formado por numeros
-            if (in.isEmpty() || isNumber(in)){
+            // Check whether the string is empty or contains only a number.
+            if (in.isEmpty() || isNumber(in)) {
                 System.out.println(MessagesEN.ERROR_INVALID_INPUT);
                 System.out.println();
             }
 
-            // Repetira el proceso hasta que salga un String puro
+            // Repeat until a valid string is entered.
         } while (in.isEmpty() || isNumber(in));
-
 
         return in;
     }
 
-    private static boolean isNumber (String text){
+    /**
+     * Checks whether a string represents an integer or decimal number.
+     *
+     * @param text the string to check
+     * @return true if the string represents a number, false otherwise
+     */
+    private static boolean isNumber(String text) {
         return text.matches("-?[0-9]+(\\.[0-9]+)?");
     }
 
+    /**
+     * Asks the user to enter a non-empty CSV filename.
+     * Repeats the request until a non-empty value is entered.
+     *
+     * @param message the message displayed before reading the input
+     * @return the CSV filename entered by the user
+     */
     public String askForCSV(String message) {
 
         String in;
@@ -512,7 +650,7 @@ public class UIManager {
             System.out.print(message);
             in = s.nextLine().trim();
 
-            // Mira a ver si es un array de caracteres vacio o si el string esta unicamente formado por numeros
+            // Check whether the input is empty.
             if (in.isEmpty()) {
                 System.out.println(MessagesEN.ERROR_INVALID_INPUT);
             }
@@ -522,20 +660,27 @@ public class UIManager {
         return in;
     }
 
-    // Muestra las competiciones importadas y sus errores
-    public void showImportResults(ArrayList<String> lines, ArrayList<ArrayList<ErrorType>> results) {
+    /**
+     * Displays the results of importing competitions from a CSV file.
+     * Shows the information of each competition and indicates whether
+     * it was imported successfully or which validation errors occurred.
+     *
+     * @param lines the lines read from the CSV file
+     * @param results the validation errors associated with each competition
+     */
+    public void showImportResults(ArrayList<String> lines, ArrayList<ArrayList<ERROR_TYPE>> results) {
 
         for (int i = 0; i < results.size(); i++) {
 
             String[] parts = lines.get(i + 1).split(",", -1);
-            ArrayList<ErrorType> errors = results.get(i);
+            ArrayList<ERROR_TYPE> errors = results.get(i);
 
             System.out.println();
             System.out.println("Competition " + (i + 1) + " of " + results.size());
             System.out.println("------------------");
             System.out.println();
 
-            // Comprobar que existan los campos antes de mostrarlos
+            // Check that the required fields exist before displaying them.
             if (parts.length >= 10) {
 
                 System.out.println("Identifier: " + parts[0]);
@@ -570,14 +715,14 @@ public class UIManager {
 
             System.out.println();
 
-            // Mostrar si se ha importado o los errores detectados
+            // Display whether the competition was imported or which errors occurred.
             if (errors.isEmpty()) {
                 System.out.println(MessagesEN.HEADER_COMPETITION_LOADED);
 
             } else {
                 System.out.println(MessagesEN.ERROR_IMPORT_FAILED);
 
-                for (ErrorType error : errors) {
+                for (ERROR_TYPE error : errors) {
                     showError(error);
                 }
             }
@@ -586,70 +731,5 @@ public class UIManager {
         }
     }
 
-
-
-//    public void showDelegations(ArrayList<Delegation> delegations){
-//
-//        for (Delegation delegation : delegations) {
-//            System.out.println("Code: " + delegation.getCode() + " | " +
-//                    "Name: " + delegation.getName() + " | " +
-//                    delegation.getGoldMedals() + " | " +
-//                    delegation.getSilverMedals() +  " | " +
-//                    delegation.getBronzeMedals());
-//        }
-//    }
-
-//
-//    // Formato de fecha
-//    private final String DATE_FORMAT = "yyyy-MM-dd";
-//    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-//
-//    public void showAthletes(ArrayList<Athlete> athletes){
-//
-//        for (Athlete athlete : athletes) {
-//            System.out.println("ID: " + athlete.getId() + " | " +
-//                    "Nombre: " + athlete.getName() + " | " +
-//                    sdf.format(athlete.getBirthDate()) + " | " +
-//                    athlete.getDelegationCode() + " | " +
-//                    athlete.getProfile() +  " | " +
-//                    athlete.getSpeed() + " | " +
-//                    athlete.getEndurance() +  " | " +
-//                    athlete.getStrength() +  " | " +
-//                    athlete.getTechnique() +  " | " +
-//                    athlete.getPrecision());
-//        }
-//
-//    }
-//
-//
-//
-//    // Formato datetime
-//    private final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
-//    SimpleDateFormat sdtf = new SimpleDateFormat(DATETIME_FORMAT);
-//
-//    public void showCompetitions(ArrayList<Competition> competitions){
-//
-//        for (Competition competition : competitions) {
-//            System.out.println("ID: " + competition.getId() + " | " +
-//                    competition.getFormat() + " | " +
-//                    "Name: " + competition.getName() + " | " +
-//                    sdtf.format(competition.getDateTime()) + " | " +
-//                    competition.getSpeed() + " | " +
-//                    competition.getEndurance() +  " | " +
-//                    competition.getStrength() +  " | " +
-//                    competition.getTechnique() +  " | " +
-//                    competition.getPrecision() +  " | " +
-//                    competition.getAthleteIds());
-//
-//            // si son null que no los muestre
-//            if (competition.getResults() != null){
-//                System.out.println(competition.getGold() +   " | " +
-//                        competition.getSilver() +   " | " +
-//                        competition.getBronze());
-//            }
-//
-//        }
-//
-//    }
 }
 

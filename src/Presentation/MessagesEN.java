@@ -1,5 +1,10 @@
 package Presentation;
 
+/**
+ * Contains the messages used by the application.
+ * Defines menu labels, headers, prompts, error messages
+ * and formatting constants for the user interface.
+ */
 public class MessagesEN {
 
 

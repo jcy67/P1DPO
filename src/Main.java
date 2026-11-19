@@ -5,9 +5,18 @@ import Persistence.AthleteDAO;
 import Presentation.Controller;
 import Presentation.UIManager;
 
-
+/**
+ * Entry point of the Olympic Games application.
+ * Initializes the required managers and data access objects
+ * and starts the application through the Controller.
+ */
 public class Main {
 
+    /**
+     * Initializes the application components and starts the main menu.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
 
         UIManager ui = new UIManager();
