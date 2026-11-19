@@ -116,6 +116,111 @@ public class OlympicsManager {
         return names;
     }
 
+    public ArrayList<ArrayList<String>> getCompetitionList()
+            throws IOException {
+
+        competitions = competitionDAO.readCompetitions();
+
+        ArrayList<ArrayList<String>> rows = new ArrayList<>();
+
+        for (Competition competition : competitions) {
+
+            ArrayList<String> row = new ArrayList<>();
+
+            row.add(competition.getId());
+            row.add(competition.getName());
+            row.add(competition.getFormat().name());
+
+            rows.add(row);
+        }
+
+        return rows;
+    }
+
+    public ArrayList<String> getCompetitionDetails(String id) {
+
+        Competition competition = findCompetition(id);
+
+        ArrayList<String> info = new ArrayList<>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        info.add(competition.getId());
+        info.add(competition.getName());
+        info.add(competition.getFormat().name());
+        info.add(sdf.format(competition.getDateTime()));
+
+        info.add(String.valueOf(competition.getSpeed()));
+        info.add(String.valueOf(competition.getEndurance()));
+        info.add(String.valueOf(competition.getStrength()));
+        info.add(String.valueOf(competition.getTechnique()));
+        info.add(String.valueOf(competition.getPrecision()));
+
+        if (competition.getResults() == null) {
+            info.add(null);
+            info.add(null);
+            info.add(null);
+        } else {
+            info.add(competition.getGold());
+            info.add(competition.getSilver());
+            info.add(competition.getBronze());
+        }
+
+        return info;
+    }
+
+    public ArrayList<String> getCompetitionParticipantNames(String id)
+            throws IOException {
+
+        Competition competition = findCompetition(id);
+
+        ArrayList<Athlete> athletes = athleteDAO.readAthletes();
+        ArrayList<Delegation> delegations = delegationDAO.readDelegations();
+
+        if (delegations == null) {
+            throw new IOException("Could not read delegations.");
+        }
+
+        ArrayList<String> names = new ArrayList<>();
+
+        for (String athleteId : competition.getAthleteIds()) {
+
+            for (Athlete athlete : athletes) {
+
+                if (athlete.getId().equals(athleteId)) {
+
+                    for (Delegation delegation : delegations) {
+
+                        if (delegation.getCode().equals(athlete.getDelegationCode())) {
+
+                            names.add(
+                                    athlete.getName() + " - " +
+                                            delegation.getName()
+                            );
+
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        return names;
+    }
+
+    public void deleteCompetition(String id) throws IOException {
+
+        Competition competition = findCompetition(id);
+
+        competitions.remove(competition);
+
+        competitionDAO.saveCompetitions(competitions);
+
+        updateDelegationMedals();
+    }
+
     public ArrayList<String> getCompetitionIds() {
 
         ArrayList<String> ids = new ArrayList<>();

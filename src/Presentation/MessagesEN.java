@@ -25,6 +25,26 @@ public class MessagesEN {
     public static final String HEADER_SIMULATION_COMPLETED =
             "\nOlympic Games simulation completed";
 
+    public static final String HEADER_AVAILABLE_COMPETITIONS =
+            "Available competitions";
+
+    public static final String HEADER_COMPETITION_DETAILS =
+            "Competition details";
+
+    public static final String HEADER_ATTRIBUTE_WEIGHTS =
+            "Attribute weights";
+
+    public static final String HEADER_COMPETITION_RESULT =
+            "Competition result";
+
+    public static final String HEADER_PARTICIPANTS =
+            "Participants";
+
+    public static final String HEADER_DELETE_COMPETITION =
+            "Delete a competition";
+
+    public static final String HEADER_COMPETITION_DELETED =
+            "The competition \"%s\" has been removed from the system.";
 
 
     // LABELS - MAIN MENU
@@ -85,6 +105,9 @@ public class MessagesEN {
     public static final String LABEL_COMPETITIONS_MENU_BACK =
             "0) Back";
 
+    public static final String LABEL_BACK =
+            "0) Back";
+
 
 
     // PROMPTS
@@ -94,6 +117,9 @@ public class MessagesEN {
     public static final String PROMPT_CHOOSE_OR_ENTER =
             "Choose an option or press ENTER to see next page: ";
 
+    public static final String PROMPT_CHOOSE_OR_RESTART =
+            "Choose an option or press ENTER to restart the list: ";
+
     public static final String PROMPT_DELEGATIONS_QUANTITY =
             "How many delegations would you like to see per page?";
 
@@ -101,13 +127,20 @@ public class MessagesEN {
             "Enter the name of the CSV file: ";
 
     public static final String PROMPT_CONTINUE =
-            "Press ENTER to continue...";
+            "<Press ENTER to continue>";
 
     public static final String PROMPT_NEXT_SIMULATION =
             "<Press ENTER to simulate the next competition>";
 
     public static final String PROMPT_FINISH_SIMULATION =
             "<Press ENTER to finish the simulation>";
+
+    public static final String PROMPT_COMPETITIONS_QUANTITY =
+            "How many competitions would you like to see per page?";
+
+    public static final String PROMPT_CONFIRM_DELETE_COMPETITION =
+            "Are you sure you want to delete this competition? (Y/N): ";
+
 
 
 
@@ -133,6 +166,15 @@ public class MessagesEN {
     public static final String MESSAGE_DELEGATIONS_BRONZE_MEDALS =
             "Bronze medals: ";
 
+    public static final String MESSAGE_COMPETITION_NOT_SIMULATED =
+            "This competition has not been simulated yet.";
+
+    public static final String MESSAGE_DELETE_COMPETITION_WARNING =
+            "\nDeleting this competition will also remove its results and update any related\n" +
+                    "information stored in the system.\n";
+
+    public static final String MESSAGE_COMPETITION_DELETE_CANCELLED =
+            "Competition deletion cancelled.";
 
 
     // ERRORS
@@ -198,6 +240,9 @@ public class MessagesEN {
 
     public static final String ERROR_INVALID_SIMULATION_DATA =
             "Error: Invalid athlete or delegation data in the simulation.";
+
+    public static final String ERROR_NO_AVAILABLE_COMPETITIONS =
+            "There are no competitions available.";
 
 
     // FORMATTING

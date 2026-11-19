@@ -34,6 +34,26 @@ public class UIManager {
         return finalResult;
     }
 
+    public boolean askForConfirmation(String prompt) {
+
+        while (true) {
+
+            System.out.print(prompt);
+
+            String answer = s.nextLine().trim();
+
+            if (answer.equalsIgnoreCase("Y")) {
+                return true;
+            }
+
+            if (answer.equalsIgnoreCase("N")) {
+                return false;
+            }
+
+            System.out.println(MessagesEN.ERROR_INVALID_INPUT);
+        }
+    }
+
     public ArrayList<String> printDelegations(
             ArrayList<ArrayList<String>> delegations) {
 
@@ -42,51 +62,167 @@ public class UIManager {
             return null;
         }
 
-        System.out.println(MessagesEN.PROMPT_DELEGATIONS_QUANTITY);
+        ArrayList<String> items = new ArrayList<>();
 
-        int size = askForInt(
-                MessagesEN.PROMPT_CHOOSE_OPTION,
-                1,
-                delegations.size()
+        for (ArrayList<String> delegation : delegations) {
+            items.add(delegation.get(0) + " " + delegation.get(1));
+        }
+
+        Integer choice = printPaginatedList(
+                items,
+                MessagesEN.PROMPT_DELEGATIONS_QUANTITY,
+                MessagesEN.PROMPT_CHOOSE_OR_ENTER
         );
 
-        System.out.println();
+        if (choice == null) {
+            return null;
+        }
+
+        return delegations.get(choice);
+    }
+
+
+    private Integer printPaginatedList(
+            ArrayList<String> items,
+            String quantityPrompt,
+            String selectionPrompt) {
+
+        System.out.println(quantityPrompt);
+
+        int pageSize = askForInt(
+                MessagesEN.PROMPT_CHOOSE_OPTION,
+                1,
+                items.size()
+        );
 
         int start = 0;
 
         while (true) {
 
-            int end = Math.min(start + size, delegations.size());
+            int end = Math.min(start + pageSize, items.size());
+
+            System.out.println();
 
             for (int i = start; i < end; i++) {
-
-                ArrayList<String> delegation = delegations.get(i);
-
-                System.out.println(
-                        "    " + (i + 1) + ") " +
-                                delegation.get(0) + " " +
-                                delegation.get(1)
-                );
+                System.out.println("    " + (i + 1) + ") " + items.get(i));
             }
 
+            System.out.println("\n    " + MessagesEN.LABEL_BACK);
             System.out.println();
+
+            // En la última página cambia el prompt
+            String prompt = selectionPrompt;
+
+            if (end == items.size()) {
+                prompt = MessagesEN.PROMPT_CHOOSE_OR_RESTART;
+            }
 
             Integer choice = askForIntOrEnter(
-                    MessagesEN.PROMPT_CHOOSE_OR_ENTER,
-                    1,
-                    delegations.size()
+                    prompt,
+                    0,
+                    items.size()
             );
 
-            System.out.println();
-
             if (choice != null) {
-                return delegations.get(choice - 1);
+
+                if (choice == 0) {
+                    return null;
+                }
+
+                return choice - 1;
             }
 
-            // ENTER: pasar a la página siguiente
-            // Si era la última, volver a la primera
-            start = end == delegations.size() ? 0 : end;
+            // Paginación infinita
+            start = end == items.size() ? 0 : end;
         }
+    }
+
+    public String printCompetitions(
+            ArrayList<ArrayList<String>> competitions,
+            String header) {
+
+        if (competitions.isEmpty()) {
+            showMessage(MessagesEN.ERROR_NO_AVAILABLE_COMPETITIONS);
+            return null;
+        }
+
+        System.out.println("\n" + header);
+        System.out.println("----------------------");
+
+        ArrayList<String> items = new ArrayList<>();
+
+        for (ArrayList<String> competition : competitions) {
+            items.add(competition.get(1) + " - " + competition.get(2));
+        }
+
+        Integer choice = printPaginatedList(
+                items,
+                MessagesEN.PROMPT_COMPETITIONS_QUANTITY,
+                MessagesEN.PROMPT_CHOOSE_OR_ENTER
+        );
+
+        if (choice == null) {
+            return null;
+        }
+
+        return competitions.get(choice).get(0);
+    }
+
+    public void printCompetitionDetails(
+            ArrayList<String> info,
+            ArrayList<String> participants) {
+
+        System.out.println("\n" + MessagesEN.HEADER_COMPETITION_DETAILS);
+        System.out.println("-------------------");
+
+        System.out.println("\n-| " + info.get(0) +
+                " | " + info.get(1) + " |-");
+
+        System.out.println("\nFormat: " + info.get(2));
+        System.out.println("Date and time: " + info.get(3));
+
+        System.out.println("\n" + MessagesEN.HEADER_ATTRIBUTE_WEIGHTS);
+        System.out.println("-----------------");
+
+        System.out.printf(java.util.Locale.US,
+                "Speed:      %.2f%n", Double.parseDouble(info.get(4)));
+
+        System.out.printf(java.util.Locale.US,
+                "Endurance:  %.2f%n", Double.parseDouble(info.get(5)));
+
+        System.out.printf(java.util.Locale.US,
+                "Strength:   %.2f%n", Double.parseDouble(info.get(6)));
+
+        System.out.printf(java.util.Locale.US,
+                "Technique:  %.2f%n", Double.parseDouble(info.get(7)));
+
+        System.out.printf(java.util.Locale.US,
+                "Precision:  %.2f%n", Double.parseDouble(info.get(8)));
+
+        System.out.println("\n" + MessagesEN.HEADER_COMPETITION_RESULT);
+        System.out.println("------------------");
+
+        if (info.get(9) == null) {
+
+            System.out.println(MessagesEN.MESSAGE_COMPETITION_NOT_SIMULATED);
+
+        } else {
+
+            System.out.println("Gold:   " + info.get(9));
+            System.out.println("Silver: " + info.get(10));
+            System.out.println("Bronze: " + info.get(11));
+        }
+
+        System.out.println("\n" + MessagesEN.HEADER_PARTICIPANTS);
+        System.out.println("------------\n");
+
+        for (int i = 0; i < participants.size(); i++) {
+            System.out.println(
+                    "    " + (i + 1) + ") " + participants.get(i)
+            );
+        }
+
+        System.out.println();
     }
 
     public void printDelegationStats(

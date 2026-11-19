@@ -73,10 +73,7 @@ public class Controller {
 
             switch (option) {
 
-                case LIST_DELEGATIONS -> {
-                    listDelegations();
-                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
-                }
+                case LIST_DELEGATIONS -> listDelegations();
 
                 case SHOW_MEDALS -> {
                     showMedals();
@@ -159,15 +156,9 @@ public class Controller {
                     uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
                 }
 
-                case LIST_COMPETITION -> {
-                    uiManager.showMessage("Show competitions - Not implemented yet.");
-                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
-                }
+                case LIST_COMPETITION -> listCompetitions();
 
-                case DELETE_COMPETITION -> {
-                    uiManager.showMessage("Delete competition - Not implemented yet.");
-                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
-                }
+                case DELETE_COMPETITION -> deleteCompetition();
 
                 case BACK_FROM_COMPETITION -> {
                 }
@@ -187,6 +178,72 @@ public class Controller {
         ArrayList<ArrayList< ErrorType >> errors= olympicsManager.importCompetitions(lines);
         uiManager.showImportResults(lines, errors);
 
+    }
+
+    private void listCompetitions() throws IOException {
+
+        String id = uiManager.printCompetitions(
+                olympicsManager.getCompetitionList(),
+                MessagesEN.HEADER_AVAILABLE_COMPETITIONS
+        );
+
+        if (id == null) {
+            return;
+        }
+
+        uiManager.printCompetitionDetails(
+                olympicsManager.getCompetitionDetails(id),
+                olympicsManager.getCompetitionParticipantNames(id)
+        );
+
+        uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+    }
+
+    private void deleteCompetition() throws IOException {
+
+        String id = uiManager.printCompetitions(
+                olympicsManager.getCompetitionList(),
+                MessagesEN.HEADER_DELETE_COMPETITION
+        );
+
+        if (id == null) {
+            return;
+        }
+
+        ArrayList<String> details = olympicsManager.getCompetitionDetails(id);
+
+        uiManager.printCompetitionDetails(
+                details,
+                olympicsManager.getCompetitionParticipantNames(id)
+        );
+
+        uiManager.showMessage(
+                MessagesEN.MESSAGE_DELETE_COMPETITION_WARNING
+        );
+
+        boolean confirm = uiManager.askForConfirmation(
+                MessagesEN.PROMPT_CONFIRM_DELETE_COMPETITION
+        );
+
+        if (confirm) {
+
+            olympicsManager.deleteCompetition(id);
+
+            uiManager.showMessage(
+                    String.format(
+                            MessagesEN.HEADER_COMPETITION_DELETED,
+                            details.get(1)
+                    )
+            );
+
+        } else {
+
+            uiManager.showMessage(
+                    MessagesEN.MESSAGE_COMPETITION_DELETE_CANCELLED
+            );
+        }
+
+        uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
     }
 
     private void simulateOlympicGames() throws IOException {
