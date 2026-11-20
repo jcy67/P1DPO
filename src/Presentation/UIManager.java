@@ -1,13 +1,144 @@
 package Presentation;
+import Business.Entities.Athlete;
+import Business.Entities.Delegation;
 import Business.ErrorType;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class UIManager {
 
     private final Scanner s;
+
+    public String askForString(Scanner scanner, String prompt) {
+        System.out.printf(prompt);
+
+        return scanner.nextLine();
+    }
+
+    public void showRegisteredAthlete(Athlete athlete, Delegation delegation) {
+        System.out.println();
+        System.out.println(MessagesEN.MESSAGE_ATHLETE_REGISTERED);
+        System.out.println();
+        printAthlete(athlete, delegation);
+        System.out.println(MessagesEN.MESSAGE_ATHLETE_STORED);
+    }
+
+    public String askProfile() {
+        System.out.println();
+        System.out.println(MessagesEN.HEADER_SELECT_PROFILE);
+        System.out.println();
+        System.out.println(MessagesEN.LABEL_PROFILE_BALANCED);
+        System.out.println(MessagesEN.LABEL_PROFILE_POWER);
+        System.out.println(MessagesEN.LABEL_PROFILE_ENDURANCE);
+        System.out.println(MessagesEN.LABEL_PROFILE_TECHNICAL);
+        System.out.println();
+        System.out.println(MessagesEN.LABEL_PROFILE_CANCEL);
+
+        int choice = askForInt(MessagesEN.PROMPT_CHOOSE_PROFILE, 0, 4);
+
+        return switch (choice) {
+            case 1 -> "BALANCED";
+            case 2 -> "POWER";
+            case 3 -> "ENDURANCE";
+            case 4 -> "TECHNICAL";
+            default -> null;
+        };
+    }
+
+    public String askSearchTerm() {
+        System.out.print(MessagesEN.PROMPT_SEARCH_ATHLETES);
+        return s.nextLine().trim();
+    }
+
+    public void printAthlete (Athlete athlete, Delegation delegation) {
+
+        System.out.println(MessagesEN.ATHLETE_DETAILS_HEADER);
+        System.out.println(MessagesEN.SEPARATOR);
+        System.out.println();
+        System.out.printf(MessagesEN.ATHLETE_TITLE_FORMAT, athlete.getId(), athlete.getName());
+        System.out.println();
+        System.out.printf(MessagesEN.ATHLETE_DELEGATION_FORMAT, delegation.getCode(), delegation.getName());
+        System.out.printf(MessagesEN.ATHLETE_BIRTHDATE_FORMAT, athlete.getBirthDate());
+        System.out.printf(MessagesEN.ATHLETE_PROFILE_FORMAT, athlete.getProfile().name());
+        System.out.println();
+        System.out.println(MessagesEN.ATHLETE_ATTRIBUTES_HEADER);
+        System.out.println(MessagesEN.SEPARATOR);
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Speed:", athlete.getSpeed());
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Endurance:", athlete.getEndurance());
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Strength:", athlete.getStrength());
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Technique:", athlete.getTechnique());
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Precision:", athlete.getPrecision());
+        System.out.println();
+    }
+
+    public String askAthleteName() {
+        String name = "";
+        while (name.isEmpty()) {
+            System.out.print(MessagesEN.PROMPT_ATHLETE_NAME);
+            name = s.nextLine().trim();
+            if (name.isEmpty()) {
+                System.out.println(MessagesEN.ERROR_EMPTY_NAME);
+            }
+        }
+        return name;
+    }
+
+    public Date askBirthDate() {
+        Date birthDate = null;
+        while (birthDate == null) {
+            System.out.print(MessagesEN.PROMPT_BIRTHDATE);
+            birthDate = parseBirthDate(s.nextLine().trim());
+            if (birthDate == null) {
+                System.out.println(MessagesEN.ERROR_INVALID_DATE);
+            }
+        }
+        return birthDate;
+    }
+
+    private Date parseBirthDate(String input) {
+        if (!input.matches("\\d{2}/\\d{2}/\\d{4}")) { 
+            return null;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        format.setLenient(false);
+        try {
+            return format.parse(input);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+    
+    public String getDelegationNameByCode(ArrayList<Delegation> delegations, String codeToFind) {
+        for (Delegation d : delegations) {
+            if (d.getCode().equals(codeToFind)) {
+                return d.getName();
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+    public int chooseAthlete(ArrayList<Athlete> found, ArrayList<Delegation> delegations) {
+        if (found.isEmpty()) {
+            System.out.println(MessagesEN.NO_ATHLETES_FOUND);
+            return 0;
+        }
+        for (int i = 0; i < found.size(); i++) {
+            Athlete a = found.get(i);
+            System.out.println("    " + (i + 1) + ") " + a.getName() + " - "
+                    + getDelegationNameByCode(delegations, a.getDelegationCode()));
+        }
+        System.out.println();
+        System.out.println(MessagesEN.ATHLETES_LIST_BACK);
+        return askForInt(MessagesEN.PROMPT_CHOOSE_ATHLETE, 0, found.size());
+    }
 
     public UIManager(){
         this.s = new Scanner(System.in);
@@ -303,6 +434,7 @@ public class UIManager {
             case OUT_OF_RANGE -> MessagesEN.ERROR_OUT_OF_RANGE; // No usar desde aquií por los %d, usar showMessage
             case NO_DELEGATIONS -> MessagesEN.ERROR_NO_DELEGATIONS;
             case INVALID_SIMULATION_DATA -> MessagesEN.ERROR_INVALID_SIMULATION_DATA;
+            case ATHLETE_ALREADY_REGISTERED -> null;
         };
 
         System.out.println(message);

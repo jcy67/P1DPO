@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class DelegationDAO {
     private static final String DELEGATIONS_PATH = "data/delegations.json";
 

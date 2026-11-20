@@ -1,6 +1,7 @@
 package Business.Entities;
 
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Athlete {
 
@@ -21,6 +22,24 @@ public class Athlete {
 
     // Transient es para que el Gson lo ignore al crear el objeto
     private transient Delegation delegation;
+
+    public Athlete(String id, PROFILE_TYPE profile, String name, Date birthDate, String delegationCode) {
+        this.id = id;
+        this.profile = profile;
+        this.name = name;
+        this.birthDate = birthDate;
+        this.delegationCode = delegationCode;
+        this.speed = randomAttribute();
+        this.endurance = randomAttribute();
+        this.strength = randomAttribute();
+        this.technique = randomAttribute();
+        this.precision = randomAttribute();
+    }
+
+    private int randomAttribute() {
+        return ThreadLocalRandom.current().nextInt(1, 101);
+    }
+
 
 
     public String getId() {

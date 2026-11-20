@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +39,11 @@ public class AthleteDAO {
 
         return athletes;
     }
+
+    public void saveAthletes(ArrayList<Athlete> athletes) throws IOException {
+        Files.writeString(Path.of(ATHLETES_PATH), gson.toJson(athletes));
+    }
+
 }
 
 

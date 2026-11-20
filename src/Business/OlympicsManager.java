@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import java.util.Comparator;
 import java.util.Date;
+import Business.Entities.PROFILE_TYPE;
 
 
 public class OlympicsManager {
@@ -29,6 +30,61 @@ public class OlympicsManager {
         this.delegationDAO = d;
         this.athleteDAO = a;
         this.competitionDAO = c;
+    }
+
+    public ArrayList<Athlete> searchAthletes(String term) throws IOException {
+        ArrayList<Athlete> filtered = new ArrayList<>();
+        for (Athlete a : athleteDAO.readAthletes()) {
+            if (a.getName().toLowerCase().contains(term.toLowerCase())) {
+                filtered.add(a);
+            }
+        }
+        return filtered;
+    }
+
+    public Delegation getDelegationByCode(String code) throws IOException {
+        for (Delegation d : delegationDAO.readDelegations()) {
+            if (d.getCode().equals(code)) {
+                return d;
+            }
+        }
+        return null;
+    }
+
+    // Devuelve el error si no se puede registrar, o null si todo esta bien
+    public ErrorType validateAthlete(String name, String delegationCode) throws IOException {
+        for (Athlete a : athleteDAO.readAthletes()) {
+            if (a.getDelegationCode().equals(delegationCode) && a.getName().equalsIgnoreCase(name)) {
+                return ErrorType.ATHLETE_ALREADY_REGISTERED;
+            }
+        }
+        return null;
+    }
+
+    public Athlete registerAthlete(String name, Date birthDate, String delegationCode, String profile) throws IOException {
+        ArrayList<Athlete> athletes = athleteDAO.readAthletes();
+
+        Athlete athlete = new Athlete(nextAthleteId(athletes), PROFILE_TYPE.valueOf(profile), name, birthDate, delegationCode);
+
+        athletes.add(athlete);
+        athleteDAO.saveAthletes(athletes);
+        return athlete;
+    }
+
+    private String nextAthleteId(ArrayList<Athlete> athletes) {
+        int max = 0;
+        for (Athlete a : athletes) {
+            int number = Integer.parseInt(a.getId().substring("ATH-".length()));
+            if (number > max) {
+                max = number;
+            }
+        }
+        return String.format("ATH-%03d", max + 1);
+    }
+
+    public Delegation getBlankDelegation() {
+        Delegation blank = new Delegation();
+        return blank;
     }
 
     public ArrayList<Delegation> sortDelegationsByName() throws IOException{

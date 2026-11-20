@@ -1,5 +1,7 @@
 package Presentation;
 
+import Business.Entities.Athlete;
+import Business.Entities.Delegation;
 import Business.OlympicsManager;
 import Business.ErrorType;
 
@@ -7,6 +9,7 @@ import com.google.gson.JsonParseException;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Controller {
 
@@ -63,6 +66,32 @@ public class Controller {
         }
     }
 
+    private void registerAthlete() throws IOException {
+
+        String name = uiManager.askAthleteName();
+        Date birthDate = uiManager.askBirthDate();
+
+        ArrayList<String> delegation = uiManager.printDelegations(olympicsManager.getDelegationListByName());
+        if (delegation == null) {
+            return;
+        }
+        String delegationCode = delegation.get(0);
+
+        String profile = uiManager.askProfile();
+        if (profile == null) {
+            return;                                   // 0 = Cancel
+        }
+
+        ErrorType error = olympicsManager.validateAthlete(name, delegationCode);
+        if (error != null) {
+            uiManager.showError(error);
+            return;
+        }
+
+        Athlete athlete = olympicsManager.registerAthlete(name, birthDate, delegationCode, profile);
+        uiManager.showRegisteredAthlete(athlete, olympicsManager.getDelegationByCode(delegationCode));
+    }
+
     private void manageDelegations() throws IOException {
 
         DELEGATIONS_MENU_OPTIONS option;
@@ -112,7 +141,7 @@ public class Controller {
     }
 
 
-    private void manageAthletes() {
+    private void manageAthletes() throws IOException {
 
         ATHLETE_MENU_OPTIONS option;
 
@@ -123,13 +152,24 @@ public class Controller {
             switch (option) {
 
                 case REGISTER_ATHLETE -> {
-                    uiManager.showMessage("Register athlete - Not implemented yet.");
+                    registerAthlete();
                     uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
                 }
 
                 case LIST_SEARCH_ATHLETES -> {
-                    uiManager.showMessage("List/Search athletes - Not implemented yet.");
-                    uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                    String term = uiManager.askSearchTerm();
+                    ArrayList<Athlete> found = olympicsManager.searchAthletes(term);
+                    ArrayList<Delegation> delegations = olympicsManager.getDelegationDAO();
+
+                    int chosen = uiManager.chooseAthlete(found, delegations);
+                    if (chosen != 0) {
+                        Athlete athlete = found.get(chosen - 1);
+                        Delegation delegation = olympicsManager.getDelegationByCode(athlete.getDelegationCode());
+                        uiManager.printAthlete(athlete, delegation);
+                        uiManager.waitForEnter(MessagesEN.PROMPT_CONTINUE);
+                    }
+
+
                 }
 
                 case DELETE_ATHLETE -> {

@@ -3,6 +3,18 @@ package Presentation;
 public class MessagesEN {
 
 
+
+    public static final String ATHLETE_DETAILS_HEADER = "Athlete details";
+    public static final String ATHLETE_TITLE_FORMAT = "-| %s | %s |-%n";
+    public static final String ATHLETE_DELEGATION_FORMAT = "Delegation: %s %s%n";
+    public static final String ATHLETE_BIRTHDATE_FORMAT = "Date of birth: %s%n";
+    public static final String ATHLETE_PROFILE_FORMAT = "Profile: %s%n";
+    public static final String ATHLETE_ATTRIBUTES_HEADER = "Attributes";
+    public static final String ATHLETE_ATTRIBUTE_FORMAT = "%-12s%d%n";
+
+
+
+
     // HEADERS
     public static final String HEADER_MAIN_MENU =
             "What do you want to do:";
@@ -109,6 +121,10 @@ public class MessagesEN {
     public static final String PROMPT_FINISH_SIMULATION =
             "<Press ENTER to finish the simulation>";
 
+    public static final String PROMPT_SEARCH_ATHLETES = "Enter a search term or press ENTER to show all athletes: ";
+
+    public static final String PROMPT_CHOOSE_ATHLETE = "Choose an athlete: ";
+
 
 
     // MESSAGES
@@ -205,6 +221,26 @@ public class MessagesEN {
 
     public static final String TABLE_BORDER =
             "+------------+-----------------------------------------------------------------------------+------+--------+--------+";
+
+
+
+    public static final String ATHLETES_LIST_BACK = "    0) Back";
+    public static final String NO_ATHLETES_FOUND = "No athletes found.";
+    public static final String PROMPT_ATHLETE_NAME = "Athlete name: ";
+    public static final String PROMPT_BIRTHDATE = "Date of birth (DD/MM/YYYY): ";
+
+    public static final String PROMPT_CHOOSE_PROFILE = "Choose a profile: ";
+    public static final String HEADER_SELECT_PROFILE = "Select the athlete's profile:";
+    public static final String LABEL_PROFILE_BALANCED = "1) Balanced";
+    public static final String LABEL_PROFILE_POWER = "2) Power";
+    public static final String LABEL_PROFILE_ENDURANCE = "3) Endurance";
+    public static final String LABEL_PROFILE_TECHNICAL = "4) Technical";
+    public static final String LABEL_PROFILE_CANCEL = "0) Cancel";
+    public static final String MESSAGE_ATHLETE_REGISTERED = "Athlete registered successfully.";
+    public static final String MESSAGE_ATHLETE_STORED = "The athlete has been stored successfully.";
+    public static final String ERROR_EMPTY_ATHLETE_NAME = "Error: The athlete name can't be empty.";
+    public static final String ERROR_INVALID_BIRTHDATE = "Error: The date of birth is not valid.\nPlease enter a valid date using the format DD/MM/YYYY.";
+    public static final String ERROR_ATHLETE_ALREADY_REGISTERED = "Error: An athlete with that name already exists in this delegation.";
 
 }
 
