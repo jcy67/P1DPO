@@ -26,7 +26,17 @@ public class Athlete {
     // Transient prevents Gson from serializing and deserializing this field.
     private transient Delegation delegation;
 
-
+    /**
+     * Creates a new athlete with randomly generated attributes.
+     * Speed, endurance, strength, technique and precision each receive
+     * a value between 1 and 100, inclusive.
+     *
+     * @param id the unique athlete identifier
+     * @param profile the athlete profile
+     * @param name the athlete's name
+     * @param birthDate the athlete's date of birth
+     * @param delegationCode the code of the delegation the athlete belongs to
+     */
     public Athlete(String id, PROFILE_TYPE profile, String name, Date birthDate, String delegationCode) {
         this.id = id;
         this.profile = profile;
@@ -40,11 +50,14 @@ public class Athlete {
         this.precision = randomAttribute();
     }
 
+    /**
+     * Generates a random attribute value between 1 and 100, inclusive.
+     *
+     * @return the generated attribute value
+     */
     private int randomAttribute() {
         return ThreadLocalRandom.current().nextInt(1, 101);
     }
-
-
 
 
     /**
