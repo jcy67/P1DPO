@@ -1309,31 +1309,5 @@
       "silver": "ATH-028",
       "bronze": "ATH-183"
     }
-  },
-  {
-    "id": "CMP-149",
-    "format": "TIMED",
-    "name": "Pacific 200 Urban Sprint",
-    "dateTime": "2028-07-31 14:30",
-    "weights": {
-      "speed": 0.5,
-      "endurance": 0.25,
-      "strength": 0.05,
-      "technique": 0.15,
-      "precision": 0.05
-    },
-    "athleteIds": [
-      "ATH-084",
-      "ATH-144",
-      "ATH-209",
-      "ATH-014",
-      "ATH-078",
-      "ATH-032"
-    ],
-    "results": {
-      "gold": "ATH-032",
-      "silver": "ATH-209",
-      "bronze": "ATH-078"
-    }
   }
 ]

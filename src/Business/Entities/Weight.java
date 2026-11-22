@@ -1,14 +1,14 @@
 package Business.Entities;
 
+/**
+ * Represents the attribute weights of an Olympic competition.
+ * Stores the importance of speed, endurance, strength, technique
+ * and precision, with values between 0.0 and 1.0.
+ */
 public class Weight {
 
     public static final double MIN_METER = 0.0;
     public static final double MAX_METER = 1.0;
-
-    private static final int METER_COUNT = 5;
-//    private static final int MOOD_THRIVING_MIN = 75;
-//    private static final int MOOD_FINE_MIN = 50;
-//    private static final int MOOD_GRUMPY_MIN = 25;
 
     private double speed;
     private double endurance;
@@ -16,16 +16,24 @@ public class Weight {
     private double technique;
     private double precision;
 
-    public Weight() {}
     /**
-     * Creates a status with the given meters. the meters are ajusted with clamp()
-     *
-     * @param speed   food meter
-     * @param health endurance meter
-     * @param fun    strength meter
-     * @param energy technique meter
+     * Creates an empty Weight object.
      */
-    public Weight(double speed, double health, double fun, double energy, double precision) {
+    public Weight() {}
+
+    /**
+     * Creates a Weight object with the given attribute weights.
+     * Each value is restricted to the allowed range using clamp().
+     *
+     * @param speed the speed weight
+     * @param health the endurance weight
+     * @param fun the strength weight
+     * @param energy the technique weight
+     * @param precision the precision weight
+     */
+    public Weight(double speed, double health, double fun,
+                  double energy, double precision) {
+
         this.speed = clamp(speed);
         this.endurance = clamp(health);
         this.strength = clamp(fun);
@@ -34,9 +42,9 @@ public class Weight {
     }
 
     /**
-     * Copy constructor.
+     * Creates a copy of another Weight object.
      *
-     * @param other the status to copy
+     * @param other the Weight object to copy
      */
     public Weight(Weight other) {
         this.speed = other.speed;
@@ -47,112 +55,105 @@ public class Weight {
     }
 
     /**
-     * Returns the food meter.
+     * Returns the speed weight.
      *
-     * @return the food value
+     * @return the speed weight
      */
     public double getSpeed() {
         return speed;
     }
 
     /**
-     * Returns the endurance meter.
+     * Returns the endurance weight.
      *
-     * @return the endurance value
+     * @return the endurance weight
      */
     public double getEndurance() {
         return endurance;
     }
 
     /**
-     * Returns the strength meter.
+     * Returns the strength weight.
      *
-     * @return the strength value
+     * @return the strength weight
      */
     public double getStrength() {
         return strength;
     }
 
     /**
-     * Returns the technique meter.
+     * Returns the technique weight.
      *
-     * @return the technique value
+     * @return the technique weight
      */
     public double getTechnique() {
         return technique;
     }
 
+    /**
+     * Returns the precision weight.
+     *
+     * @return the precision weight
+     */
     public double getPrecision() {
         return precision;
     }
 
-//    /**
-//     * Computes the mood from the (integer) average of the four meters.
-//     *
-//     *
-//     * @return the mood corresponding to this status
-//     */
-//    public POU_MOOD getMood() {
-//        int average = (food + endurance + strength + technique) / METER_COUNT;
-//        if (average >= MOOD_THRIVING_MIN) {
-//            return POU_MOOD.THRIVING;
-//        }
-//        if (average >= MOOD_FINE_MIN) {
-//            return POU_MOOD.FINE;
-//        }
-//        if (average >= MOOD_GRUMPY_MIN) {
-//            return POU_MOOD.GRUMPY;
-//        }
-//        return POU_MOOD.MISERABLE;
-//    }
-
     /**
-     * Adds points (or subtracts them if negative) to the food meter, keeping
-     * it within limits.
+     * Adds points to the speed weight, or subtracts them if negative.
+     * Keeps the value within the allowed range.
      *
-     * @param points points to add
+     * @param points the points to add to the speed weight
      */
     public void addSpeedPoints(double points) {
         this.speed = clamp(this.speed + points);
     }
 
     /**
-     * Adds points (or subtracts them if negative) to the endurance meter, keeping
-     * it within limits.
+     * Adds points to the endurance weight, or subtracts them if negative.
+     * Keeps the value within the allowed range.
      *
-     * @param points points to add
+     * @param points the points to add to the endurance weight
      */
     public void addEndurancePoints(int points) {
         this.endurance = clamp(this.endurance + points);
     }
 
     /**
-     * Adds points (or subtracts them if negative) to the strength meter, keeping
-     * it within limits.
+     * Adds points to the strength weight, or subtracts them if negative.
+     * Keeps the value within the allowed range.
      *
-     * @param points points to add
+     * @param points the points to add to the strength weight
      */
     public void addStrengthPoints(double points) {
         this.strength = clamp(this.strength + points);
     }
 
     /**
-     * Adds points (or subtracts them if negative) to the technique meter, keeping
-     * it within limits.
+     * Adds points to the technique weight, or subtracts them if negative.
+     * Keeps the value within the allowed range.
      *
-     * @param points points to add
+     * @param points the points to add to the technique weight
      */
     public void addTechniquePoints(double points) {
         this.technique = clamp(this.technique + points);
     }
 
-    public void addPrecisionPoints(double points) { this.precision = clamp(this.precision + points); }
+    /**
+     * Adds points to the precision weight, or subtracts them if negative.
+     * Keeps the value within the allowed range.
+     *
+     * @param points the points to add to the precision weight
+     */
+    public void addPrecisionPoints(double points) {
+        this.precision = clamp(this.precision + points);
+    }
 
     /**
-     * Restricts a value to the range.
+     * Restricts a value to the range between MIN_METER and MAX_METER.
      *
      * @param value the value to restrict
-     * @return the value, or the nearest limit if it was out of range
+     * @return the value, or the nearest limit if it is out of range
      */
     private double clamp(double value) {
         return Math.max(MIN_METER, Math.min(MAX_METER, value));

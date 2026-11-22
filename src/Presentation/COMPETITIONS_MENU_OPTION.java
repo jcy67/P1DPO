@@ -1,6 +1,9 @@
 package Presentation;
 
-public enum COMPETITION_MENU_OPTIONS {
+/**
+ * Defines the available options in the competition submenu.
+ */
+public enum COMPETITIONS_MENU_OPTION {
     LOAD_COMPETITION,
     LIST_COMPETITION,
     DELETE_COMPETITION,

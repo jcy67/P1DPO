@@ -1,6 +1,10 @@
 package Business;
 
-public enum ErrorType {
+/**
+ * Defines the different types of errors that can occur in the system.
+ * These errors are used to identify validation, data and input problems.
+ */
+public enum ERROR_TYPE {
     INVALID_FIELDS,
     EMPTY_ID,
     INVALID_ID,

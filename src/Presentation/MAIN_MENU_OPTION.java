@@ -1,6 +1,9 @@
 package Presentation;
 
-public enum MAIN_MENU_OPTIONS {
+/**
+ * Defines the available options in the main menu.
+ */
+public enum MAIN_MENU_OPTION {
     DELEGATIONS,
     ATHLETES,
     COMPETITIONS,

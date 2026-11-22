@@ -17,20 +17,31 @@ import java.util.Comparator;
 import java.util.Date;
 import Business.Entities.PROFILE_TYPE;
 
-
+/**
+ * Manages the business logic of the Olympic Games application.
+ * Handles delegations, athletes, competitions, validation
+ * and competition simulations.
+ */
 public class OlympicsManager {
-
 
     private final DelegationDAO delegationDAO;
     private final AthleteDAO athleteDAO;
     private final CompetitionDAO competitionDAO;
     private ArrayList<Competition> competitions;
 
+    /**
+     * Creates an OlympicsManager with the required data access objects.
+     *
+     * @param d the delegation data access object
+     * @param a the athlete data access object
+     * @param c the competition data access object
+     */
     public OlympicsManager(DelegationDAO d, AthleteDAO a, CompetitionDAO c) {
         this.delegationDAO = d;
         this.athleteDAO = a;
         this.competitionDAO = c;
     }
+
 
     public ArrayList<Athlete> searchAthletes(String term) throws IOException {
         ArrayList<Athlete> filtered = new ArrayList<>();
@@ -87,7 +98,15 @@ public class OlympicsManager {
         return blank;
     }
 
-    public ArrayList<Delegation> sortDelegationsByName() throws IOException{
+
+    /**
+     * Reads and sorts delegations alphabetically by name.
+     *
+     * @return the delegations sorted by name
+     * @throws IOException if an error occurs while reading the delegations
+     */
+    public ArrayList<Delegation> sortDelegationsByName() throws IOException {
+
         ArrayList<Delegation> delegations = delegationDAO.readDelegations();
 
         delegations.sort(Comparator.comparing(Delegation::getName));
@@ -95,7 +114,14 @@ public class OlympicsManager {
         return delegations;
     }
 
-    public ArrayList<Delegation> sortDelegationsByMedals() throws IOException{
+    /**
+     * Reads and sorts delegations by their medal counts.
+     * Prioritizes gold, silver and bronze medals, followed by name.
+     *
+     * @return the delegations sorted by medal counts
+     * @throws IOException if an error occurs while reading the delegations
+     */
+    public ArrayList<Delegation> sortDelegationsByMedals() throws IOException {
         ArrayList<Delegation> delegations = delegationDAO.readDelegations();
 
         delegations.sort(Comparator.comparing(Delegation::getGoldMedals).reversed().thenComparing(Comparator.comparing(Delegation::getSilverMedals).reversed()).thenComparing(Comparator.comparing(Delegation::getBronzeMedals).reversed()).thenComparing(Delegation::getName));
@@ -103,31 +129,74 @@ public class OlympicsManager {
         return delegations;
     }
 
+    /**
+     * Checks whether the system contains registered delegations.
+     *
+     * @return true if delegations are available, false otherwise
+     * @throws IOException if an error occurs while reading the delegations
+     */
     public boolean verifyDelegations() throws IOException {
         ArrayList<Delegation> delegations = delegationDAO.readDelegations();
         return delegations != null && !delegations.isEmpty();
     }
 
+    /**
+     * Reads all registered delegations.
+     *
+     * @return the list of registered delegations
+     * @throws IOException if an error occurs while reading the delegations
+     */
     public ArrayList<Delegation> getDelegationDAO() throws IOException {
         return delegationDAO.readDelegations();
     }
 
+    /**
+     * Reads all registered athletes.
+     *
+     * @return the list of registered athletes
+     * @throws IOException if an error occurs while reading the athletes
+     */
     public ArrayList<Athlete> getAthleteDAO() throws IOException {
         return athleteDAO.readAthletes();
     }
 
+    /**
+     * Reads all registered competitions.
+     *
+     * @return the list of registered competitions
+     * @throws IOException if an error occurs while reading the competitions
+     */
     public ArrayList<Competition> getCompetitionDAO() throws IOException {
         return competitionDAO.readCompetitions();
     }
 
+    /**
+     * Reads the contents of a competition CSV file.
+     *
+     * @param filename the name of the CSV file to read
+     * @return the lines contained in the CSV file
+     * @throws IOException if an error occurs while reading the file
+     */
     public ArrayList<String> readCompetitionCSV(String filename) throws IOException {
         return competitionDAO.readCSV(filename);
     }
 
+    /**
+     * Returns the currently loaded competitions.
+     *
+     * @return the list of loaded competitions
+     */
     public ArrayList<Competition> getCompetitions() {
         return competitions;
     }
 
+    /**
+     * Converts delegation objects into rows of strings containing
+     * their codes, names and medal counts.
+     *
+     * @param delegations the delegations to convert
+     * @return the delegation information as rows of strings
+     */
     private ArrayList<ArrayList<String>> delegationRows(
             ArrayList<Delegation> delegations) {
 
@@ -149,14 +218,33 @@ public class OlympicsManager {
         return rows;
     }
 
+    /**
+     * Returns delegation information sorted alphabetically by name.
+     *
+     * @return the sorted delegation information as rows of strings
+     * @throws IOException if an error occurs while reading the delegations
+     */
     public ArrayList<ArrayList<String>> getDelegationListByName() throws IOException {
         return delegationRows(sortDelegationsByName());
     }
 
-    public ArrayList<ArrayList<String>> getDelegationMedalTable() throws IOException{
+    /**
+     * Returns delegation information sorted by medal counts.
+     *
+     * @return the medal table as rows of strings
+     * @throws IOException if an error occurs while reading the delegations
+     */
+    public ArrayList<ArrayList<String>> getDelegationMedalTable() throws IOException {
         return delegationRows(sortDelegationsByMedals());
     }
 
+    /**
+     * Finds the names of athletes belonging to a specific delegation.
+     *
+     * @param code the delegation code
+     * @return the names of athletes belonging to the delegation
+     * @throws IOException if an error occurs while reading the athletes
+     */
     public ArrayList<String> getDelegationAthleteNames(String code)
             throws IOException {
 
@@ -172,6 +260,150 @@ public class OlympicsManager {
         return names;
     }
 
+    /**
+     * Reads all competitions and converts their basic information
+     * into rows containing the identifier, name and format.
+     *
+     * @return the competition information as rows of strings
+     * @throws IOException if an error occurs while reading the competitions
+     */
+    public ArrayList<ArrayList<String>> getCompetitionList()
+            throws IOException {
+
+        competitions = competitionDAO.readCompetitions();
+
+        ArrayList<ArrayList<String>> rows = new ArrayList<>();
+
+        for (Competition competition : competitions) {
+
+            ArrayList<String> row = new ArrayList<>();
+
+            row.add(competition.getId());
+            row.add(competition.getName());
+            row.add(competition.getFormat().name());
+
+            rows.add(row);
+        }
+
+        return rows;
+    }
+
+    /**
+     * Returns the detailed information of a competition.
+     * Includes its identifier, name, format, date, attribute weights
+     * and medal winners, if available.
+     *
+     * @param id the identifier of the competition
+     * @return the competition details as a list of strings
+     * @throws IllegalStateException if the competition cannot be found
+     */
+    public ArrayList<String> getCompetitionDetails(String id) {
+
+        Competition competition = findCompetition(id);
+
+        ArrayList<String> info = new ArrayList<>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        info.add(competition.getId());
+        info.add(competition.getName());
+        info.add(competition.getFormat().name());
+        info.add(sdf.format(competition.getDateTime()));
+
+        info.add(String.valueOf(competition.getSpeed()));
+        info.add(String.valueOf(competition.getEndurance()));
+        info.add(String.valueOf(competition.getStrength()));
+        info.add(String.valueOf(competition.getTechnique()));
+        info.add(String.valueOf(competition.getPrecision()));
+
+        if (competition.getResults() == null) {
+            info.add(null);
+            info.add(null);
+            info.add(null);
+        } else {
+            info.add(competition.getGold());
+            info.add(competition.getSilver());
+            info.add(competition.getBronze());
+        }
+
+        return info;
+    }
+
+    /**
+     * Returns the names of athletes participating in a competition,
+     * together with the names of their delegations.
+     *
+     * @param id the identifier of the competition
+     * @return a list containing athlete names and their delegations
+     * @throws IOException if an error occurs while reading athlete or delegation data
+     * @throws IllegalStateException if the competition cannot be found
+     */
+    public ArrayList<String> getCompetitionParticipantNames(String id)
+            throws IOException {
+
+        Competition competition = findCompetition(id);
+
+        ArrayList<Athlete> athletes = athleteDAO.readAthletes();
+        ArrayList<Delegation> delegations = delegationDAO.readDelegations();
+
+        if (delegations == null) {
+            throw new IOException("Could not read delegations.");
+        }
+
+        ArrayList<String> names = new ArrayList<>();
+
+        for (String athleteId : competition.getAthleteIds()) {
+
+            for (Athlete athlete : athletes) {
+
+                if (athlete.getId().equals(athleteId)) {
+
+                    for (Delegation delegation : delegations) {
+
+                        if (delegation.getCode().equals(athlete.getDelegationCode())) {
+
+                            names.add(
+                                    athlete.getName() + " - " +
+                                            delegation.getName()
+                            );
+
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        return names;
+    }
+
+    /**
+     * Deletes a competition from the system.
+     * Saves the updated competition list and recalculates
+     * the medal counts of all delegations.
+     *
+     * @param id the identifier of the competition to delete
+     * @throws IOException if an error occurs while saving or updating the data
+     * @throws IllegalStateException if the competition cannot be found
+     */
+    public void deleteCompetition(String id) throws IOException {
+
+        Competition competition = findCompetition(id);
+
+        competitions.remove(competition);
+
+        competitionDAO.saveCompetitions(competitions);
+
+        updateDelegationMedals();
+    }
+
+    /**
+     * Returns the identifiers of all currently loaded competitions.
+     *
+     * @return the list of competition identifiers
+     */
     public ArrayList<String> getCompetitionIds() {
 
         ArrayList<String> ids = new ArrayList<>();
@@ -183,6 +415,13 @@ public class OlympicsManager {
         return ids;
     }
 
+    /**
+     * Searches for a competition using its identifier.
+     *
+     * @param id the identifier of the competition to find
+     * @return the competition matching the identifier
+     * @throws IllegalStateException if the competition cannot be found
+     */
     private Competition findCompetition(String id) {
 
         for (Competition competition : competitions) {
@@ -195,10 +434,14 @@ public class OlympicsManager {
         throw new IllegalStateException();
     }
 
-    public ArrayList<ArrayList<Double>> simulateCompetition(String id) {
-        return simulateCompetition(findCompetition(id));
-    }
-
+    /**
+     * Returns the basic information of a competition for its simulation.
+     * Includes the identifier, name and format.
+     *
+     * @param id the identifier of the competition
+     * @return the competition information as a list of strings
+     * @throws IllegalStateException if the competition cannot be found
+     */
     public ArrayList<String> getSimulationCompetitionInfo(String id) {
 
         Competition competition = findCompetition(id);
@@ -212,140 +455,150 @@ public class OlympicsManager {
         return info;
     }
 
-    // Por cada linea del csv se guarda los errores al importar en cada linea
-    public ArrayList<ArrayList<ErrorType>> importCompetitions(ArrayList<String> infoLines) throws IOException {
+    /**
+     * Imports competitions from CSV lines.
+     * Validates each competition and saves the valid ones.
+     * Stores the validation errors separately for each CSV line.
+     *
+     * @param infoLines the lines containing the competition data
+     * @return the validation errors for each competition in the CSV file
+     * @throws IOException if an error occurs while reading or saving the data
+     */
+    public ArrayList<ArrayList<ERROR_TYPE>> importCompetitions(ArrayList<String> infoLines) throws IOException {
 
-        ArrayList<ArrayList<ErrorType>> errorsPerLine = new ArrayList<>();
+        ArrayList<ArrayList<ERROR_TYPE>> errorsPerLine = new ArrayList<>();
 
         ArrayList<Competition> competitionsRegistered = getCompetitionDAO();
         ArrayList<Athlete> athletesRegistered = getAthleteDAO();
 
-
         boolean changes = false;
 
-        for (int i = 1; i < infoLines.size(); i++){
+        for (int i = 1; i < infoLines.size(); i++) {
 
             String line = infoLines.get(i);
 
-            ArrayList<ErrorType> errors = validateCompetition(line, athletesRegistered,competitionsRegistered);
+            ArrayList<ERROR_TYPE> errors = validateCompetition(line, athletesRegistered, competitionsRegistered);
             errorsPerLine.add(errors);
 
-            if (errors.isEmpty()){
+            if (errors.isEmpty()) {
 
                 Competition competition = Competition.createFromLine(line);
 
                 competitionsRegistered.add(competition);
                 changes = true;
             }
-
-
         }
 
-        // Si no cambia, no lo vuelvo a guardar, solo si cambia
-        if (changes){
+        // Save the competitions only if changes have been made.
+        if (changes) {
             competitionDAO.saveCompetitions(competitionsRegistered);
-
         }
 
         return errorsPerLine;
-
     }
 
-    public ArrayList<ErrorType> validateCompetition(String line,ArrayList<Athlete> athletes, ArrayList<Competition> competitions) {
+    /**
+     * Validates a competition from a CSV line.
+     * Checks its identifier, format, name, date, attribute weights
+     * and participating athletes.
+     *
+     * @param line the CSV line containing the competition information
+     * @param athletes the registered athletes used for validation
+     * @param competitions the existing competitions used to check duplicate identifiers
+     * @return a list of validation errors, or an empty list if the competition is valid
+     */
+    public ArrayList<ERROR_TYPE> validateCompetition(String line, ArrayList<Athlete> athletes, ArrayList<Competition> competitions) {
 
-        ArrayList<ErrorType> errors = new ArrayList<>();
+        ArrayList<ERROR_TYPE> errors = new ArrayList<>();
 
-        String[] parts= line.split(",", -1);
+        String[] parts = line.split(",", -1);
 
-        // Mas largo o corto de lo permitido
+        // Check if the number of fields is valid.
         if (parts.length != 10) {
-            errors.add(ErrorType.INVALID_FIELDS);
+            errors.add(ERROR_TYPE.INVALID_FIELDS);
             return errors;
         }
 
-
-        // Comprobaciones Id
+        // Validate the competition identifier.
         if (parts[0].trim().isEmpty()) {
-            errors.add(ErrorType.EMPTY_ID);
+            errors.add(ERROR_TYPE.EMPTY_ID);
 
-            // Comprueba si es el formato correcto para el id de la competicion
+            // Check if the competition identifier has the correct format.
         } else if (!parts[0].matches("CMP-[0-9]{3,4}")) {
-        errors.add(ErrorType.INVALID_ID);
+            errors.add(ERROR_TYPE.INVALID_ID);
         }
 
-        for (Competition competition: competitions){
-            if (competition.getId().equals(parts[0])){
-                errors.add(ErrorType.DUPLICATE_ID);
+        for (Competition competition : competitions) {
+            if (competition.getId().equals(parts[0])) {
+                errors.add(ERROR_TYPE.DUPLICATE_ID);
                 break;
             }
         }
 
-
-        // Comprobacion formato
+        // Validate the competition format.
         boolean validFormat = false;
 
-        for (COMPETITION_FORMAT format: COMPETITION_FORMAT.values()){
-            if (format.name().equals(parts[1])){
+        for (COMPETITION_FORMAT format : COMPETITION_FORMAT.values()) {
+            if (format.name().equals(parts[1])) {
                 validFormat = true;
                 break;
             }
         }
-        if (!validFormat){
-            errors.add(ErrorType.INVALID_FORMAT);
+
+        if (!validFormat) {
+            errors.add(ERROR_TYPE.INVALID_FORMAT);
         }
 
-
-        // Comprobacion nombre
-        if (parts[2].trim().isEmpty()){
-            errors.add(ErrorType.EMPTY_NAME);
+        // Validate the competition name.
+        if (parts[2].trim().isEmpty()) {
+            errors.add(ERROR_TYPE.EMPTY_NAME);
         }
 
-
-        // Comprobaciones fecha
+        // Validate the competition date.
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-        // modo estricto (por si pone 30 de febrero, que lo anule)
+        // Use strict mode to reject invalid dates, such as February 30.
         sdf.setLenient(false);
 
-        // Convierte el texto en Date sin lanzar ParseException
+        // Convert the text into a Date without throwing a ParseException.
         Date date = sdf.parse(parts[3], new ParsePosition(0));
 
-        if (date == null || !sdf.format(date).equals(parts[3])){
-            errors.add(ErrorType.INVALID_DATE);
+        if (date == null || !sdf.format(date).equals(parts[3])) {
+            errors.add(ERROR_TYPE.INVALID_DATE);
         }
 
-
-        // Comprabacion pesos
+        // Validate the attribute weights.
         double total = 0;
         boolean validateWeights = true;
 
-        for (int i = 4; i < 9 ; i++){
+        for (int i = 4; i < 9; i++) {
 
             String value = parts[i].trim();
 
-            // Comprueba si es un double, por si hay otro tipo de caracteres
+            // Check if the value is a valid double.
             if (!value.matches("[0-9]+(\\.[0-9]+)?")) {
                 validateWeights = false;
                 continue;
             }
 
             double weight = Double.parseDouble(value);
-            if ( weight < 0 || weight > 1){
+
+            if (weight < 0 || weight > 1) {
                 validateWeights = false;
             }
+
             total += weight;
-
         }
-        if (!validateWeights){
-            errors.add(ErrorType.INVALID_WEIGHT);
 
-        // Comprobamos que sume 1
+        if (!validateWeights) {
+            errors.add(ERROR_TYPE.INVALID_WEIGHT);
+
+            // Check that the sum of the weights equals 1.
         } else if (Math.abs(total - 1.0) > 0.000001) {
-            errors.add(ErrorType.INVALID_WEIGHT_SUM);
+            errors.add(ERROR_TYPE.INVALID_WEIGHT_SUM);
         }
 
-
-        // Comprobaciones atletas
+        // Validate the participating athletes.
         ArrayList<String> uniqueIds = new ArrayList<>();
         String[] idsCsv = parts[9].split("\\|", -1);
 
@@ -358,7 +611,7 @@ public class OlympicsManager {
 
             boolean exists = false;
 
-            // Comprobar que el atleta existe
+            // Check whether the athlete exists.
             for (Athlete athlete : athletes) {
                 if (athlete.getId().equals(id)) {
                     exists = true;
@@ -370,7 +623,7 @@ public class OlympicsManager {
                 invalidAthlete = true;
             }
 
-            // Comprobar que el atleta no está repetido
+            // Check whether the athlete is duplicated.
             if (uniqueIds.contains(id)) {
                 duplicateAthlete = true;
             } else {
@@ -378,29 +631,51 @@ public class OlympicsManager {
             }
         }
 
-        // Añadir los errores encontrados
+        // Add the detected validation errors.
         if (invalidAthlete) {
-            errors.add(ErrorType.INVALID_ATHLETE);
+            errors.add(ERROR_TYPE.INVALID_ATHLETE);
         }
 
         if (duplicateAthlete) {
-            errors.add(ErrorType.DUPLICATE_ATHLETE);
+            errors.add(ERROR_TYPE.DUPLICATE_ATHLETE);
         }
 
         if (uniqueIds.size() < 3) {
-            errors.add(ErrorType.NOT_ENOUGH_ATHLETES);
+            errors.add(ERROR_TYPE.NOT_ENOUGH_ATHLETES);
         }
 
         return errors;
-
     }
 
-    public ArrayList<ArrayList<Double>> simulateCompetition(Competition competition)  {
+    /**
+     * Simulates a competition identified by its ID.
+     *
+     * @param id the identifier of the competition to simulate
+     * @return the ranked results containing each athlete's luck and time
+     * @throws IllegalStateException if the competition cannot be found
+     *         or its simulation data is invalid
+     */
+    public ArrayList<ArrayList<Double>> simulateCompetition(String id) {
+        return simulateCompetition(findCompetition(id));
+    }
+
+    /**
+     * Simulates an Olympic competition by calculating the time of each athlete.
+     * Ranks the athletes from the lowest to the highest completion time
+     * and assigns gold, silver and bronze medals to the top three athletes.
+     *
+     * @param competition the competition to simulate
+     * @return a list containing the luck factor and calculated time
+     *         of each athlete, ordered by their ranking
+     * @throws IllegalStateException if the competition has invalid
+     *         participants or missing delegation data
+     */
+    public ArrayList<ArrayList<Double>> simulateCompetition(Competition competition) {
 
         ArrayList<Athlete> ranking = new ArrayList<>();
         ArrayList<ArrayList<Double>> results = new ArrayList<>();
 
-        // Comprobar participantes
+        // Validate the participating athletes.
         if (competition.getAthletes() == null ||
                 competition.getAthletes().size() < 3 ||
                 competition.getAthletes().size() != competition.getAthleteIds().size()) {
@@ -416,7 +691,7 @@ public class OlympicsManager {
             double luck = Math.random();
             double time = calculateTime(athlete, competition, luck);
 
-            // Buscar la posición según el tiempo
+            // Find the ranking position according to the lowest completion time.
             int position = 0;
 
             while (position < results.size() &&
@@ -424,20 +699,20 @@ public class OlympicsManager {
                 position++;
             }
 
-            // Guardar suerte y tiempo
+            // Store the luck factor and calculated time.
             ArrayList<Double> athleteResults = new ArrayList<>();
             athleteResults.add(luck);
             athleteResults.add(time);
 
-            // Insertar en la posición correspondiente
+            // Insert the athlete and their results at the corresponding position.
             ranking.add(position, athlete);
             results.add(position, athleteResults);
         }
 
-        // Actualizar la clasificación de atletas
+        // Update the athlete ranking.
         competition.setAthletes(ranking);
 
-        // Asignar las medallas
+        // Assign the medals to the top three athletes.
         competition.setResults(
                 ranking.get(0),
                 ranking.get(1),
@@ -447,19 +722,33 @@ public class OlympicsManager {
         return results;
     }
 
-    private double calculateTime(Athlete athlete, Competition competition, double luck){
+    /**
+     * Calculates an athlete's completion time using their weighted attributes
+     * and a random luck factor according to the competition formula.
+     *
+     * @param athlete the athlete participating in the competition
+     * @param competition the competition being simulated
+     * @param luck the random luck factor between 0.0 and 1.0
+     * @return the calculated completion time
+     */
+    private double calculateTime(Athlete athlete, Competition competition, double luck) {
 
-        double weightedAttributes = athlete.getSpeed() * competition.getSpeed() +
-                athlete.getEndurance() * competition.getEndurance() +
-                athlete.getStrength() * competition.getStrength() +
-                athlete.getTechnique() * competition.getTechnique() +
-                athlete.getPrecision() * competition.getPrecision();
+        double weightedAttributes = (athlete.getSpeed() / 100.0) * competition.getSpeed() +
+                (athlete.getEndurance() / 100.0) * competition.getEndurance() +
+                (athlete.getStrength() / 100.0) * competition.getStrength() +
+                (athlete.getTechnique() / 100.0) * competition.getTechnique() +
+                (athlete.getPrecision() / 100.0) * competition.getPrecision();
 
-        return 1.0 - (weightedAttributes / 100.0) - (luck / 10.0);
+        return 1.0 - luck * weightedAttributes;
     }
 
-
-    // Asocia cada competicion con sus atletas y estos con sus delegaciones
+    /**
+     * Loads competitions, athletes and delegations from their JSON files.
+     * Associates each athlete with their delegation and each competition
+     * with its participating athletes.
+     *
+     * @throws IOException if an error occurs while reading the files
+     */
     public void loadRelations() throws IOException {
 
         competitions = competitionDAO.readCompetitions();
@@ -467,7 +756,7 @@ public class OlympicsManager {
         ArrayList<Athlete> athletes = athleteDAO.readAthletes();
         ArrayList<Delegation> delegations = delegationDAO.readDelegations();
 
-        // Asociar cada atleta con su delegación
+        // Associate each athlete with their delegation.
         for (Athlete athlete : athletes) {
 
             for (Delegation delegation : delegations) {
@@ -479,7 +768,7 @@ public class OlympicsManager {
             }
         }
 
-        // Asociar cada competición con sus atletas
+        // Associate each competition with its participating athletes.
         for (Competition competition : competitions) {
 
             ArrayList<Athlete> participants = new ArrayList<>();
@@ -499,27 +788,33 @@ public class OlympicsManager {
         }
     }
 
+    /**
+     * Recalculates the medal counts of all delegations based on
+     * the competition results and saves the updated data.
+     *
+     * @throws IOException if an error occurs while reading or saving the files
+     */
     public void updateDelegationMedals() throws IOException {
 
         ArrayList<Delegation> delegations = delegationDAO.readDelegations();
         ArrayList<Athlete> athletes = athleteDAO.readAthletes();
 
-        // Reiniciar las medallas
+        // Reset all medal counts.
         for (Delegation delegation : delegations) {
             delegation.resetMedals();
         }
 
-        // Recorrer todas las competiciones
+        // Go through all competitions.
         for (Competition competition : competitions) {
 
             if (competition.getResults() == null) {
                 continue;
             }
 
-            // Buscar a los atletas ganadores
+            // Find the medal-winning athletes.
             for (Athlete athlete : athletes) {
 
-                // Buscar su delegación
+                // Find the athlete's delegation.
                 for (Delegation delegation : delegations) {
 
                     if (athlete.getDelegationCode().equals(delegation.getCode())) {
@@ -540,14 +835,27 @@ public class OlympicsManager {
             }
         }
 
-        // Guardar las delegaciones actualizadas
+        // Save the updated delegations.
         delegationDAO.saveDelegations(delegations);
     }
 
+    /**
+     * Saves the current competition results to the JSON file.
+     *
+     * @throws IOException if an error occurs while saving the file
+     */
     public void saveSimulationResults() throws IOException {
         competitionDAO.saveCompetitions(competitions);
     }
 
+    /**
+     * Returns the names of the athletes participating in a competition,
+     * together with the names of their delegations, ordered by ranking.
+     *
+     * @param id the identifier of the competition
+     * @return a list containing athlete names and their delegations
+     * @throws IllegalStateException if the competition cannot be found
+     */
     public ArrayList<String> getSimulationAthleteNames(String id) {
 
         Competition competition = findCompetition(id);
@@ -564,7 +872,6 @@ public class OlympicsManager {
 
         return names;
     }
-
 
 
 }
