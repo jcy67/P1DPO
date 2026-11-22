@@ -64,6 +64,24 @@ public class CompetitionDAO {
         return competitions;
     }
 
+    /**
+     * Verifies that the competitions JSON file exists and can be read.
+     *
+     * @return true if the file exists and is readable, false otherwise
+     * @throws IOException if an error occurs while reading the file
+     */
+    public boolean verifyFile() throws IOException {
+
+        Path path = Path.of("data/competitions.json");
+
+        if (!Files.isRegularFile(path) || !Files.isReadable(path)) {
+            return false;
+        }
+
+        readCompetitions();
+        return true;
+    }
+
 
     /**
      * Reads all lines from a CSV file located in the data directory.

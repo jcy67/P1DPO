@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 /**
  * Manages the persistence of athletes in a JSON file.
- * Provides methods to read athlete data.
+ * Provides methods to read and save athlete data.
  */
 public class AthleteDAO {
 
@@ -26,7 +26,7 @@ public class AthleteDAO {
      * Creates an AthleteDAO and configures Gson to use
      * the specified date format.
      */
-    public AthleteDAO() { this.gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();}
+    public AthleteDAO() { this.gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").setPrettyPrinting().create();}
 
 
     /**
@@ -56,10 +56,33 @@ public class AthleteDAO {
         return athletes;
     }
 
+    /**
+     * Saves the list of athletes to the JSON file.
+     *
+     * @param athletes the athletes to save
+     * @throws IOException if an error occurs while writing the file
+     */
     public void saveAthletes(ArrayList<Athlete> athletes) throws IOException {
         Files.writeString(Path.of(ATHLETES_PATH), gson.toJson(athletes));
     }
 
+    /**
+     * Verifies that the athletes JSON file exists and can be read.
+     *
+     * @return true if the file exists and is readable, false otherwise
+     * @throws IOException if an error occurs while reading the file
+     */
+    public boolean verifyFile() throws IOException {
+
+        Path path = Path.of(ATHLETES_PATH);
+
+        if (!Files.isRegularFile(path) || !Files.isReadable(path)) {
+            return false;
+        }
+
+        readAthletes();
+        return true;
+    }
 }
 
 

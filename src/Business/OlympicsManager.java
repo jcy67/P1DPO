@@ -42,17 +42,101 @@ public class OlympicsManager {
         this.competitionDAO = c;
     }
 
+    /**
+     * Verifies the required JSON files using their respective DAOs.
+     *
+     * @return the name of the first missing or unreadable file, or null if all files pass verification
+     * @throws IOException if an error occurs while reading a file
+     */
+    public String verifyStartupFiles() throws IOException {
 
-    public ArrayList<Athlete> searchAthletes(String term) throws IOException {
-        ArrayList<Athlete> filtered = new ArrayList<>();
-        for (Athlete a : athleteDAO.readAthletes()) {
-            if (a.getName().toLowerCase().contains(term.toLowerCase())) {
-                filtered.add(a);
+        if (!delegationDAO.verifyFile()) {
+            return "delegations.json";
+        }
+
+        if (!athleteDAO.verifyFile()) {
+            return "athletes.json";
+        }
+
+        if (!competitionDAO.verifyFile()) {
+            return "competitions.json";
+        }
+
+        return null;
+    }
+
+
+    /**
+     * Searches for athletes whose names contain the given text, ignoring case.
+     * Returns basic information prepared for the user interface.
+     *
+     * @param term the text to search in athlete names
+     * @return rows containing the athlete ID, name and delegation name
+     * @throws IOException if an error occurs while reading the data
+     */
+    public ArrayList<ArrayList<String>> searchAthletes(String term) throws IOException {
+        ArrayList<ArrayList<String>> filtered = new ArrayList<>();
+        ArrayList<Delegation> delegations = delegationDAO.readDelegations();
+
+        for (Athlete athlete : athleteDAO.readAthletes()) {
+            if (athlete.getName().toLowerCase().contains(term.toLowerCase())) {
+
+                String delegationName = athlete.getDelegationCode();
+                for (Delegation delegation : delegations) {
+                    if (delegation.getCode().equals(athlete.getDelegationCode())) {
+                        delegationName = delegation.getName();
+                        break;
+                    }
+                }
+
+                ArrayList<String> row = new ArrayList<>();
+                row.add(athlete.getId());
+                row.add(athlete.getName());
+                row.add(delegationName);
+                filtered.add(row);
             }
         }
         return filtered;
     }
 
+//    public void deleteAthlete(String id) throws IOException {
+//
+//        ArrayList<Athlete> athletes = athleteDAO.readAthletes();
+//        boolean removed = athletes.removeIf(
+//                athlete -> athlete.getId().equals(id)
+//        );
+//
+//        if (!removed) {
+//            throw new IllegalStateException();
+//        }
+//
+//        ArrayList<Competition> updatedCompetitions =
+//                competitionDAO.readCompetitions();
+//
+//        boolean competitionsChanged = false;
+//
+//        for (Competition competition : updatedCompetitions) {
+//            if (competition.removeAthlete(id)) {
+//                competitionsChanged = true;
+//            }
+//        }
+//
+//        if (competitionsChanged) {
+//            competitionDAO.saveCompetitions(updatedCompetitions);
+//        }
+//
+//        athleteDAO.saveAthletes(athletes);
+//        competitions = updatedCompetitions;
+//
+//    }
+
+    /**
+     * Finds a delegation by its code.
+     *
+     * @param code the delegation code
+     * @return the matching delegation, or null if not found
+     * @throws IOException if an error occurs while reading delegations
+     */
     public Delegation getDelegationByCode(String code) throws IOException {
         for (Delegation d : delegationDAO.readDelegations()) {
             if (d.getCode().equals(code)) {
@@ -62,42 +146,141 @@ public class OlympicsManager {
         return null;
     }
 
-    // Devuelve el error si no se puede registrar, o null si todo esta bien
-    public ErrorType validateAthlete(String name, String delegationCode) throws IOException {
+    /**
+     * Checks whether an athlete with the same name already exists
+     * in the specified delegation, ignoring case.
+     *
+     * @param name the athlete's name
+     * @param delegationCode the delegation code
+     * @return the validation error, or null if the athlete can be registered
+     * @throws IOException if an error occurs while reading athletes
+     */
+    public ERROR_TYPE validateAthlete(String name, String delegationCode) throws IOException {
         for (Athlete a : athleteDAO.readAthletes()) {
             if (a.getDelegationCode().equals(delegationCode) && a.getName().equalsIgnoreCase(name)) {
-                return ErrorType.ATHLETE_ALREADY_REGISTERED;
+                return ERROR_TYPE.ATHLETE_ALREADY_REGISTERED;
             }
         }
         return null;
     }
 
-    public Athlete registerAthlete(String name, Date birthDate, String delegationCode, String profile) throws IOException {
+    /**
+     * Registers a new athlete and returns the generated identifier.
+     * Converts the birth date string to the Date required by the Athlete entity.
+     *
+     * @param name the athlete's name
+     * @param birthDate the birth date in dd/MM/yyyy format
+     * @param delegationCode the delegation identifier
+     * @param profile the athlete profile
+     * @return the registered athlete's identifier
+     * @throws IOException if the athlete data cannot be read or saved
+     */
+    public String registerAthlete(String name, String birthDate,
+                                  String delegationCode, String profile) throws IOException {
         ArrayList<Athlete> athletes = athleteDAO.readAthletes();
 
-        Athlete athlete = new Athlete(nextAthleteId(athletes), PROFILE_TYPE.valueOf(profile), name, birthDate, delegationCode);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        Date date = sdf.parse(birthDate, new ParsePosition(0));
+        if (date == null || !sdf.format(date).equals(birthDate)) {
+            throw new IllegalArgumentException("Invalid birth date.");
+        }
+
+        Athlete athlete = new Athlete(
+                nextAthleteId(athletes), PROFILE_TYPE.valueOf(profile),
+                name, date, delegationCode
+        );
 
         athletes.add(athlete);
         athleteDAO.saveAthletes(athletes);
-        return athlete;
+        return athlete.getId();
     }
 
-    private String nextAthleteId(ArrayList<Athlete> athletes) {
-        int max = 0;
-        for (Athlete a : athletes) {
-            int number = Integer.parseInt(a.getId().substring("ATH-".length()));
-            if (number > max) {
-                max = number;
+    /**
+     * Prepares the athlete and delegation details as strings for Presentation.
+     *
+     * @param id the athlete identifier
+     * @return the athlete details as a list of strings
+     * @throws IOException if an error occurs while reading the data
+     */
+    public ArrayList<String> getAthleteDetails(String id) throws IOException {
+        for (Athlete athlete : athleteDAO.readAthletes()) {
+            if (athlete.getId().equals(id)) {
+                Delegation delegation = getDelegationByCode(athlete.getDelegationCode());
+                if (delegation == null) {
+                    throw new IllegalStateException("Athlete delegation not found.");
+                }
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                ArrayList<String> info = new ArrayList<>();
+                info.add(athlete.getId());
+                info.add(athlete.getName());
+                info.add(delegation.getCode());
+                info.add(delegation.getName());
+                info.add(sdf.format(athlete.getBirthDate()));
+                info.add(athlete.getProfile().name());
+                info.add(String.valueOf(athlete.getSpeed()));
+                info.add(String.valueOf(athlete.getEndurance()));
+                info.add(String.valueOf(athlete.getStrength()));
+                info.add(String.valueOf(athlete.getTechnique()));
+                info.add(String.valueOf(athlete.getPrecision()));
+                return info;
             }
         }
-        return String.format("ATH-%03d", max + 1);
+        throw new IllegalStateException("Athlete not found.");
     }
 
-    public Delegation getBlankDelegation() {
-        Delegation blank = new Delegation();
-        return blank;
-    }
+    /**
+     * Generates an athlete ID without reusing an ID referenced by a competition
+     * or its historical medal results.
+     *
+     * @param athletes the currently registered athletes
+     * @return the next available athlete ID
+     * @throws IOException if an error occurs while reading competitions
+     */
+    private String nextAthleteId(ArrayList<Athlete> athletes) throws IOException {
 
+        int max = 0;
+
+        for (Athlete athlete : athletes) {
+            int number = Integer.parseInt(
+                    athlete.getId().substring("ATH-".length())
+            );
+            max = Math.max(max, number);
+        }
+
+        // Include athletes still referenced in competitions.
+        for (Competition competition : competitionDAO.readCompetitions()) {
+
+            for (String id : competition.getAthleteIds()) {
+                int number = Integer.parseInt(
+                        id.substring("ATH-".length())
+                );
+                max = Math.max(max, number);
+            }
+
+            // Include historical medal winners.
+            if (competition.getResults() != null) {
+
+                String[] medalIds = {
+                        competition.getGold(),
+                        competition.getSilver(),
+                        competition.getBronze()
+                };
+
+                for (String id : medalIds) {
+                    if (id != null) {
+                        int number = Integer.parseInt(
+                                id.substring("ATH-".length())
+                        );
+                        max = Math.max(max, number);
+                    }
+                }
+            }
+        }
+
+        return String.format("ATH-%04d", max + 1);
+    }
 
     /**
      * Reads and sorts delegations alphabetically by name.
@@ -380,13 +563,10 @@ public class OlympicsManager {
     }
 
     /**
-     * Deletes a competition from the system.
-     * Saves the updated competition list and recalculates
-     * the medal counts of all delegations.
+     * Deletes a competition and updates the delegation medal counts.
      *
      * @param id the identifier of the competition to delete
-     * @throws IOException if an error occurs while saving or updating the data
-     * @throws IllegalStateException if the competition cannot be found
+     * @throws IOException if an error occurs while saving the data
      */
     public void deleteCompetition(String id) throws IOException {
 
@@ -522,10 +702,11 @@ public class OlympicsManager {
         // Validate the competition identifier.
         if (parts[0].trim().isEmpty()) {
             errors.add(ERROR_TYPE.EMPTY_ID);
+        }
 
-            // Check if the competition identifier has the correct format.
-        } else if (!parts[0].matches("CMP-[0-9]{3,4}")) {
-            errors.add(ERROR_TYPE.INVALID_ID);
+        // Check if the competition identifier has the correct format.
+        else if (!parts[0].matches("CMP-[1-9][0-9]{0,3}")) {
+                        errors.add(ERROR_TYPE.INVALID_ID);
         }
 
         for (Competition competition : competitions) {
@@ -677,9 +858,14 @@ public class OlympicsManager {
 
         // Validate the participating athletes.
         if (competition.getAthletes() == null ||
-                competition.getAthletes().size() < 3 ||
                 competition.getAthletes().size() != competition.getAthleteIds().size()) {
             throw new IllegalStateException();
+        }
+
+        // Skip competitions with fewer than three athletes.
+        if (competition.getAthletes().size() < 3) {
+            competition.clearResults();
+            return results;
         }
 
         for (Athlete athlete : competition.getAthletes()) {

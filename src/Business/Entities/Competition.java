@@ -25,16 +25,17 @@ public class Competition {
     /**
      * Creates an empty competition for Gson deserialization.
      */
-    public Competition() {}
+    public Competition() {
+    }
 
     /**
      * Creates a competition with the given information from a CSV file.
      *
-     * @param id the unique identifier of the competition
-     * @param format the competition format
-     * @param name the name of the competition
-     * @param dateTime the date and time of the competition
-     * @param weights the attribute weights of the competition
+     * @param id         the unique identifier of the competition
+     * @param format     the competition format
+     * @param name       the name of the competition
+     * @param dateTime   the date and time of the competition
+     * @param weights    the attribute weights of the competition
      * @param athleteIds the identifiers of the participating athletes
      */
     public Competition(String id, COMPETITION_FORMAT format, String name,
@@ -196,7 +197,7 @@ public class Competition {
     /**
      * Sets the competition results using the medal-winning athletes.
      *
-     * @param gold the gold medal winner
+     * @param gold   the gold medal winner
      * @param silver the silver medal winner
      * @param bronze the bronze medal winner
      */
@@ -260,4 +261,27 @@ public class Competition {
                 athleteIds
         );
     }
+
+    /**
+     * Clears the competition results by removing the assigned medals.
+     */
+    public void clearResults() {
+        results = null;
+    }
+
+//    public boolean removeAthlete(String id) {
+//        boolean removed = athleteIds.removeIf(
+//                athleteId -> athleteId.equals(id)
+//        );
+//
+//        if (removed && athletes != null) {
+//            athletes.removeIf(
+//                    athlete -> athlete.getId().equals(id)
+//            );
+//        }
+//
+//        return removed;
+//    }
+
+
 }

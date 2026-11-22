@@ -17,28 +17,49 @@ import java.util.Scanner;
 public class UIManager {
 
     private final Scanner s;
-	
-	/**
+
+    /**
      * Creates a UIManager and initializes the scanner for user input.
      */
     public UIManager() {
         this.s = new Scanner(System.in);
     }
 
-    public String askForString(Scanner scanner, String prompt) {
-        System.out.printf(prompt);
+    /**
+     * Displays the application banner and welcome message.
+     */
+    public void printWelcome() {
 
-        return scanner.nextLine();
+        System.out.println("    __     __   ____  ____      ___   __   _  _  ____  ____     __     __   ____");
+        System.out.println("   (  )   / _\\ (___ \\/ _  \\    / __) / _\\ ( \\/ )(  __)/ ___)   (  )   / _\\ (  _ \\");
+        System.out.println("   / (_/\\/    \\ / __/) _  (   ( (_ \\/    \\/ \\/ \\ ) _) \\___ \\   / (_/\\/    \\ ) _ (");
+        System.out.println("   \\____/\\_/\\_/(____)\\____/    \\___/\\_/\\_/\\_)(_/(____)(____/   \\____/\\_/\\_/(____/");
+
+        System.out.println();
+
+        System.out.println("Welcome to LA28 Games Lab.");
+        System.out.println("The Olympics Simulator.");
+        System.out.println();
     }
 
-    public void showRegisteredAthlete(Athlete athlete, Delegation delegation) {
+    /**
+     * Displays the details of a newly registered athlete.
+     *
+     * @param athleteInfo the athlete information prepared by OlympicsManager
+     */
+    public void showRegisteredAthlete(ArrayList<String> athleteInfo) {
         System.out.println();
         System.out.println(MessagesEN.MESSAGE_ATHLETE_REGISTERED);
         System.out.println();
-        printAthlete(athlete, delegation);
+        printAthlete(athleteInfo);
         System.out.println(MessagesEN.MESSAGE_ATHLETE_STORED);
     }
 
+    /**
+     * Displays the available athlete profiles and asks the user to select one.
+     *
+     * @return the selected profile, or null if the user cancels
+     */
     public String askProfile() {
         System.out.println();
         System.out.println(MessagesEN.HEADER_SELECT_PROFILE);
@@ -61,58 +82,85 @@ public class UIManager {
         };
     }
 
+    /**
+     * Asks the user for a search term to filter athletes by name.
+     *
+     * @return the search term, or an empty string to show all athletes
+     */
     public String askSearchTerm() {
         System.out.print(MessagesEN.PROMPT_SEARCH_ATHLETES);
         return s.nextLine().trim();
     }
 
-    public void printAthlete (Athlete athlete, Delegation delegation) {
-
+    /**
+     * Displays the athlete details supplied by the business layer.
+     * The list contains ID, name, delegation code, delegation name,
+     * birth date, profile and the five attributes.
+     *
+     * @param info the athlete information to display
+     */
+    public void printAthlete(ArrayList<String> info) {
         System.out.println(MessagesEN.ATHLETE_DETAILS_HEADER);
         System.out.println(MessagesEN.SEPARATOR);
         System.out.println();
-        System.out.printf(MessagesEN.ATHLETE_TITLE_FORMAT, athlete.getId(), athlete.getName());
+        System.out.printf(MessagesEN.ATHLETE_TITLE_FORMAT, info.get(0), info.get(1));
         System.out.println();
-        System.out.printf(MessagesEN.ATHLETE_DELEGATION_FORMAT, delegation.getCode(), delegation.getName());
-        System.out.printf(MessagesEN.ATHLETE_BIRTHDATE_FORMAT, athlete.getBirthDate());
-        System.out.printf(MessagesEN.ATHLETE_PROFILE_FORMAT, athlete.getProfile().name());
+        System.out.printf(MessagesEN.ATHLETE_DELEGATION_FORMAT, info.get(2), info.get(3));
+        System.out.printf(MessagesEN.ATHLETE_BIRTHDATE_FORMAT, info.get(4));
+        System.out.printf(MessagesEN.ATHLETE_PROFILE_FORMAT, info.get(5));
         System.out.println();
         System.out.println(MessagesEN.ATHLETE_ATTRIBUTES_HEADER);
         System.out.println(MessagesEN.SEPARATOR);
-        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Speed:", athlete.getSpeed());
-        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Endurance:", athlete.getEndurance());
-        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Strength:", athlete.getStrength());
-        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Technique:", athlete.getTechnique());
-        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Precision:", athlete.getPrecision());
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Speed:", Integer.parseInt(info.get(6)));
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Endurance:", Integer.parseInt(info.get(7)));
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Strength:", Integer.parseInt(info.get(8)));
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Technique:", Integer.parseInt(info.get(9)));
+        System.out.printf(MessagesEN.ATHLETE_ATTRIBUTE_FORMAT, "Precision:", Integer.parseInt(info.get(10)));
         System.out.println();
     }
 
+    /**
+     * Asks the user to enter a non-empty athlete name.
+     * Repeats the request until a valid name is entered.
+     *
+     * @return the entered athlete name
+     */
     public String askAthleteName() {
         String name = "";
         while (name.isEmpty()) {
             System.out.print(MessagesEN.PROMPT_ATHLETE_NAME);
             name = s.nextLine().trim();
             if (name.isEmpty()) {
-                System.out.println(MessagesEN.ERROR_EMPTY_NAME);
+                System.out.println(MessagesEN.ERROR_EMPTY_ATHLETE_NAME);
             }
         }
         return name;
     }
 
-    public Date askBirthDate() {
-        Date birthDate = null;
-        while (birthDate == null) {
+    /**
+     * Asks for a valid birth date and returns its text representation.
+     *
+     * @return the birth date in dd/MM/yyyy format
+     */
+    public String askBirthDate() {
+        while (true) {
             System.out.print(MessagesEN.PROMPT_BIRTHDATE);
-            birthDate = parseBirthDate(s.nextLine().trim());
-            if (birthDate == null) {
-                System.out.println(MessagesEN.ERROR_INVALID_DATE);
+            String input = s.nextLine().trim();
+            if (parseBirthDate(input) != null) {
+                return input;
             }
+            System.out.println(MessagesEN.ERROR_INVALID_BIRTHDATE);
         }
-        return birthDate;
     }
 
+    /**
+     * Parses and validates a birth date using the dd/MM/yyyy format.
+     *
+     * @param input the birth date entered by the user
+     * @return the parsed date, or null if the date is invalid
+     */
     private Date parseBirthDate(String input) {
-        if (!input.matches("\\d{2}/\\d{2}/\\d{4}")) { 
+        if (!input.matches("\\d{2}/\\d{2}/\\d{4}")) {
             return null;
         }
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -123,35 +171,26 @@ public class UIManager {
             return null;
         }
     }
-    
-    public String getDelegationNameByCode(ArrayList<Delegation> delegations, String codeToFind) {
-        for (Delegation d : delegations) {
-            if (d.getCode().equals(codeToFind)) {
-                return d.getName();
-            }
-        }
-        return null;
-    }
 
-
-
-
-
-    public int chooseAthlete(ArrayList<Athlete> found, ArrayList<Delegation> delegations) {
+    /**
+     * Displays the matching athletes and lets the user choose one or go back.
+     *
+     * @param found rows containing athlete ID, name and delegation name
+     * @return a one-based selection, or 0 to return
+     */
+    public int chooseAthlete(ArrayList<ArrayList<String>> found) {
         if (found.isEmpty()) {
             System.out.println(MessagesEN.NO_ATHLETES_FOUND);
             return 0;
         }
         for (int i = 0; i < found.size(); i++) {
-            Athlete a = found.get(i);
-            System.out.println("    " + (i + 1) + ") " + a.getName() + " - "
-                    + getDelegationNameByCode(delegations, a.getDelegationCode()));
+            ArrayList<String> athlete = found.get(i);
+            System.out.println("    " + (i + 1) + ") " + athlete.get(1) + " - " + athlete.get(2));
         }
         System.out.println();
         System.out.println(MessagesEN.ATHLETES_LIST_BACK);
         return askForInt(MessagesEN.PROMPT_CHOOSE_ATHLETE, 0, found.size());
     }
-
 
 
     /**
@@ -680,7 +719,7 @@ public class UIManager {
             case OUT_OF_RANGE -> MessagesEN.ERROR_OUT_OF_RANGE; // Use showMessage() instead because of the %d placeholders.
             case NO_DELEGATIONS -> MessagesEN.ERROR_NO_DELEGATIONS;
             case INVALID_SIMULATION_DATA -> MessagesEN.ERROR_INVALID_SIMULATION_DATA;
-            case ATHLETE_ALREADY_REGISTERED -> null;
+            case ATHLETE_ALREADY_REGISTERED -> MessagesEN.ERROR_ATHLETE_ALREADY_REGISTERED;
         };
 
         System.out.println(message);
@@ -866,4 +905,3 @@ public class UIManager {
     }
 
 }
-

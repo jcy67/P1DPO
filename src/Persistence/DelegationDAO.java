@@ -65,4 +65,22 @@ public class DelegationDAO {
 
         Files.writeString(Path.of(DELEGATIONS_PATH), gson.toJson(delegations));
     }
+
+    /**
+     * Verifies that the delegations JSON file exists and can be read.
+     *
+     * @return true if the file exists and is readable, false otherwise
+     * @throws IOException if an error occurs while reading the file
+     */
+    public boolean verifyFile() throws IOException {
+
+        Path path = Path.of("data/delegations.json");
+
+        if (!Files.isRegularFile(path) || !Files.isReadable(path)) {
+            return false;
+        }
+
+        readDelegations();
+        return true;
+    }
 }
